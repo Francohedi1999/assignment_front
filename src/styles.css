@@ -1,0 +1,30 @@
+/* Pour les utilisateurs de CSS */
+/* You can add global styles to this file, and also import other style files */
+
+html, body
+{
+  height: 100%;
+}
+
+body
+{
+	padding: 0;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow-x: hidden;
+}
+
+.white-icon
+{
+  color: white;
+}
+
+.green-icon
+{
+  color: green;
+}
+
+.red-icon
+{
+  color: red;
+}

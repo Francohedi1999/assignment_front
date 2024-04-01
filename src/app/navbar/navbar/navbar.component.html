@@ -1,0 +1,149 @@
+<mat-toolbar>
+
+  <button mat-icon-button (click)=" sidenav.toggle() ">
+    <mat-icon>
+      menu
+    </mat-icon>
+  </button>
+
+
+  <span>{{ title }}</span>
+
+</mat-toolbar>
+
+<mat-sidenav-container>
+
+  <mat-sidenav #sidenav="matSidenav" mode="side">
+
+
+
+    <img src="https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png" class="rounded-circle" width="100">
+
+    <h4 class="name">Name User</h4>
+    <p class="designation">Designation Post</p>
+
+    <mat-divider></mat-divider>
+
+
+    <!-- MENU 1 -->
+    <button mat-button class="menu-button" [matMenuTriggerFor]="menu_1" >
+      <mat-icon class="white-icon">home</mat-icon>
+      <span class="text-white">Menu 1</span>
+    </button>
+
+    <mat-menu #menu_1="matMenu">
+
+      <button mat-menu-item  routerLink="">
+        <mat-icon>home</mat-icon>
+        <span>Menu 1</span>
+      </button>
+
+      <button mat-menu-item routerLink="">
+        <mat-icon>home</mat-icon>
+        <span>Menu 1</span>
+      </button>
+
+    </mat-menu>
+    <!-- MENU 1 -->
+
+
+    <!--MENU 2-->
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon class="white-icon">home</mat-icon>
+      <span class="text-white">Menu 2</span>
+    </button>
+    <!--MENU 2-->
+
+
+    <!--MENU 3-->
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon class="white-icon">home</mat-icon>
+      <span class="text-white">Menu 3</span>
+    </button>
+    <!--MENU 3-->
+
+
+
+    <!-- MENU 4 -->
+    <button mat-button class="menu-button" [matMenuTriggerFor]="menu_4" >
+      <mat-icon class="white-icon">home</mat-icon>
+      <span class="text-white">menu_4</span>
+    </button>
+
+    <mat-menu #menu_4="matMenu">
+
+      <!-- menu_4_1 -->
+      <button mat-menu-item [matMenuTriggerFor]="menu_4_1">
+        <mat-icon>home</mat-icon>
+        <span>menu_4_1</span>
+      </button>
+
+      <mat-menu #menu_4_1="matMenu">
+
+        <button mat-menu-item  routerLink="">
+          <mat-icon>home</mat-icon>
+          <span>menu_4_11</span>
+        </button>
+
+        <button mat-menu-item  routerLink="">
+          <mat-icon>home</mat-icon>
+          <span>menu_4_12</span>
+        </button>
+
+      </mat-menu>
+      <!-- menu_4_1 -->
+
+
+      <!-- menu_4_2 -->
+      <button mat-menu-item [matMenuTriggerFor]="menu_4_2">
+        <mat-icon>home</mat-icon>
+        <span>menu_4_2</span>
+      </button>
+
+      <mat-menu #menu_4_2="matMenu">
+
+        <button mat-menu-item routerLink="">
+          <mat-icon>home</mat-icon>
+          <span>menu_4_21</span>
+        </button>
+
+        <button mat-menu-item routerLink="">
+          <mat-icon>home</mat-icon>
+          <span>menu_4_22</span>
+        </button>
+
+      </mat-menu>
+      <!-- menu_4_2 -->
+
+
+    </mat-menu>
+    <!-- MENU 4 -->
+
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button"  routerLink="">
+      <mat-icon class="white-icon">logout</mat-icon>
+      <span class="text-white">Se déconnecter</span>
+    </button>
+
+
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon class="white-icon">login</mat-icon>
+      <span class="text-white">Se connecter</span>
+    </button>
+
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <div class="content">
+
+      <router-outlet></router-outlet>
+
+    </div>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
