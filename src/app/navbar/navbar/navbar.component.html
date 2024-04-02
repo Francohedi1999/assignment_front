@@ -25,26 +25,26 @@
     <mat-divider></mat-divider>
 
 
-    <!-- MENU 1 -->
+    <!-- Utilisateur -->
     <button mat-button class="menu-button" [matMenuTriggerFor]="menu_1" >
-      <mat-icon class="white-icon">home</mat-icon>
-      <span class="text-white">Menu 1</span>
+      <mat-icon class="white-icon">people</mat-icon>
+      <span class="text-white">Utilisateur</span>
     </button>
 
     <mat-menu #menu_1="matMenu">
 
-      <button mat-menu-item  routerLink="">
-        <mat-icon>home</mat-icon>
-        <span>Menu 1</span>
+      <button mat-menu-item  routerLink="/add-user">
+        <mat-icon>person_add</mat-icon>
+        <span>Nouveau utilisateur</span>
       </button>
 
-      <button mat-menu-item routerLink="">
-        <mat-icon>home</mat-icon>
-        <span>Menu 1</span>
+      <button mat-menu-item routerLink="/add-user">
+        <mat-icon>format_list_bulleted</mat-icon>
+        <span>Liste des utilisateurs</span>
       </button>
 
     </mat-menu>
-    <!-- MENU 1 -->
+    <!-- Utilisateur -->
 
 
     <!--MENU 2-->

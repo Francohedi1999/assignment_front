@@ -3,24 +3,14 @@ import {RouterOutlet} from "@angular/router";
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import {Title} from "@angular/platform-browser";
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconButton } from '@angular/material/button';
+import { NavbarComponent } from './navbar/navbar/navbar.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   standalone: true,
   imports: [
     RouterOutlet ,
-    // MatToolbarModule ,
-    // MatIconModule ,
-    // MatIconButton ,
-    // MatSidenavModule ,
-    // MatDividerModule ,
-    // MatMenuModule
+    NavbarComponent ,
   ],
   styleUrl: './app.component.css'
 })
@@ -55,8 +45,7 @@ export class AppComponent implements OnInit
       return data.title;
     }
 
-    //Valeur par défaut retourné lorsque la fonction ne trouve pas de titre pour la page.
+    // Valeur par défaut retourné lorsque la fonction ne trouve pas de titre pour la page.
     return state && parent ? this.getPageTitle(state, state.firstChild(parent)) : 'Assignment Projet Hedi Franco et Angelo Rakotobe';
   }
-// >>>>>>> c874d64bd17a92ebf39f5e099103b07195fad292
 }

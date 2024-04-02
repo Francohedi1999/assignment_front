@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CommonModule, DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule , MatDialog } from '@angular/material/dialog';
@@ -25,7 +26,8 @@ import { DialogNewUserComponent } from '../dialog-new-user/dialog-new-user.compo
     FormsModule ,
     MatDatepickerModule ,
     MatNativeDateModule ,
-    ReactiveFormsModule
+    ReactiveFormsModule ,
+    MatSelectModule
   ],
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css'
@@ -42,18 +44,20 @@ export class NewUserComponent implements OnInit
   new_user_form: FormGroup ;
   new_user: User_Model ;
 
-  role: any[];
-  niveau: any[];
+  image_selected : File ;
+
+  roles: any[];
+  levels: any[];
 
   ngOnInit(): void
   {
-    this.role = [
+    this.roles = [
       { option: "Administrateur" , value:"Administrateur" } ,
       { option: "Enseignant(e)" , value:"Enseignant" } ,
       { option: "Etudiant(e)" , value:"Etudiant" }
     ]
 
-    this.niveau = [
+    this.levels = [
       { option: "L1" , value:"L1" } ,
       { option: "L2" , value:"L2" } ,
       { option: "L3" , value:"L3" }
@@ -67,12 +71,12 @@ export class NewUserComponent implements OnInit
       password: [ null , [ Validators.required ] ] ,
       image: [ null , [ Validators.required ] ] ,
       role: [ null , [ Validators.required , Validators.pattern("^(Administrateur|Enseignant|Etudiant)$") ] ] ,
-      niveau: [ null , [ Validators.required , Validators.pattern("^(L1|L2|L3)$") ] ]
+      niveau: [ null , Validators.pattern("^(L1|L2|L3)$") ]
 
     }) ;
   }
 
-  check_passation()
+  check_user()
   {
     this.new_user = new User_Model() ;
 
@@ -80,11 +84,16 @@ export class NewUserComponent implements OnInit
     this.new_user.prenom = this.new_user_form.value.prenom ;
     this.new_user.email = this.new_user_form.value.email ;
     this.new_user.password = this.new_user_form.value.password ;
-    this.new_user.image = this.new_user_form.value.image ;
+    this.new_user.image = this.image_selected ;
     this.new_user.role = this.new_user_form.value.role ;
     this.new_user.niveau = this.new_user_form.value.niveau ;
 
-    this.mat_dialog.open( DialogNewUserComponent , { width: "2000px" , data: this.new_user } );
+    this.mat_dialog.open( DialogNewUserComponent , { width: "500px" , data: this.new_user } );
+  }
+
+  on_image_selected(event)
+  {
+    this.image_selected = event.target.files[0] ;
   }
 
 }
