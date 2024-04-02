@@ -12,9 +12,9 @@ export class UserService {
   constructor(  private url_service: UrlService ,
                 private http: HttpClient ) { }
 
-  create( user: User_Model ):Observable<any>
+  create( user_data: FormData ):Observable<any>
   {
-    return this.http.post<any>( this.url_service.url + "/user" , user ) ;
+    return this.http.post<any>( this.url_service.url + "/user" , user_data ) ;
   }
 
 }

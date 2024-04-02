@@ -6,7 +6,6 @@ export class User_Model
   email : string ;
   password : string ;
   img_url : File ;
-  image : File ;
   role : string ;
   niveau : string ;
 }

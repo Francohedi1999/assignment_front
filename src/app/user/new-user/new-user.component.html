@@ -11,7 +11,7 @@
 
   <div class="row">
 
-    <form [formGroup]="new_user_form" >
+    <form [formGroup]="new_user_form" enctype="multipart/form-data">
 
       <div class="row mt-2">
         <mat-form-field class="col-md-6">
@@ -55,7 +55,7 @@
             }
           </mat-select>
         </mat-form-field>
-        <mat-form-field class="col-md-6">
+        <mat-form-field class="col-md-6" >
           <mat-label>Niveau</mat-label>
           <mat-select matInput formControlName="niveau">
             @for (level of levels; track level)
