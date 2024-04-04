@@ -1,0 +1,38 @@
+
+<mat-card (click)="show_utilisateur()" class="mt-2">
+  <mat-card-content>
+
+    <div class="row">
+      <div class="col-md-2">
+        <img src="{{ utilisateur.img_url }}" class="rounded-circle" width="100" height="100">
+      </div>
+      <div class="col-md-10">
+
+        <dl class="row">
+          <dd class="col-sm-12">
+            <strong>Nom et prénom : </strong>{{ utilisateur.nom + " " + utilisateur.prenom }}
+          </dd>
+          <dd class="col-sm-12">
+            <strong>Email : </strong>{{ utilisateur.email }}
+          </dd>
+
+          @if ( utilisateur.niveau === "" || utilisateur.niveau === null )
+          {
+          <dd class="col-sm-12">
+            {{ utilisateur.role }}
+          </dd>
+          }
+          @else
+          {
+            <dd class="col-sm-12">
+              {{ utilisateur.role + " ( " + utilisateur.niveau + " ) " }}
+            </dd>
+          }
+
+        </dl>
+
+      </div>
+    </div>
+
+  </mat-card-content>
+</mat-card>

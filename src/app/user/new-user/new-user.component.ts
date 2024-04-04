@@ -41,6 +41,8 @@ export class NewUserComponent implements OnInit
   role: string ;
   niveau: string ;
 
+  error_niveau: string ;
+
   image_selected : File ;
 
   roles: any[];
@@ -75,7 +77,7 @@ export class NewUserComponent implements OnInit
       nom: [ null , [ Validators.required ] ] ,
       prenom: [ null , [ Validators.required ] ] ,
       email: [ null , [ Validators.required ] ] ,
-      password: [ null , [ Validators.required ] ] ,
+      password: [ "0000" , [ Validators.required ] ] ,
       image: [ null , [ Validators.required ] ] ,
       role: [ null , [ Validators.required , Validators.pattern("^(Administrateur|Enseignant|Etudiant)$") ] ] ,
       niveau: [ null , Validators.pattern("^(L1|L2|L3)$") ]
@@ -97,12 +99,19 @@ export class NewUserComponent implements OnInit
 
     const image_url = URL.createObjectURL( this.image_selected ) ;
 
-    const data = {
-      data_user : data_user ,
-      image_url : image_url
+    if( this.new_user_form.value.role !== "Etudiant" && this.new_user_form.value.niveau !== null )
+    {
+      this.error_niveau = "Seuls les étudiants peuvent avoir un niveaux" ;
     }
-
-    this.mat_dialog.open( DialogNewUserComponent , { width: "500px" , data: data } );
+    else
+    {
+      const data =
+      {
+        data_user : data_user ,
+        image_url : image_url
+      }
+      this.mat_dialog.open( DialogNewUserComponent , { width: "500px" , data: data } );
+    }
   }
 
   on_image_selected(event)

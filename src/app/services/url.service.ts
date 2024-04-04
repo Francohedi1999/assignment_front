@@ -8,4 +8,6 @@ export class UrlService {
   constructor() { }
 
   url = "http://localhost:3000" ;
+
+  user = this.url + "/user" ;
 }

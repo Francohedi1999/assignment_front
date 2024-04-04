@@ -14,7 +14,11 @@ export class UserService {
 
   create( user_data: FormData ):Observable<any>
   {
-    return this.http.post<any>( this.url_service.url + "/user" , user_data ) ;
+    return this.http.post<any>( this.url_service.user , user_data ) ;
   }
 
+  get_all():Observable<User_Model[]>
+  {
+    return this.http.get<User_Model[]>( this.url_service.user ) ;
+  }
 }

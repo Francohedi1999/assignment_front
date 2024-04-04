@@ -63,6 +63,10 @@
               <mat-option [value]="level.value">{{level.option}}</mat-option>
             }
           </mat-select>
+          @if( error_niveau )
+          {
+            <span class="text-danger">{{ error_niveau }}</span>
+          }
         </mat-form-field>
       </div>
 
