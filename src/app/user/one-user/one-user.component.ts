@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { User_Model } from '../user.model';
 import { MatCardModule } from '@angular/material/card';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-one-user',
@@ -13,11 +14,12 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class OneUserComponent
 {
+  constructor( private router: Router ) {}
   @Input()
   utilisateur: User_Model ;
 
   show_utilisateur()
   {
-    console.log( this.utilisateur ) ;
+    this.router.navigate(["/user/" + this.utilisateur._id ]) ;
   }
 }

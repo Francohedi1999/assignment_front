@@ -11,6 +11,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule} from '@angular/material/core';
 import { FormBuilder, FormGroup, Validators ,ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DialogNewUserComponent } from '../dialog-new-user/dialog-new-user.component';
+import { RoleService } from '../../services/role.service';
+import { LevelService } from '../../services/level.service';
 
 @Component({
   selector: 'app-new-user',
@@ -33,17 +35,9 @@ import { DialogNewUserComponent } from '../dialog-new-user/dialog-new-user.compo
 })
 export class NewUserComponent implements OnInit
 {
-
-  nom: string ;
-  prenom: string ;
-  email: string ;
-  password: string ;
-  role: string ;
-  niveau: string ;
+  image_selected : File ;
 
   error_niveau: string ;
-
-  image_selected : File ;
 
   roles: any[];
   levels: any[];
@@ -51,37 +45,24 @@ export class NewUserComponent implements OnInit
   new_user_form : FormGroup ;
 
   constructor(  private form_builder: FormBuilder ,
-                private mat_dialog: MatDialog )
+                private mat_dialog: MatDialog ,
+                private role_service: RoleService ,
+                private level_service: LevelService )
   { }
-
-
-
 
   ngOnInit(): void
   {
-
-    this.roles = [
-      { option: "Administrateur" , value:"Administrateur" } ,
-      { option: "Enseignant(e)" , value:"Enseignant" } ,
-      { option: "Etudiant(e)" , value:"Etudiant" }
-    ]
-
-    this.levels = [
-      { option: "L1" , value:"L1" } ,
-      { option: "L2" , value:"L2" } ,
-      { option: "L3" , value:"L3" }
-    ]
+    this.roles = this.role_service.roles ;
+    this.levels = this.level_service.levels ;
 
     this.new_user_form = this.form_builder.group({
-
       nom: [ null , [ Validators.required ] ] ,
       prenom: [ null , [ Validators.required ] ] ,
-      email: [ null , [ Validators.required ] ] ,
+      email: [ null , [ Validators.required , Validators.email ] ] ,
       password: [ "0000" , [ Validators.required ] ] ,
       image: [ null , [ Validators.required ] ] ,
       role: [ null , [ Validators.required , Validators.pattern("^(Administrateur|Enseignant|Etudiant)$") ] ] ,
-      niveau: [ null , Validators.pattern("^(L1|L2|L3)$") ]
-
+      niveau: [ null , Validators.pattern("^(L1|L2|L3|M1|M2)$") ]
     }) ;
   }
 
@@ -110,7 +91,7 @@ export class NewUserComponent implements OnInit
         data_user : data_user ,
         image_url : image_url
       }
-      this.mat_dialog.open( DialogNewUserComponent , { width: "500px" , data: data } );
+      this.mat_dialog.open( DialogNewUserComponent , { width: "1000px" , data: data } );
     }
   }
 
@@ -118,6 +99,5 @@ export class NewUserComponent implements OnInit
   {
     this.image_selected = event.target.files[0] ;
   }
-
 
 }

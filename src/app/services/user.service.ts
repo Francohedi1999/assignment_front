@@ -17,8 +17,13 @@ export class UserService {
     return this.http.post<any>( this.url_service.user , user_data ) ;
   }
 
-  get_all():Observable<User_Model[]>
+  get_all( filtre_role: string ):Observable<User_Model[]>
   {
-    return this.http.get<User_Model[]>( this.url_service.user ) ;
+    return this.http.get<User_Model[]>( this.url_service.user + "?filtre_role=" + filtre_role ) ;
+  }
+
+  get_by_id( id: string ):Observable<User_Model>
+  {
+    return this.http.get<User_Model>( this.url_service.user + "/" + id ) ;
   }
 }
