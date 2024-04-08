@@ -48,14 +48,14 @@
       <div class="row mt-4">
         <mat-form-field class="col-md-6">
           <mat-label>Type</mat-label>
-          <mat-select matInput formControlName="role">
+          <mat-select matInput formControlName="role" (selectionChange)="on_role_selected($event)">
             @for (role of roles; track role)
             {
               <mat-option [value]="role.value">{{role.option}}</mat-option>
             }
           </mat-select>
         </mat-form-field>
-        <mat-form-field class="col-md-6" >
+        <mat-form-field class="col-md-6" [hidden]="hidden_niveau" >
           <mat-label>Niveau</mat-label>
           <mat-select matInput formControlName="niveau">
             @for (level of levels; track level)
@@ -74,11 +74,13 @@
         <div class="col-md-6">
           @if( !new_user_form.valid )
           {
-            <button  class="btn btn-success" disabled (click)="check_user()">Enregistrer</button>
+            <button  class="btn btn-success" disabled (click)="check_user()">Enregistrer</button><br>
+            <button  class="btn btn-light mt-2" (click)="reset_new_user_form()">Réinitialiser le formulaire</button>
           }
           @else
           {
-            <button  class="btn btn-success" (click)="check_user()">Enregistrer</button>
+            <button  class="btn btn-success" (click)="check_user()">Enregistrer</button><br>
+            <button  class="btn btn-light mt-2" (click)="reset_new_user_form()">Réinitialiser le formulaire</button>
           }
         </div>
       </div>

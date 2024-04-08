@@ -61,7 +61,7 @@ export class DialogNewUserComponent implements OnInit{
             setTimeout( () =>
             {
               this.dialog_ref.close() ;
-              this.router.navigate([ "/list-user" ]) ;
+              this.router.navigate([ "/add-user" ]) ;
             } , 1000 ); // Redirection après 1 seconde
           } , 2000 ); // Message de succès affiché pendant 2 secondes
       }

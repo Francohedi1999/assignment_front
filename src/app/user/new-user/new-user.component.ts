@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CommonModule, DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule} from '@angular/material/select';
+import { MatSelectChange, MatSelectModule} from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule , MatDialog } from '@angular/material/dialog';
@@ -42,6 +42,8 @@ export class NewUserComponent implements OnInit
   roles: any[];
   levels: any[];
 
+  hidden_niveau: boolean ;
+
   new_user_form : FormGroup ;
 
   constructor(  private form_builder: FormBuilder ,
@@ -52,6 +54,7 @@ export class NewUserComponent implements OnInit
 
   ngOnInit(): void
   {
+    this.hidden_niveau = true ;
     this.roles = this.role_service.roles ;
     this.levels = this.level_service.levels ;
 
@@ -78,26 +81,46 @@ export class NewUserComponent implements OnInit
     data_user.append("role" , this.new_user_form.value.role ) ;
     data_user.append("niveau" , this.new_user_form.value.niveau ) ;
 
-    const image_url = URL.createObjectURL( this.image_selected ) ;
-
-    if( this.new_user_form.value.role !== "Etudiant" && this.new_user_form.value.niveau !== null )
+    const data =
     {
-      this.error_niveau = "Seuls les étudiants peuvent avoir un niveaux" ;
+      data_user : data_user ,
+      image_url : URL.createObjectURL( this.image_selected )
     }
-    else
-    {
-      const data =
-      {
-        data_user : data_user ,
-        image_url : image_url
-      }
-      this.mat_dialog.open( DialogNewUserComponent , { width: "1000px" , data: data } );
-    }
+    this.mat_dialog.open( DialogNewUserComponent , { width: "1000px" , data: data } );
   }
 
   on_image_selected(event)
   {
     this.image_selected = event.target.files[0] ;
+  }
+
+  on_role_selected(event: MatSelectChange)
+  {
+    if( event.value !== "Etudiant" )
+    {
+      this.hidden_niveau = true ;
+      this.new_user_form.get("niveau").reset() ;
+      this.new_user_form.value.niveau = "" ;
+    }
+    else
+    {
+      this.hidden_niveau = false ;
+    }
+  }
+
+  reset_new_user_form()
+  {
+    this.hidden_niveau = true ;
+
+    this.new_user_form = this.form_builder.group({
+      nom: [ null , [ Validators.required ] ] ,
+      prenom: [ null , [ Validators.required ] ] ,
+      email: [ null , [ Validators.required , Validators.email ] ] ,
+      password: [ "0000" , [ Validators.required ] ] ,
+      image: [ null , [ Validators.required ] ] ,
+      role: [ null , [ Validators.required , Validators.pattern("^(Administrateur|Enseignant|Etudiant)$") ] ] ,
+      niveau: [ null , Validators.pattern("^(L1|L2|L3|M1|M2)$") ]
+    }) ;
   }
 
 }

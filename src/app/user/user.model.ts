@@ -8,4 +8,5 @@ export class User_Model
   img_url : string ;
   role : string ;
   niveau : string ;
+  deleted : boolean ;
 }

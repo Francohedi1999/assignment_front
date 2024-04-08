@@ -26,4 +26,14 @@ export class UserService {
   {
     return this.http.get<User_Model>( this.url_service.user + "/" + id ) ;
   }
+
+  update( user_data: FormData ):Observable<any>
+  {
+    return this.http.post<any>( this.url_service.user + "/update" , user_data ) ;
+  }
+
+  delete_or_restore( id: string ):Observable<any>
+  {
+    return this.http.get<any>( this.url_service.user + "/delete_or_restore/" + id ) ;
+  }
 }

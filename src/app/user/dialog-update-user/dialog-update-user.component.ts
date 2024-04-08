@@ -40,10 +40,43 @@ export class DialogUpdateUserComponent implements OnInit
   {
     this.data_user = this.data.data_user ;
     this.img_url = this.data.image_url ;
+
+    this.hidden_buttons = false ;
   }
 
   update_user()
   {
+    this.is_loading =  true ;
+    this.hidden_buttons = true ;
 
+    this.user_service.update(this.data_user).subscribe( (response) =>
+    {
+      if( response.updated === false )
+      {
+        setTimeout(() =>
+          {
+            this.is_loading = false;
+            this.message_error = response.message;
+            setTimeout( () =>
+            {
+              this.dialog_ref.close() ;
+              this.router.navigate([ "/list-user" ]) ;
+            } , 1000 ); // Redirection après 1 seconde
+          } , 2000 ); // Message de succès affiché pendant 2 secondes
+      }
+      else
+      {
+        setTimeout(() =>
+          {
+            this.is_loading = false;
+            this.message_success = response.message;
+            setTimeout( () =>
+            {
+              this.dialog_ref.close() ;
+              this.router.navigate([ "/list-user" ]) ;
+            } , 1000 ); // Redirection après 1 seconde
+          } , 2000 ); // Message de succès affiché pendant 2 secondes
+      }
+    } ) ;
   }
 }

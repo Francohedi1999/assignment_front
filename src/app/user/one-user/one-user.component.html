@@ -8,29 +8,27 @@
       </div>
       <div class="col-md-10">
 
-        <dl class="row">
-          <dd class="col-sm-12">
-            <strong>Nom et prénom : </strong>{{ utilisateur.nom + " " + utilisateur.prenom }}
-          </dd>
-          <dd class="col-sm-12">
-            <strong>Email : </strong>{{ utilisateur.email }}
-          </dd>
+          <strong>Nom et prénom : </strong>{{ utilisateur.nom + " " + utilisateur.prenom }}
+          <br>
+          <strong>Email : </strong>{{ utilisateur.email }}
+          <br>
 
           @if ( utilisateur.niveau === "" || utilisateur.niveau === null )
           {
-          <dd class="col-sm-12">
-            {{ utilisateur.role }}
-          </dd>
+            <strong>Type : </strong>{{ utilisateur.role }}
+            <br>
           }
           @else
           {
-            <dd class="col-sm-12">
-              {{ utilisateur.role + " ( " + utilisateur.niveau + " ) " }}
-            </dd>
+            <strong>Type : </strong>{{ utilisateur.role + " ( " + utilisateur.niveau + " ) " }}
+            <br>
           }
 
-        </dl>
-
+          @if( utilisateur.deleted === true )
+          {
+              <strong class="text-danger">Supprimé</strong>
+              <br>
+          }
       </div>
     </div>
 
