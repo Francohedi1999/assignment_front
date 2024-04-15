@@ -1,27 +1,25 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../../services/user.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
-  selector: 'app-dialog-update-user',
+  selector: 'app-dialog-update-profile',
   standalone: true,
   imports: [
     CommonModule ,
     MatDialogModule ,
     MatButtonModule ,
     MatIconModule ,
-    MatProgressSpinnerModule
-  ],
-  templateUrl: './dialog-update-user.component.html',
-  styleUrl: './dialog-update-user.component.css'
+    MatProgressSpinnerModule],
+  templateUrl: './dialog-update-profile.component.html',
+  styleUrl: './dialog-update-profile.component.css'
 })
-export class DialogUpdateUserComponent implements OnInit
+export class DialogUpdateProfileComponent implements OnInit
 {
   data_user: FormData ;
   img_url: string ;
@@ -33,10 +31,10 @@ export class DialogUpdateUserComponent implements OnInit
 
   constructor(  private dialog_ref: DialogRef ,
                 @Inject( MAT_DIALOG_DATA ) public data: any ,
-                private user_service: UserService ,
-                private router: Router) {}
+                private user_service: UserService )
+  {}
 
-  ngOnInit(): void
+  ngOnInit()
   {
     this.data_user = this.data.data_user ;
     this.img_url = this.data.image_url ;
@@ -49,7 +47,7 @@ export class DialogUpdateUserComponent implements OnInit
     this.is_loading =  true ;
     this.hidden_buttons = true ;
 
-    this.user_service.update(this.data_user).subscribe( (response) =>
+    this.user_service.update_profil(this.data_user).subscribe( (response) =>
     {
       if( response.updated === false )
       {
@@ -60,7 +58,7 @@ export class DialogUpdateUserComponent implements OnInit
             setTimeout( () =>
             {
               this.dialog_ref.close() ;
-              this.router.navigate([ "/list-user" ]) ;
+              window.location.href = "list-user" ;
             } , 1000 ); // Redirection après 1 seconde
           } , 2000 ); // Message de succès affiché pendant 2 secondes
       }
@@ -73,7 +71,7 @@ export class DialogUpdateUserComponent implements OnInit
             setTimeout( () =>
             {
               this.dialog_ref.close() ;
-              this.router.navigate([ "/list-user" ]) ;
+              window.location.href = "list-user" ;
             } , 1000 ); // Redirection après 1 seconde
           } , 2000 ); // Message de succès affiché pendant 2 secondes
       }

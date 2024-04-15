@@ -14,7 +14,7 @@ import { User_Model } from '../user.model';
 import { UserService } from '../../services/user.service';
 import { RoleService } from '../../services/role.service';
 import { LevelService } from '../../services/level.service';
-import { DialogUpdateUserComponent } from '../dialog-update-user/dialog-update-user.component';
+import { DialogUpdateUserComponent } from './dialog-update-user/dialog-update-user.component';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -165,7 +165,7 @@ export class UpdateOrDeleteUserComponent implements OnInit
       prenom: [ this.user.prenom , [Validators.required]],
       email: [ this.user.email , [Validators.required, Validators.email]],
       role: [ this.user.role , [Validators.required, Validators.pattern("^(Administrateur|Enseignant|Etudiant)$")]],
-      niveau: [ this.user.niveau || null , Validators.pattern("^(L1|L2|L3|M1|M2)$")] ,
+      niveau: [ this.user.niveau , Validators.pattern("^(L1|L2|L3|M1|M2)$")] ,
       image: [ null ]
     }) ;
   }

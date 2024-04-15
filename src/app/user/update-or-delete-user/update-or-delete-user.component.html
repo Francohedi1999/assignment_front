@@ -108,16 +108,21 @@
 
       <div class="row mt-2">
         <div class="col-md-6">
+
           @if( !update_user_form.valid )
           {
             <button  class="btn btn-success" disabled (click)="check_user()">Modifier</button><br>
-            <button  class="btn btn-light mt-2" (click)="reset_update_user_form()">Réinitialiser le formulaire</button>
           }
           @else
           {
             <button  class="btn btn-success" (click)="check_user()">Modifier</button><br>
+          }
+
+          @if( update_user_form.touched )
+          {
             <button  class="btn btn-light mt-2" (click)="reset_update_user_form()">Réinitialiser le formulaire</button>
           }
+
         </div>
       </div>
 

@@ -10,7 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule} from '@angular/material/core';
 import { FormBuilder, FormGroup, Validators ,ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { DialogNewUserComponent } from '../dialog-new-user/dialog-new-user.component';
+import { DialogNewUserComponent } from './dialog-new-user/dialog-new-user.component';
 import { RoleService } from '../../services/role.service';
 import { LevelService } from '../../services/level.service';
 
@@ -86,6 +86,7 @@ export class NewUserComponent implements OnInit
       data_user : data_user ,
       image_url : URL.createObjectURL( this.image_selected )
     }
+
     this.mat_dialog.open( DialogNewUserComponent , { width: "1000px" , data: data } );
   }
 

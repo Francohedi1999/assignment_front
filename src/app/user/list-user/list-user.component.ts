@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { OneUserComponent } from '../one-user/one-user.component';
+import { OneUserComponent } from './one-user/one-user.component';
 import { UserService } from '../../services/user.service';
 import { User_Model } from '../user.model';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';

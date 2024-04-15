@@ -7,34 +7,29 @@
            <div class="card mb-3 decoration">
 
             <div class="card-body">
-             <form class="row g-3">
+             <form class="row g-3" [formGroup]="login_form" >
                 <div>
                   <h1 class="text-center">Connectez-vous</h1>
                 </div>
 
                 <div class="form-group">
-                  <label class="col-form-label" for="username">Nom d'utilisateur</label>
-                  <input class="form-control" id="username" placeholder="Pseudo" type="text" value="Rakoto">
+                  <label class="col-form-label" for="username">Email</label>
+                  <input class="form-control" formControlName="email" type="text" >
                   <div class="invalid-feedback txt-danger">Le nom d'utilisateur est requis.</div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-form-label">Mot de passe</label>
-                  <input class="form-control" formControlName="password" placeholder="123456" type="password"
-                         value="12345678"/>
+                  <input class="form-control" formControlName="password" type="password" />
                   <div class="invalid-feedback txt-danger">Le mot de passe est requis.</div>
                 </div>
 
                 <div class="form-group mb-0">
                   <div class="text-end mt-3">
-                    <button class="btn btn-primary btn-block w-100" type="submit">
+                    <button class="btn btn-primary btn-block w-100" type="submit" (click)="login()">
                       Se connecter
                     </button>
                   </div>
-                </div>
-                <div class="col-12">
-                  <hr>
-                  <p class="mt-4 mb-0 text-center">Vous n'avez pas de compte ?<a class="ms-2">Inscrivez-vous</a></p>
                 </div>
               </form>
             </div>

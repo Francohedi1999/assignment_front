@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { UrlService } from './url.service';
 import { User_Model } from '../user/user.model';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,30 +11,43 @@ import { HttpClient } from '@angular/common/http';
 export class UserService {
 
   constructor(  private url_service: UrlService ,
-                private http: HttpClient ) { }
+                private http: HttpClient ,
+                private auth_service: AuthService ) { }
 
   create( user_data: FormData ):Observable<any>
   {
-    return this.http.post<any>( this.url_service.user , user_data ) ;
+    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+    return this.http.post<any>( this.url_service.user , user_data , header ) ;
   }
 
   get_all( filtre_role: string ):Observable<User_Model[]>
   {
-    return this.http.get<User_Model[]>( this.url_service.user + "?filtre_role=" + filtre_role ) ;
+    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+    return this.http.get<User_Model[]>( this.url_service.user + "?filtre_role=" + filtre_role , header ) ;
   }
 
   get_by_id( id: string ):Observable<User_Model>
   {
-    return this.http.get<User_Model>( this.url_service.user + "/" + id ) ;
+    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+    return this.http.get<User_Model>( this.url_service.user + "/" + id , header ) ;
   }
 
   update( user_data: FormData ):Observable<any>
   {
-    return this.http.post<any>( this.url_service.user + "/update" , user_data ) ;
+    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+    return this.http.post<any>( this.url_service.user + "/update" , user_data , header ) ;
   }
 
   delete_or_restore( id: string ):Observable<any>
   {
-    return this.http.get<any>( this.url_service.user + "/delete_or_restore/" + id ) ;
+    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+    return this.http.get<any>( this.url_service.user + "/delete_or_restore/" + id , header ) ;
   }
+
+  update_profil( user_data: FormData ):Observable<any>
+  {
+    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+    return this.http.post<any>( this.url_service.user + "/update_profile" , user_data , header ) ;
+  }
+
 }

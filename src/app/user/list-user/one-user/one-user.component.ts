@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { User_Model } from '../user.model';
+import { User_Model } from '../../user.model';
 import { MatCardModule } from '@angular/material/card';
 import { Router } from '@angular/router';
 
