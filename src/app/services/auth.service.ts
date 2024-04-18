@@ -83,7 +83,7 @@ export class AuthService {
     localStorage.setItem( 'STATE' , 'false' );
     localStorage.setItem( 'TOKEN' , '' );
     localStorage.setItem( 'ROLE' , '' );
-    this.router.navigate( [ '/login' ] );
+    window.location.href = "login" ;
   }
 
   get_token_user_logged()
