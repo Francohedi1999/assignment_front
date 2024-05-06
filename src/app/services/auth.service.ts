@@ -32,16 +32,12 @@ export class AuthService {
       if( response.logged === true )
       {
         localStorage.setItem( 'TOKEN', response.data );
-
         this.get_user_logged( response.data ).subscribe( user =>
         {
           this.isLogin = response.logged ;
 
-          // localStorage.setItem( 'TOKEN', response.data );
-
           localStorage.setItem( 'STATE', 'true' );
           localStorage.setItem( 'ROLE', user.role );
-
           window.location.href = "list-user" ;
         } ) ;
       }

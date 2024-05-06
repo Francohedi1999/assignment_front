@@ -45,15 +45,15 @@ export class NavbarComponent implements OnInit
     this.role_user_logged = this.auth_service.getRole() ;
     this.is_logged = this.auth_service.isLoggedIn() ;
     this.token_user_logged = this.auth_service.get_token_user_logged() ;
-    this.auth_service.get_user_logged( this.token_user_logged ).subscribe(
-    ( response ) =>
+    
+    if( this.token_user_logged !== "" )
     {
-      this.user_service.get_by_id( response._id ).subscribe(
-      (response) =>
+      this.auth_service.get_user_logged( this.token_user_logged ).subscribe(
+      user =>
       {
-        this.user_logged = response ;
-      } )
-    } ) ;
+          this.user_logged = user ;
+      } ) ;
+    }
   }
 
   log_out()
