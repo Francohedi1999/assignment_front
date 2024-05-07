@@ -1,20 +1,20 @@
-<mat-toolbar>
+@if( is_logged )
+{
+  <mat-toolbar>
 
-  <button mat-icon-button (click)=" sidenav.toggle() ">
-    <mat-icon>
-      menu
-    </mat-icon>
-  </button>
+    <button mat-icon-button (click)=" sidenav.toggle() ">
+      <mat-icon>
+        menu
+      </mat-icon>
+    </button>
 
-</mat-toolbar>
+  </mat-toolbar>
 
-<mat-sidenav-container>
+  <mat-sidenav-container>
 
-  <mat-sidenav #sidenav="matSidenav" mode="side">
+    <mat-sidenav #sidenav="matSidenav" mode="side">
 
 
-    @if( is_logged )
-    {
 
       <img src="{{ user_logged?.img_url }}" class="rounded-circle" width="100" height="100">
 
@@ -52,21 +52,7 @@
           </button>
 
         </mat-menu>
-        <!-- Utilisateur -->
-
-        <mat-divider></mat-divider>
-
-        <button mat-button class="menu-button" routerLink="/profile/{{ user_logged?._id }}">
-          <mat-icon class="white-icon">edit</mat-icon>
-          <span class="text-white">Modifier mon profil</span>
-        </button>
-
-        <button mat-button class="menu-button"  (click)="log_out()">
-          <mat-icon class="white-icon">logout</mat-icon>
-          <span class="text-white">Se déconnecter</span>
-        </button>
-
-      }
+      }<!--
       @else if ( role_user_logged === "Enseignant" )
       {
 
@@ -75,11 +61,6 @@
         <button mat-button class="menu-button" routerLink="/profile/{{ user_logged?._id }}">
           <mat-icon class="white-icon">edit</mat-icon>
           <span class="text-white">Modifier mon profil</span>
-        </button>
-
-        <button mat-button class="menu-button"  (click)="log_out()">
-          <mat-icon class="white-icon">logout</mat-icon>
-          <span class="text-white">Se déconnecter</span>
         </button>
 
       }
@@ -93,35 +74,32 @@
           <span class="text-white">Modifier mon profil</span>
         </button>
 
-        <button mat-button class="menu-button"  (click)="log_out()">
-          <mat-icon class="white-icon">logout</mat-icon>
-          <span class="text-white">Se déconnecter</span>
-        </button>
+      }-->
 
-      }
+      <mat-divider></mat-divider>
 
-    }
-    @else
-    {
-
-      <button mat-button class="menu-button" routerLink="login">
-        <mat-icon class="white-icon">login</mat-icon>
-        <span class="text-white">Se connecter</span>
+      <button mat-button class="menu-button" routerLink="/profile/{{ user_logged?._id }}">
+        <mat-icon class="white-icon">edit</mat-icon>
+        <span class="text-white">Modifier mon profil</span>
       </button>
 
-    }
+      <button mat-button class="menu-button"  (click)="log_out()">
+        <mat-icon class="white-icon">logout</mat-icon>
+        <span class="text-white">Se déconnecter</span>
+      </button>
 
 
-  </mat-sidenav>
+    </mat-sidenav>
 
-  <mat-sidenav-content>
+    <mat-sidenav-content>
 
-    <div class="content">
+      <div class="content">
 
-      <router-outlet></router-outlet>
+        <router-outlet></router-outlet>
 
-    </div>
+      </div>
 
-  </mat-sidenav-content>
+    </mat-sidenav-content>
 
-</mat-sidenav-container>
+  </mat-sidenav-container>
+}

@@ -16,6 +16,8 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent implements OnInit
 {
+  mailDefault: string = 'administrateur@gmail.com';
+  passwordDefault: string = '0000';
 
   constructor( private form_builder: FormBuilder , private auth_service: AuthService ) {}
 
@@ -24,8 +26,8 @@ export class LoginComponent implements OnInit
   ngOnInit(): void
   {
     this.login_form = this.form_builder.group( {
-      email: [ null , [ Validators.required , Validators.email ] ] ,
-      password: [ null , Validators.required ]
+      email: [ this.mailDefault , [ Validators.required , Validators.email ] ] ,
+      password: [ this.passwordDefault , Validators.required ]
     } )
   }
 
