@@ -11,4 +11,5 @@ export class UrlService {
 
   user = this.url + "/user" ;
   auth = this.url + "/auth" ;
+  matiere = this.url + "/matieres" ;
 }

@@ -1,0 +1,68 @@
+<div class="loading-overlay" *ngIf="showLoading">
+  <mat-spinner class="mat-spinner"></mat-spinner>
+  @if (showSuccess){
+    <mat-icon class="green-icon">check_circle</mat-icon>
+  }
+</div>
+
+<div class="container mt-4">
+
+  <div *ngIf="alertMessages.length > 0" class="alert" [ngClass]="{'alert-success': alertType === 'success', 'alert-danger': alertType === 'danger'}" role="alert" style="max-width: 600px; margin: 0 auto; text-align: center;">
+    <ul>
+      <li *ngFor="let message of alertMessages">{{ message }}</li>
+    </ul>
+  </div>
+<br>
+
+  <div class="card" style="max-width: 600px; margin: 0 auto;">
+    <h2 class="card-header">
+      Formulaire de modification de matiere
+    </h2>
+    <div class="card-body">
+      <form [formGroup]="updateMatiereForm" (submit)="onSaveMatiere()" enctype="multipart/form-data">
+        <!-- Champ pour sélectionner une image -->
+        <div class="mb-3 position-relative text-center">
+          <img
+              [src]="img_url_recent"
+               alt="Image de la Matière"
+               class="rounded-circle mx-auto d-block square-image">
+
+          <br><label class="btn btn-primary btn-sm mx-auto">
+            <i class="bi bi-pencil-fill me-1"></i> Changer l'image
+            <input type="file" (change)="onImageSelected($event)" formControlName="imageMatiere" class="form-control visually-hidden">
+          </label>
+        </div>
+
+        <!-- Champ pour le nom de la matière -->
+        <div class="mb-3">
+          <label class="form-label">Nom de la Matière</label>
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="bi bi-file-text"></i>
+            </span>
+            <input type="text" formControlName="nom" class="form-control">
+          </div>
+        </div>
+
+        <!-- Champ pour le professeur -->
+        <div class="mb-3">
+          <label class="form-label">Professeur</label>
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="bi bi-person"></i>
+            </span>
+            <select class="form-select" formControlName="idProf">
+              <option *ngFor="let prof of enseignant" [value]="prof._id">{{ prof.nom }}</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Boutons -->
+        <div class="d-flex justify-content-end">
+          <button type="button" class="btn btn-danger me-2" routerLink="/matieres">Retour</button>
+          <button type="submit" class="btn btn-success" >Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

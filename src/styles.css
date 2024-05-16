@@ -1,5 +1,6 @@
 /* Pour les utilisateurs de CSS */
 /* You can add global styles to this file, and also import other style files */
+@import "bootstrap-icons/font/bootstrap-icons.css";
 
 html, body
 {
@@ -33,4 +34,32 @@ body
   width: 50%;
   height: auto;
   aspect-ratio: 1280 / 720;
+}
+/* Style for the loading overlay */
+.loading-overlay {
+  position: fixed; /* Position the overlay absolutely */
+  top: 0; /* Place at the top of the page */
+  left: 0; /* Align to the left side */
+  width: 100%; /* Span the full width */
+  height: 100vh; /* Cover the entire viewport height */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  z-index: 9999; /* Ensure it's on top of other elements */
+  display: flex; /* Use flexbox for centering */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
+/* Style for the spinner within the overlay */
+.loading-overlay .mat-spinner {
+  width: 100px; /* Adjust spinner size as needed */
+  height: 100px; /* Adjust spinner size as needed */
+  color: #fff; /* Spinner color */
+}
+
+
+/* Style for the spinner itself */
+.mat-spinner {
+  width: 50px; /* Adjust spinner size as needed */
+  height: 50px; /* Adjust spinner size as needed */
+  color: #fff; /* Spinner color */
 }

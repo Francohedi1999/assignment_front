@@ -7,6 +7,9 @@ import { ListUserComponent } from './user/list-user/list-user.component';
 import { UpdateOrDeleteUserComponent } from './user/update-or-delete-user/update-or-delete-user.component';
 import { AuthGuard } from './guard/auth.guard';
 import { UpdateProfileComponent } from './user/update-profile/update-profile.component';
+import {MatieresComponent} from "./matieres/matieres.component";
+import {UpdateMatiereComponent} from "./matieres/update-matiere/update-matiere.component";
+import {AddMatiereComponent} from "./matieres/add-matiere/add-matiere.component";
 
 //export const routes: Routes = [];
 
@@ -62,7 +65,32 @@ export const routes: Routes = [
     data: {
       title: 'Assignment MBDS - Modification ou suppression utilisateur' ,
       role: [ 'Administrateur' , 'Enseignant' , 'Etudiant' ] }
+  },
+  {
+    path: 'matieres',
+    component: MatieresComponent,
+    canActivate: [AuthGuard] ,
+    data: {
+      title: 'Assignment MBDS - Matieres' ,
+      role: [ 'Administrateur' ] }
+  },
+  {
+    path: 'matieres/add-matiere',
+    component: AddMatiereComponent,
+    canActivate: [AuthGuard] ,
+    data: {
+      title: 'Assignment MBDS - Ajout de matiere' ,
+      role: 'Administrateur' }
+  },
+  {
+    path: 'matieres/:id',
+    component: UpdateMatiereComponent,
+    canActivate: [AuthGuard] ,
+    data: {
+      title: 'Assignment MBDS - Modification de matiere' ,
+      role: 'Administrateur' }
   }
+
 ];
 
 @NgModule({
