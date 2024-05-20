@@ -57,18 +57,15 @@
           <mat-icon class="white-icon">work</mat-icon>
           <span class="text-white">Matieres</span>
         </button>
-      }<!--
-      @else if ( role_user_logged === "Enseignant" )
+      }
+      @else if ( role_user_logged === "enseignant" )
       {
-
-        <mat-divider></mat-divider>
-
-        <button mat-button class="menu-button" routerLink="/profile/{{ user_logged?._id }}">
-          <mat-icon class="white-icon">edit</mat-icon>
-          <span class="text-white">Modifier mon profil</span>
+        <button mat-button class="menu-button" routerLink="/matieres">
+          <mat-icon class="white-icon">work</mat-icon>
+          <span class="text-white">Matieres</span>
         </button>
 
-      }
+      }<!--
       @else
       {
 

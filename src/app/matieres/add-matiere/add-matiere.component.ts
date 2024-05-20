@@ -61,7 +61,7 @@ export class AddMatiereComponent implements OnInit{
     ){}
   ngOnInit() {
     this.inputdata=this.data;
-    let role: string = "professeur";
+    let role: string = "enseignant";
     this.getAllProf(role);
   }
 

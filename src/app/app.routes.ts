@@ -72,7 +72,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard] ,
     data: {
       title: 'Assignment MBDS - Matieres' ,
-      role: [ 'Administrateur' ] }
+      role: [ 'Administrateur', 'enseignant' ] }
   },
   {
     path: 'matieres/add-matiere',
