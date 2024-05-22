@@ -1,0 +1,68 @@
+<div class="m-4">
+
+  <div class="row mt-2">
+
+    <div class="col-md-6">
+      <h1>Nouvelle assignation</h1>
+    </div>
+    <div class="col-md-6"></div>
+
+  </div>
+
+  <div class="row">
+
+    <form [formGroup]="new_assignment_form">
+
+      <div class="row mt-2">
+        <mat-form-field class="col-md-12">
+          <mat-label>Description</mat-label>
+          <input matInput type="description" formControlName="description">
+        </mat-form-field>
+      </div>
+
+      <div class="row mt-4">
+        <mat-form-field class="col-md-12">
+          <mat-label>Matière</mat-label>
+          <mat-select matInput formControlName="matiere_id">
+            @for (matiere of matieres; track matiere)
+            {
+              <mat-option [value]="matiere.id">{{matiere.nom}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row mt-4">
+        <mat-form-field class="col-md-12">
+          <mat-label>Niveau</mat-label>
+          <mat-select matInput formControlName="niveau">
+            @for (level of levels; track level)
+            {
+              <mat-option [value]="level.value">{{level.option}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row mt-2">
+        <div class="col-md-6">
+          @if( !new_assignment_form.valid )
+          {
+            <button  class="btn btn-success" disabled (click)="check_assignment()">Enregistrer</button><br>
+            <button  class="btn btn-light mt-2" (click)="reset_new_assignment_form()">Réinitialiser le formulaire</button>
+          }
+          @else
+          {
+            <button  class="btn btn-success" (click)="check_assignment()">Enregistrer</button><br>
+            <button  class="btn btn-light mt-2" (click)="reset_new_assignment_form()">Réinitialiser le formulaire</button>
+          }
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+
+
+
+</div>

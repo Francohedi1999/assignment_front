@@ -91,14 +91,7 @@ export class UpdateOrDeleteUserComponent implements OnInit
       this.user = response ;
       this.user_img_url_recent = this.user.img_url ;
 
-      this.update_user_form = this.form_builder.group({
-        nom: [ this.user.nom , [Validators.required]],
-        prenom: [ this.user.prenom , [Validators.required]],
-        email: [ this.user.email , [Validators.required, Validators.email]],
-        role: [ this.user.role , [Validators.required, Validators.pattern("^(Administrateur|Enseignant|Etudiant)$")]],
-        niveau: [ this.user.niveau , Validators.pattern("^(L1|L2|L3|M1|M2)$")] ,
-        image: [ null ]
-      });
+      this.reset_update_user_form() ;
 
       if( this.user.role !== "Etudiant" )
       {
@@ -165,7 +158,7 @@ export class UpdateOrDeleteUserComponent implements OnInit
       prenom: [ this.user.prenom , [Validators.required]],
       email: [ this.user.email , [Validators.required, Validators.email]],
       role: [ this.user.role , [Validators.required, Validators.pattern("^(Administrateur|Enseignant|Etudiant)$")]],
-      niveau: [ this.user.niveau , Validators.pattern("^(L1|L2|L3|M1|M2)$")] ,
+      niveau: [ null , [ Validators.required ,Validators.pattern("^(L1|L2|L3|M1|M2)$") ]] ,
       image: [ null ]
     }) ;
   }
@@ -184,8 +177,8 @@ export class UpdateOrDeleteUserComponent implements OnInit
           setTimeout( () =>
           {
             this.router.navigate([ "/list-user" ]) ;
-          } , 1000 ); // Redirection après 1 seconde
-        } , 2000 ); // Message de succès affiché pendant 2 secondes
+          } , 3000 ); // Redirection après 1 seconde
+        } , 3000 ); // Message de succès affiché pendant 2 secondes
     } ) ;
   }
 

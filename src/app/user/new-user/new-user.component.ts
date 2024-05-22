@@ -54,19 +54,10 @@ export class NewUserComponent implements OnInit
 
   ngOnInit(): void
   {
-    this.hidden_niveau = true ;
     this.roles = this.role_service.roles ;
     this.levels = this.level_service.levels ;
 
-    this.new_user_form = this.form_builder.group({
-      nom: [ null , [ Validators.required ] ] ,
-      prenom: [ null , [ Validators.required ] ] ,
-      email: [ null , [ Validators.required , Validators.email ] ] ,
-      password: [ "0000" , [ Validators.required ] ] ,
-      image: [ null , [ Validators.required ] ] ,
-      role: [ null , [ Validators.required , Validators.pattern("^(Administrateur|Enseignant|Etudiant)$") ] ] ,
-      niveau: [ null , Validators.pattern("^(L1|L2|L3|M1|M2)$") ]
-    }) ;
+    this.reset_new_user_form();
   }
 
   check_user()

@@ -8,29 +8,23 @@
 
   <mat-dialog-content>
 
- 
+
     <div class="row">
       <div class="col-md-2">
-        <img src="{{ img_url }}" class="rounded-circle" width="100" height="100">
+        <img src="{{ matiere?.imageMatiere }}" class="rounded-circle" width="100" height="100">
       </div>
       <div class="col-md-10">
 
         <dl class="row">
           <dd class="col-sm-12">
-            <strong>Nom et prénom : </strong>{{ data_user.get("nom") + " " + data_user.get("prenom") }}
+            <strong>Nom de la matière : </strong>{{ matiere?.nom }}
           </dd>
           <dd class="col-sm-12">
-            <strong>Email : </strong>{{ data_user.get("email") }}
+            <strong>Description de l'assignation : </strong>{{ assignment?.description }}
           </dd>
           <dd class="col-sm-12">
-            <strong>Mot de passe : </strong>{{ data_user.get("password") }}
+            <strong>Niveau : </strong>{{ assignment?.niveau }}
           </dd>
-          <dd class="col-sm-12">
-            <strong>Type : </strong>{{ data_user.get("role") }}
-          </dd>
-            <dd class="col-sm-12">
-              <strong>Niveau : </strong>{{ data_user.get("niveau") }}
-            </dd>
         </dl>
 
       </div>
@@ -44,7 +38,7 @@
     <div class="row" [hidden]="hidden_buttons">
 
       <div  class="mt-2" >
-        <span class="btn btn-success" (click)="add_user()">
+        <span class="btn btn-success" (click)="add_assignment()">
           Oui
         </span>
       </div>

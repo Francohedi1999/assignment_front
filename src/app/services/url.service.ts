@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class UrlService {
-
+export class UrlService
+{
   constructor() { }
 
   url = "http://localhost:3000" ;
@@ -12,4 +12,5 @@ export class UrlService {
   user = this.url + "/user" ;
   auth = this.url + "/auth" ;
   matiere = this.url + "/matieres" ;
+  assignment = this.url + "/assignment" ;
 }

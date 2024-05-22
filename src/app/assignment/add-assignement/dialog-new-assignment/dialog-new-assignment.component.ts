@@ -1,15 +1,18 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { AssignmentService } from '../../../services/assignment.service';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { MatieresService } from '../../../services/matieres.service';
+import { Assignment_Model } from '../../assignment.model';
+import { MatieresModel } from '../../../models/matieres.model';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
-import { UserService } from '../../../services/user.service';
-import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
-  selector: 'app-dialog-new-user',
+  selector: 'app-dialog-new-assignment',
   standalone: true,
   imports: [
     CommonModule ,
@@ -18,13 +21,13 @@ import { Router } from '@angular/router';
     MatIconModule ,
     MatProgressSpinnerModule
   ],
-  templateUrl: './dialog-new-user.component.html',
-  styleUrl: './dialog-new-user.component.css'
+  templateUrl: './dialog-new-assignment.component.html',
+  styleUrl: './dialog-new-assignment.component.css'
 })
-export class DialogNewUserComponent implements OnInit{
+export class DialogNewAssignmentComponent implements OnInit{
 
-  data_user: FormData ;
-  img_url: string ;
+  assignment: Assignment_Model ;
+  matiere: MatieresModel ;
 
   hidden_buttons: boolean ;
   is_loading: boolean ;
@@ -32,24 +35,29 @@ export class DialogNewUserComponent implements OnInit{
   message_error: string ;
 
   constructor(  private dialog_ref: DialogRef ,
-                @Inject( MAT_DIALOG_DATA ) public data: any ,
-                private user_service: UserService ,
+                @Inject( MAT_DIALOG_DATA ) public data: Assignment_Model ,
+                private assignment_service: AssignmentService ,
+                private matiere_service: MatieresService ,
                 private router: Router ) { }
 
-  ngOnInit(): void
+  ngOnInit()
   {
-    this.data_user = this.data.data_user ;
-    this.img_url = this.data.image_url ;
+    this.assignment = this.data ;
 
-    this.hidden_buttons = false ;
+    this.matiere_service.getMatiereById( this.assignment.matiere_id ).subscribe(
+      (response:any) =>
+      {
+        this.matiere = response.data ;
+      }
+    ) ;
   }
 
-  add_user()
+  add_assignment()
   {
     this.is_loading =  true ;
     this.hidden_buttons = true ;
 
-    this.user_service.create(this.data_user).subscribe( (response) =>
+    this.assignment_service.create(this.assignment).subscribe( (response) =>
     {
       if( response.created === false )
       {

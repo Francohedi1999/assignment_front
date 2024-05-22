@@ -10,12 +10,16 @@ import { UpdateProfileComponent } from './user/update-profile/update-profile.com
 import {MatieresComponent} from "./matieres/matieres.component";
 import {UpdateMatiereComponent} from "./matieres/update-matiere/update-matiere.component";
 import {AddMatiereComponent} from "./matieres/add-matiere/add-matiere.component";
+<<<<<<< Updated upstream
 import {Error403Component} from "./error/error403/error403.component";
 
 //  Definition des roles
 const ADMINISTRATEUR = 'Administrateur';
 const ENSEIGNANT = 'Enseignant';
 const ETUDIANT = 'Etudiant';
+=======
+import { AddAssignementComponent } from './assignment/add-assignement/add-assignement.component';
+>>>>>>> Stashed changes
 
 
 export const routes: Routes = [
@@ -93,12 +97,24 @@ export const routes: Routes = [
     canActivate: [AuthGuard] ,
     data: {
       title: 'Assignment MBDS - Modification de matiere' ,
+<<<<<<< Updated upstream
       role: [ADMINISTRATEUR] }
   },
   {
     path: 'access-denied',
     component: Error403Component,
     data: { title: 'Assignment MBDS - Accès refusé' }
+=======
+      role: 'Administrateur' }
+  },
+  {
+    path: 'add-assignment',
+    component: AddAssignementComponent,
+    canActivate: [AuthGuard] ,
+    data: {
+      title: 'Assignment MBDS - Nouvelle assignation' ,
+      role:  'Administrateur' }
+>>>>>>> Stashed changes
   }
 
 ];
