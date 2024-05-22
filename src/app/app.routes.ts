@@ -12,6 +12,7 @@ import {UpdateMatiereComponent} from "./matieres/update-matiere/update-matiere.c
 import {AddMatiereComponent} from "./matieres/add-matiere/add-matiere.component";
 import {Error403Component} from "./error/error403/error403.component";
 import { AddAssignementComponent } from './assignment/add-assignement/add-assignement.component';
+import { ListAssignmentComponent } from './assignment/list-assignment/list-assignment.component';
 
 //  Definition des roles
 const ADMINISTRATEUR = 'Administrateur';
@@ -103,11 +104,19 @@ export const routes: Routes = [
   },
   {
     path: 'add-assignment',
-    component: AddAssignementComponent,
+    component: AddAssignementComponent ,
     canActivate: [AuthGuard] ,
     data: {
       title: 'Assignment MBDS - Nouvelle assignation' ,
       role:  [ ENSEIGNANT ] }
+  },
+  {
+    path: 'list-assignment',
+    component: ListAssignmentComponent ,
+    canActivate: [AuthGuard] ,
+    data: {
+      title: 'Assignment MBDS - Liste des assignations' ,
+      role:  [ ADMINISTRATEUR , ENSEIGNANT ] }
   }
 
 ];

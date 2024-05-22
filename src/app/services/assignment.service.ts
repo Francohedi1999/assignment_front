@@ -19,4 +19,10 @@ export class AssignmentService
     const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
     return this.http.post<any>( this.url_service.assignment , assignment , header ) ;
   }
+
+  get_all( filtre_niveau: string ): Observable<Assignment_Model[]>
+  {
+    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+    return this.http.get<Assignment_Model[]>( this.url_service.assignment + "?filtre_niveau=" + filtre_niveau , header ) ;
+  }
 }

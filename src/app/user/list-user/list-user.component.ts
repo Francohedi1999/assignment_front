@@ -4,6 +4,7 @@ import { OneUserComponent } from './one-user/one-user.component';
 import { UserService } from '../../services/user.service';
 import { User_Model } from '../user.model';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { RoleService } from '../../services/role.service';
 
 @Component({
   selector: 'app-list-user',
@@ -20,11 +21,14 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 export class ListUserComponent implements OnInit
 {
   utilisateurs: User_Model[] ;
+  roles: any[]
 
-  constructor( private user_service: UserService ) {}
+  constructor(  private user_service: UserService ,
+                private role_service: RoleService ) {}
 
   ngOnInit(): void
   {
+    this.roles = this.role_service.roles ;
     this.get_utilisateurs_by_filtre('') ;
   }
 

@@ -57,15 +57,10 @@
           <mat-icon class="white-icon">work</mat-icon>
           <span class="text-white">Matieres</span>
         </button>
-<<<<<<< Updated upstream
+
       }
-      @else if ( role_user_logged === "enseignant" )
+      @else if ( role_user_logged === "Enseignant" )
       {
-        <button mat-button class="menu-button" routerLink="/matieres">
-          <mat-icon class="white-icon">work</mat-icon>
-          <span class="text-white">Matieres</span>
-        </button>
-=======
 
         <!-- Assignation -->
         <button mat-button class="menu-button" [matMenuTriggerFor]="menu_assign" >
@@ -80,21 +75,13 @@
             <span>Nouvelle assignation</span>
           </button>
 
-          <button mat-menu-item routerLink="/list-user">
+          <button mat-menu-item routerLink="/list-assignment">
             <mat-icon>format_list_bulleted</mat-icon>
             <span>Liste des assignations</span>
           </button>
 
         </mat-menu>
       }
-      @else if ( role_user_logged === "Enseignant" )
-      {
-
-
-
->>>>>>> Stashed changes
-
-      }<!--
       @else
       {
 

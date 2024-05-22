@@ -1,0 +1,22 @@
+
+<mat-card (click)="show_assignment()" class="mt-2">
+  <mat-card-content>
+
+    <div class="row">
+      <div class="col-md-2">
+        <img src="{{ matiere?.imageMatiere }}" class="rounded-circle" width="75" height="75">
+      </div>
+      <div class="col-md-10">
+
+          <strong>Nom de la matière : </strong>{{ matiere?.nom }}
+          <br>
+          <strong>Enseignant : </strong>{{ enseignant?.nom }} ({{ enseignant?.email }})
+          <br>
+          <strong>Assignation : </strong>{{ assignment?.description }}
+          <br>
+          <strong>Pour les étudiant en : </strong>{{ assignment?.niveau }}
+      </div>
+    </div>
+
+  </mat-card-content>
+</mat-card>

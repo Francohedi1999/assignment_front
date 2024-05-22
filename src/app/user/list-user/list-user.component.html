@@ -11,9 +11,10 @@
   <div class="row mx-1">
     <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
       <mat-button-toggle (click)="get_utilisateurs_by_filtre('')" >Tout</mat-button-toggle>
-      <mat-button-toggle (click)="get_utilisateurs_by_filtre('Administrateur')" >Administrateur</mat-button-toggle>
-      <mat-button-toggle (click)="get_utilisateurs_by_filtre('Enseignant')" >Enseignant</mat-button-toggle>
-      <mat-button-toggle (click)="get_utilisateurs_by_filtre('Etudiant')" >Etudiant</mat-button-toggle>
+      @for (role of roles; track role)
+      {
+        <mat-button-toggle (click)="get_utilisateurs_by_filtre(role.value)" >{{ role.option }}</mat-button-toggle>
+      }
     </mat-button-toggle-group>
   </div>
 
