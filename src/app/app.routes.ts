@@ -10,15 +10,20 @@ import { UpdateProfileComponent } from './user/update-profile/update-profile.com
 import {MatieresComponent} from "./matieres/matieres.component";
 import {UpdateMatiereComponent} from "./matieres/update-matiere/update-matiere.component";
 import {AddMatiereComponent} from "./matieres/add-matiere/add-matiere.component";
+import {Error403Component} from "./error/error403/error403.component";
 
-//export const routes: Routes = [];
+//  Definition des roles
+const ADMINISTRATEUR = 'Administrateur';
+const ENSEIGNANT = 'Enseignant';
+const ETUDIANT = 'Etudiant';
+
 
 export const routes: Routes = [
+  // On dois ajouter un accueil ici pour une redirection par defaut !!!
   {
     path: '',
-    component: LoginComponent,
-    data: {
-      title: 'Assignment MBDS - Connexion' }
+    redirectTo: '/list-user',
+    pathMatch: 'full'
   },
   {
     path: 'login',
@@ -32,7 +37,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard] ,
     data: {
       title: 'Assignment MBDS - Navbar' ,
-      role: 'Administrateur' }
+      role: [ADMINISTRATEUR] }
   } ,
   {
     path: 'add-user',
@@ -40,7 +45,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard] ,
     data: {
       title: 'Assignment MBDS - Ajout utilisateur' ,
-      role: 'Administrateur' }
+      role: [ADMINISTRATEUR] }
   } ,
   {
     path: 'list-user',
@@ -48,7 +53,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard] ,
     data: {
       title: 'Assignment MBDS - Liste des utilisateurs' ,
-      role: 'Administrateur' }
+      role: [ADMINISTRATEUR] }
   } ,
   {
     path: 'user/:id_user',
@@ -56,7 +61,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard] ,
     data: {
       title: 'Assignment MBDS - Modification ou suppression utilisateur' ,
-      role: 'Administrateur' }
+      role: [ADMINISTRATEUR] }
   } ,
   {
     path: 'profile/:id_user',
@@ -64,7 +69,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard] ,
     data: {
       title: 'Assignment MBDS - Modification ou suppression utilisateur' ,
-      role: [ 'Administrateur' , 'Enseignant' , 'Etudiant' ] }
+      role: [ ADMINISTRATEUR , ENSEIGNANT , ETUDIANT ] }
   },
   {
     path: 'matieres',
@@ -72,7 +77,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard] ,
     data: {
       title: 'Assignment MBDS - Matieres' ,
-      role: [ 'Administrateur', 'enseignant' ] }
+      role: [ ADMINISTRATEUR, ENSEIGNANT ] }
   },
   {
     path: 'matieres/add-matiere',
@@ -80,7 +85,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard] ,
     data: {
       title: 'Assignment MBDS - Ajout de matiere' ,
-      role: 'Administrateur' }
+      role: [ADMINISTRATEUR] }
   },
   {
     path: 'matieres/:id',
@@ -88,7 +93,12 @@ export const routes: Routes = [
     canActivate: [AuthGuard] ,
     data: {
       title: 'Assignment MBDS - Modification de matiere' ,
-      role: 'Administrateur' }
+      role: [ADMINISTRATEUR] }
+  },
+  {
+    path: 'access-denied',
+    component: Error403Component,
+    data: { title: 'Assignment MBDS - Accès refusé' }
   }
 
 ];

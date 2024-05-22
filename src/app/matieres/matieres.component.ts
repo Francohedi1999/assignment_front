@@ -6,7 +6,7 @@ import {OneUserComponent} from "../user/list-user/one-user/one-user.component";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatTable} from "@angular/material/table";
 import {MatIcon} from "@angular/material/icon";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {User_Model} from "../user/user.model";
 import {UserService} from "../services/user.service";
 
@@ -43,6 +43,7 @@ export class MatieresComponent implements OnInit{
     private toastr: ToastrService,
     private matieresService: MatieresService,
     private mat_dialog: MatDialog ,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -86,6 +87,11 @@ export class MatieresComponent implements OnInit{
           this.getAllMatieres("");
         },
         (error: any) => {
+        // Si le serveur retourne une erreur status 403
+        if (error.status === 403) {
+          // Rediriger vers la page d'erreur 403
+          this.router.navigate(['/access-denied']);
+        }
           console.error(error);
         });
     }, 350);
