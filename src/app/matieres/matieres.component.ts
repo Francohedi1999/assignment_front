@@ -15,6 +15,10 @@ import {MatDialog} from "@angular/material/dialog";
 import {AddMatiereComponent} from "./add-matiere/add-matiere.component";
 import {ToastrModule, ToastrService} from "ngx-toastr";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {AuthService} from "../services/auth.service";
+
+const ADMINISTRATEUR = 'Administrateur';
+
 
 @Component({
   selector: 'app-matieres',
@@ -32,7 +36,10 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
   templateUrl: './matieres.component.html',
   styleUrl: './matieres.component.css'
 })
+
 export class MatieresComponent implements OnInit{
+  isAdmin: boolean ;
+
   matieres: MatieresModel[];
   enseignant: User_Model[];
 
@@ -43,12 +50,13 @@ export class MatieresComponent implements OnInit{
     private toastr: ToastrService,
     private matieresService: MatieresService,
     private mat_dialog: MatDialog ,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
     this.getAllMatieres("");
-
+    this.isAdmin = this.authService.isAdmin();
   }
 
   getAllMatieres(filtre: string): void{

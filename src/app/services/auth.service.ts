@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { LoginDialogErrorComponent } from '../auth/login/login-dialog-error/login-dialog-error.component';
 import { Observable } from 'rxjs';
 import { User_Model } from '../user/user.model';
+import {RoleService} from "./role.service";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,9 @@ export class AuthService {
   constructor(  private url_service: UrlService ,
                 private http: HttpClient ,
                 private router: Router ,
-                private dialog_mat: MatDialog){ }
+                private dialog_mat: MatDialog,
+                private roleService: RoleService
+  ){ }
 
   isLogin = false ;
   roleAs: string ;
@@ -70,6 +73,12 @@ export class AuthService {
   {
     this.roleAs = localStorage.getItem('ROLE');
     return this.roleAs;
+  }
+
+  // Verifier si l'utilisateur est un administrateur
+  isAdmin(): boolean {
+    const role = this.getRole();
+    return this.roleService.isAdmin(role);
   }
 
   logout()

@@ -4,12 +4,24 @@
   providedIn: 'root'
 })
 export class RoleService {
+  public static readonly ADMINISTRATEUR = 'Administrateur';
+  public static readonly ENSEIGNANT = 'Enseignant';
+  public static readonly ETUDIANT = 'Etudiant';
 
   constructor() { }
 
   roles = [
-    { option: "Administrateur" , value:"Administrateur" } ,
-    { option: "Enseignant(e)" , value:"Enseignant" } ,
-    { option: "Etudiant(e)" , value:"Etudiant" }
-  ] ;
+    { option: RoleService.ADMINISTRATEUR , value: RoleService.ADMINISTRATEUR },
+    { option: "Enseignant(e)" , value: RoleService.ENSEIGNANT },
+    { option: "Etudiant(e)" , value: RoleService.ETUDIANT }
+  ];
+
+  //  Verifier si le role est un administrateur
+  isAdmin(role: string): boolean {
+    if (role.toLowerCase() === RoleService.ADMINISTRATEUR.toLowerCase()){
+      return true;
+    }
+    return false;
+  }
+
 }

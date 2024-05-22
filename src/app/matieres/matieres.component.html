@@ -4,7 +4,7 @@
 <div class="container mt-4">
   <h1 class="mb-4">Liste des Matières</h1>
   <div class="d-flex justify-content-end mb-3">
-    <button type="button" class="btn btn-success btn-sm" (click)="addNewMatiere()">
+    <button *ngIf="isAdmin" type="button" class="btn btn-success btn-sm" (click)="addNewMatiere()">
       <i class="bi bi-plus-circle"></i> Ajouter
     </button>
   </div>
@@ -15,7 +15,7 @@
           <th scope="col">#</th>
           <th scope="col">Nom</th>
           <th scope="col">Professeur</th>
-          <th scope="col">Action</th>
+          <th *ngIf="isAdmin" scope="col">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -23,14 +23,14 @@
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ matiere.nom }}</td>
           <td>{{ matiere.idProf }}</td>
-          <td>
+          <td *ngIf="isAdmin">
             <div class="row">
               <div class="col">
                 <button type="button" class="btn btn-primary btn-sm"
                         [routerLink]="['/matieres', matiere.id]">
                   <i class="bi bi-pencil-fill"></i>
                 </button>
-                <button type="button" class="btn btn-danger btn-sm mx-2"
+                <button type="button"  class="btn btn-danger btn-sm mx-2"
                         (click)="deleteMatiere(matiere.id,matiere.nom)">
                   <i class="bi bi-trash"></i>
                 </button>

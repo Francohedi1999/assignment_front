@@ -11,11 +11,12 @@ import {MatieresComponent} from "./matieres/matieres.component";
 import {UpdateMatiereComponent} from "./matieres/update-matiere/update-matiere.component";
 import {AddMatiereComponent} from "./matieres/add-matiere/add-matiere.component";
 import {Error403Component} from "./error/error403/error403.component";
+import {RoleService} from "./services/role.service";
 
 //  Definition des roles
-const ADMINISTRATEUR = 'Administrateur';
-const ENSEIGNANT = 'Enseignant';
-const ETUDIANT = 'Etudiant';
+const ADMINISTRATEUR = RoleService.ADMINISTRATEUR;
+const ENSEIGNANT = RoleService.ENSEIGNANT;
+const ETUDIANT= RoleService.ETUDIANT;
 
 
 export const routes: Routes = [
