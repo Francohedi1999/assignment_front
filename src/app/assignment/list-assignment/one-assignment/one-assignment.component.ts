@@ -34,7 +34,7 @@ export class OneAssignmentComponent implements OnInit
     this.matiere_service.getMatiereById( this.assignment.matiere_id ).subscribe(
     (response: any) =>
     {
-      
+
       this.matiere = response.data ;
 
       this.user_service.get_by_id( this.matiere.idProf ).subscribe(
@@ -49,7 +49,6 @@ export class OneAssignmentComponent implements OnInit
 
   show_assignment()
   {
-    // this.router.navigate(["/user/" + this.assignment._id ]) ;
-    console.log( this.assignment ) ;
+    this.router.navigate(["/list-note/" + this.assignment._id ]) ;
   }
 }

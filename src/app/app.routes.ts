@@ -13,6 +13,7 @@ import {AddMatiereComponent} from "./matieres/add-matiere/add-matiere.component"
 import {Error403Component} from "./error/error403/error403.component";
 import { AddAssignementComponent } from './assignment/add-assignement/add-assignement.component';
 import { ListAssignmentComponent } from './assignment/list-assignment/list-assignment.component';
+import { ListNoteComponent } from './note/list-note/list-note.component';
 
 //  Definition des roles
 const ADMINISTRATEUR = 'Administrateur';
@@ -117,6 +118,14 @@ export const routes: Routes = [
     data: {
       title: 'Assignment MBDS - Liste des assignations' ,
       role:  [ ADMINISTRATEUR , ENSEIGNANT ] }
+  },
+  {
+    path: 'list-note/:assignment_id',
+    component: ListNoteComponent ,
+    canActivate: [AuthGuard] ,
+    data: {
+      title: 'Assignment MBDS - Note' ,
+      role:  [ ENSEIGNANT ] }
   }
 
 ];

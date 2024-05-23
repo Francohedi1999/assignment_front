@@ -1,0 +1,44 @@
+<div class="mt-3 row">
+  <h1>Liste des notes</h1>
+</div>
+
+
+<div class="mt-3 row">
+  <div class="col-md-2">
+    <img src="{{ matiere?.imageMatiere }}" width="200" height="200">
+  </div>
+  <div class="col-md-10">
+
+      <strong>Nom de la matière : </strong>{{ matiere?.nom }}
+      <br>
+      <strong>Enseignant : </strong>{{ enseignant?.nom }} ({{ enseignant?.email }})
+      <br>
+      <strong>Assignation : </strong>{{ assignment?.description }}
+      <br>
+      <strong>Pour les étudiant en : </strong>{{ assignment?.niveau }}
+  </div>
+</div>
+
+<hr>
+
+<!--
+<div class="row mx-1">
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle (click)="get_all_assignment_by_filtre_niveau('')" >Tout</mat-button-toggle>
+    @for (level of levels; track level)
+    {
+      <mat-button-toggle (click)="get_all_assignment_by_filtre_niveau( level.value )" >{{ level.option }}</mat-button-toggle>
+    }
+  </mat-button-toggle-group>
+</div>
+-->
+
+<div class="row">
+  @for (note of notes; track note)
+  {
+    <app-on-note [note]="note"></app-on-note>
+  }
+</div>
+
+
+

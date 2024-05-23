@@ -13,4 +13,5 @@ export class UrlService
   auth = this.url + "/auth" ;
   matiere = this.url + "/matieres" ;
   assignment = this.url + "/assignment" ;
+  note = this.url + "/note" ;
 }
