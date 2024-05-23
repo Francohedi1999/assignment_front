@@ -34,7 +34,7 @@ export class UpdateProfileComponent implements OnInit
   user_img_url_recent: string ;
   user: User_Model ;
   image_selected : File ;
-  update_profil_form : FormGroup ;
+  update_profil_form : FormGroup ; 
   error_password: string ;
 
 

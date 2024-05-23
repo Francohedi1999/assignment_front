@@ -7,18 +7,52 @@
   </div>
 
 
+  @if( filtre_role !== "" )
+  {
+    <div class="my-2">
+      <dl class="row">
 
-  <div class="row mx-1">
-    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-      <mat-button-toggle (click)="get_utilisateurs_by_filtre('')" >Tout</mat-button-toggle>
-      @for (role of roles; track role)
-      {
-        <mat-button-toggle (click)="get_utilisateurs_by_filtre(role.value)" >{{ role.option }}</mat-button-toggle>
-      }
-    </mat-button-toggle-group>
+        <dt class="col-sm-3">{{ filtre_role + "s" }}</dt>
+        <dd class="col-sm-9">{{ totalDocs }}</dd>
+
+        <dt class="col-sm-3">Nombre de page</dt>
+        <dd class="col-sm-9">{{ totalPages}}</dd>
+
+        <dt class="col-sm-3">Page courante</dt>
+        <dd class="col-sm-9">{{ page }}</dd>
+
+        <dt class="col-sm-3">Nombre de ligne par page</dt>
+        <dd class="col-sm-9">{{ limit }}</dd>
+
+      </dl>
+    </div>
+  }
+
+  <div class="row mt-2">
+    <mat-form-field  class="col-md-6">
+      <mat-label>Type d'utilisateur</mat-label>
+      <mat-select [(ngModel)]="filtre_role" (selectionChange)="onRoleSelect()">
+        @for (role of roles; track role)
+        {
+          <mat-option [value]="role.value">{{ role.option }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <div class="col-md-6">
+      <mat-paginator #paginator
+               class="demo-paginator"
+               (page)="handlePageEvent($event)"
+               [length]="totalPages"
+               [pageSize]="limit"
+               [showFirstLastButtons]="true"
+               [pageSizeOptions]="[ 1 ]"
+               [pageIndex]="page"
+               aria-label="Select page">
+      </mat-paginator>
+    </div>
   </div>
 
-  <div class="row">
+  <div>
     @for (utilisateur of utilisateurs; track utilisateur)
     {
       <app-one-user [utilisateur]="utilisateur"></app-one-user>

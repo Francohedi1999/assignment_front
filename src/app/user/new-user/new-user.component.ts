@@ -110,7 +110,7 @@ export class NewUserComponent implements OnInit
       email: [ null , [ Validators.required , Validators.email ] ] ,
       password: [ "0000" , [ Validators.required ] ] ,
       image: [ null , [ Validators.required ] ] ,
-      role: [ null , [ Validators.required , Validators.pattern("^(Administrateur|Enseignant|Etudiant)$") ] ] ,
+      role: [ null , Validators.pattern("^(Administrateur|Enseignant|Etudiant)$") ] ,
       niveau: [ null , Validators.pattern("^(L1|L2|L3|M1|M2)$") ]
     }) ;
   }

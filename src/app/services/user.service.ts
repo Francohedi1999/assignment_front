@@ -20,10 +20,36 @@ export class UserService {
     return this.http.post<any>( this.url_service.user , user_data , header ) ;
   }
 
-  get_all( filtre_role: string ):Observable<User_Model[]>
+  get_all_no_pagination( filtre_role: string ):Observable<User_Model[]>
   {
     const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
-    return this.http.get<User_Model[]>( this.url_service.user + "?filtre_role=" + filtre_role , header ) ;
+    return this.http.get<User_Model[]>( this.url_service.user + "no_pagination?filtre_role=" + filtre_role , header ) ;
+  }
+
+
+  get_all( page:number, limit:number , filtre_role:string ):Observable<any>
+  {
+    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+    let url = "" ;
+    if ( filtre_role === "" )
+    {
+      url = this.url_service.user +
+            "?page=" +
+            page +
+            "&limit=" +
+            limit ;
+    }
+    else
+    {
+      url = this.url_service.user +
+            "?page=" +
+            page +
+            "&limit=" +
+            limit +
+            "&filtre_role=" +
+            filtre_role ;
+    }
+    return this.http.get<any>( url , header ) ;
   }
 
   get_by_id( id: string ):Observable<User_Model>

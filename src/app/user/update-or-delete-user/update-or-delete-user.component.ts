@@ -154,11 +154,11 @@ export class UpdateOrDeleteUserComponent implements OnInit
     this.hidden_niveau = true ;
 
     this.update_user_form = this.form_builder.group({
-      nom: [ this.user.nom , [Validators.required]],
-      prenom: [ this.user.prenom , [Validators.required]],
-      email: [ this.user.email , [Validators.required, Validators.email]],
-      role: [ this.user.role , [Validators.required, Validators.pattern("^(Administrateur|Enseignant|Etudiant)$")]],
-      niveau: [ null , [ Validators.required ,Validators.pattern("^(L1|L2|L3|M1|M2)$") ]] ,
+      nom: [ this.user.nom , [Validators.required] ],
+      prenom: [ this.user.prenom , [ Validators.required ] ],
+      email: [ this.user.email , [ Validators.required, Validators.email ] ],
+      role: [ this.user.role , [ Validators.pattern("^(Administrateur|Enseignant|Etudiant)$") ] ],
+      niveau: [ null , [ Validators.pattern("^(L1|L2|L3|M1|M2)$") ] ] ,
       image: [ null ]
     }) ;
   }

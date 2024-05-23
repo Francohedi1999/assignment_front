@@ -93,7 +93,7 @@ export class UpdateMatiereComponent implements OnInit {
 
   getAllProf( filtre: string )
   {
-    this.user_service.get_all( filtre ).subscribe( ( response ) =>
+    this.user_service.get_all_no_pagination( filtre ).subscribe( ( response ) =>
     {
       this.enseignant = response ;
     } ) ;
