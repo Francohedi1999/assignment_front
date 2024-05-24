@@ -3,16 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { OneUserComponent } from './one-user/one-user.component';
 import { UserService } from '../../services/user.service';
 import { User_Model } from '../user.model';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { RoleService } from '../../services/role.service';
 import { FormsModule } from '@angular/forms';
-import { MatListModule } from '@angular/material/list';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSliderModule } from '@angular/material/slider';
-import {  MatTable, MatTableModule} from '@angular/material/table';
 import {  PageEvent , MatPaginatorModule} from '@angular/material/paginator';
-import { RouterLink } from '@angular/router';
-import { MatSelectChange , MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { LevelService } from '../../services/level.service';
 
 @Component({
@@ -21,15 +15,8 @@ import { LevelService } from '../../services/level.service';
   imports: [
     CommonModule ,
     OneUserComponent ,
-    MatButtonToggleModule,
     FormsModule,
-    RouterLink,
-    MatButtonModule,
-    MatTable,
-    MatTableModule,
     MatPaginatorModule,
-    MatListModule,
-    MatSliderModule,
     MatSelectModule
   ],
   templateUrl: './list-user.component.html',
