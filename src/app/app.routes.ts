@@ -14,6 +14,7 @@ import {Error403Component} from "./error/error403/error403.component";
 import { AddAssignementComponent } from './assignment/add-assignement/add-assignement.component';
 import { ListAssignmentComponent } from './assignment/list-assignment/list-assignment.component';
 import { ListNoteComponent } from './note/list-note/list-note.component';
+import { ListAssignmentEtuComponent } from './assignment/list-assignment-etu/list-assignment-etu.component';
 
 //  Definition des roles
 const ADMINISTRATEUR = 'Administrateur';
@@ -126,6 +127,14 @@ export const routes: Routes = [
     data: {
       title: 'Assignment MBDS - Note' ,
       role:  [ ENSEIGNANT ] }
+  },
+  {
+    path: 'list-assignment-student',
+    component: ListAssignmentEtuComponent ,
+    canActivate: [AuthGuard] ,
+    data: {
+      title: 'Assignment MBDS - Note' ,
+      role:  [ ETUDIANT ] }
   }
 
 ];

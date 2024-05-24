@@ -14,8 +14,6 @@
 
     <mat-sidenav #sidenav="matSidenav" mode="side">
 
-
-
       <img src="{{ user_logged?.img_url }}" class="rounded-circle" width="100" height="100">
 
       <h4 class="name">
@@ -85,11 +83,9 @@
       @else
       {
 
-        <mat-divider></mat-divider>
-
-        <button mat-button class="menu-button" routerLink="/profile/{{ user_logged?._id }}">
-          <mat-icon class="white-icon">edit</mat-icon>
-          <span class="text-white">Modifier mon profil</span>
+        <button mat-button class="menu-button" routerLink="/list-assignment-student">
+          <mat-icon class="white-icon">assignment</mat-icon>
+          <span class="text-white">Mes assignations</span>
         </button>
 
       }

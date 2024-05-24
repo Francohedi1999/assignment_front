@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit
   user_logged: User_Model ;
   token_user_logged: string ;
 
-  constructor( private auth_service: AuthService , private user_service: UserService ) {}
+  constructor( private auth_service: AuthService  ) {}
 
   ngOnInit()
   {
