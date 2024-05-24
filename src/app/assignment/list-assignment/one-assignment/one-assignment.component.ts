@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component ,  Input, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { Assignment_Model } from '../../assignment.model';
 import { Router } from '@angular/router';
@@ -11,7 +12,8 @@ import { UserService } from '../../../services/user.service';
   selector: 'app-one-assignment',
   standalone: true,
   imports: [
-    MatCardModule
+    MatCardModule ,
+    DatePipe
   ],
   templateUrl: './one-assignment.component.html',
   styleUrl: './one-assignment.component.css'

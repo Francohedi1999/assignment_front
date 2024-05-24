@@ -26,7 +26,7 @@ export class DialogNewUserComponent implements OnInit{
   data_user: FormData ;
   img_url: string ;
 
-  hidden_buttons: boolean ; 
+  hidden_buttons: boolean ;
   is_loading: boolean ;
   message_success: string ;
   message_error: string ;
@@ -61,8 +61,8 @@ export class DialogNewUserComponent implements OnInit{
             {
               this.dialog_ref.close() ;
               this.router.navigate([ "/add-user" ]) ;
-            } , 3000 ); // Redirection après 1 seconde
-          } , 3000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 ); // Redirection après 1 seconde
+          } , 2000 ); // Message de succès affiché pendant 2 secondes
       }
       else
       {
@@ -74,8 +74,8 @@ export class DialogNewUserComponent implements OnInit{
             {
               this.dialog_ref.close() ;
               this.router.navigate([ "/list-user" ]) ;
-            } , 3000 ); // Redirection après 1 seconde
-          } , 3000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 ); // Redirection après 1 seconde
+          } , 2000 ); // Message de succès affiché pendant 2 secondes
       }
     } ) ;
   }

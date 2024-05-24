@@ -58,9 +58,8 @@ export class DialogUpdateProfileComponent implements OnInit
             setTimeout( () =>
             {
               this.dialog_ref.close() ;
-              window.location.href = "list-user" ;
-            } , 1000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 );
+          } , 2000 );
       }
       else
       {
@@ -71,9 +70,9 @@ export class DialogUpdateProfileComponent implements OnInit
             setTimeout( () =>
             {
               this.dialog_ref.close() ;
-              window.location.href = "list-user" ;
-            } , 1000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+              window.location.href = "profile/" + this.data_user.get("_id") ;
+            } , 2000 );
+          } , 2000 );
       }
     } ) ;
   }

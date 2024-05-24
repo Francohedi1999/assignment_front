@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatieresModel } from '../../../models/matieres.model';
 import { MatieresService } from '../../../services/matieres.service';
@@ -13,7 +14,8 @@ import { AuthService } from '../../../services/auth.service';
   selector: 'app-one-assignment-etu',
   standalone: true,
   imports: [
-    MatCardModule
+    MatCardModule ,
+    DatePipe
   ],
   templateUrl: './one-assignment-etu.component.html',
   styleUrl: './one-assignment-etu.component.css'

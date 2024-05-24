@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { MatieresService } from '../../../services/matieres.service';
 import { Assignment_Model } from '../../assignment.model';
 import { MatieresModel } from '../../../models/matieres.model';
-import { CommonModule } from '@angular/common';
+import { CommonModule , DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -16,6 +16,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   standalone: true,
   imports: [
     CommonModule ,
+    DatePipe ,
     MatDialogModule ,
     MatButtonModule ,
     MatIconModule ,
@@ -69,8 +70,8 @@ export class DialogNewAssignmentComponent implements OnInit{
             {
               this.dialog_ref.close() ;
               this.router.navigate([ "/add-assignment" ]) ;
-            } , 3000 ); // Redirection après 1 seconde
-          } , 3000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 ); // Redirection après 1 seconde
+          } , 2000 ); // Message de succès affiché pendant 2 secondes
       }
       else
       {
@@ -82,8 +83,8 @@ export class DialogNewAssignmentComponent implements OnInit{
             {
               this.dialog_ref.close() ;
               this.router.navigate([ "/list-assignment" ]) ;
-            } , 3000 ); // Redirection après 1 seconde
-          } , 3000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 ); // Redirection après 1 seconde
+          } , 2000 ); // Message de succès affiché pendant 2 secondes
       }
     } ) ;
   }

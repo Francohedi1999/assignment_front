@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule , DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -29,7 +29,8 @@ import { DialogNewAssignmentComponent } from './dialog-new-assignment/dialog-new
     MatDatepickerModule ,
     MatNativeDateModule ,
     ReactiveFormsModule ,
-    MatSelectModule
+    MatSelectModule ,
+    DatePipe
   ],
   templateUrl: './add-assignement.component.html',
   styleUrl: './add-assignement.component.css'
@@ -74,6 +75,7 @@ export class AddAssignementComponent implements OnInit
     this.new_assignment_form = this.form_builder.group({
       description: [ null , [ Validators.required ] ] ,
       matiere_id: [ null , [ Validators.required ] ] ,
+      dl: [ null , [ Validators.required ] ] ,
       niveau: [ null , [ Validators.required , Validators.pattern("^(L1|L2|L3|M1|M2)$") ] ]
     }) ;
   }
@@ -84,6 +86,7 @@ export class AddAssignementComponent implements OnInit
 
     this.new_assignment.description = this.new_assignment_form.value.description  ;
     this.new_assignment.matiere_id = this.new_assignment_form.value.matiere_id  ;
+    this.new_assignment.dl = this.new_assignment_form.value.dl  ;
     this.new_assignment.niveau = this.new_assignment_form.value.niveau  ;
 
     this.mat_dialog.open( DialogNewAssignmentComponent , { width: "1000px" , data: this.new_assignment } );

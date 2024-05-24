@@ -85,8 +85,8 @@ export class DialogAddOrUpdateNoteComponent implements OnInit
             setTimeout( () =>
             {
               this.dialog_ref.close() ;
-            } , 3000 ); // Redirection après 1 seconde
-          } , 3000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 ); // Redirection après 1 seconde
+          } , 2000 ); // Message de succès affiché pendant 2 secondes
       }
       else
       {
@@ -99,8 +99,8 @@ export class DialogAddOrUpdateNoteComponent implements OnInit
               this.note.note = this.add_note_form.value.note_etudiant ;
               this.note.rendu = true ;
               this.dialog_ref.close() ;
-            } , 3000 ); // Redirection après 1 seconde
-          } , 3000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 ); // Redirection après 1 seconde
+          } , 2000 ); // Message de succès affiché pendant 2 secondes
       }
     } ) ;
   }
