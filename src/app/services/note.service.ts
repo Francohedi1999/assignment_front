@@ -31,7 +31,7 @@ export class NoteService {
   ajout_note_etu( id_note: string , note_update: number ):Observable<any>
   {
     const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
-    return this.http.post<any>( this.url_service.note + "/ajout", { id_note , note_update } , header ) ;
+    return this.http.post<any>( this.url_service.note + "/ajout", { _id: id_note , note: note_update } , header ) ;
   }
 
 }

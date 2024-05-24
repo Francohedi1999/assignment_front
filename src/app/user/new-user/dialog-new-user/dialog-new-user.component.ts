@@ -26,7 +26,7 @@ export class DialogNewUserComponent implements OnInit{
   data_user: FormData ;
   img_url: string ;
 
-  hidden_buttons: boolean ;
+  hidden_buttons: boolean ; 
   is_loading: boolean ;
   message_success: string ;
   message_error: string ;
