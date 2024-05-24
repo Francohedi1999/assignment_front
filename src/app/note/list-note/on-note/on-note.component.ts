@@ -35,4 +35,9 @@ export class OnNoteComponent implements OnInit
     });
   }
 
+  show_note()
+  {
+    console.log( this.note ) ;
+  }
+
 }

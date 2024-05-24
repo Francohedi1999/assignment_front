@@ -3,23 +3,21 @@
 </div>
 
 
-<div class="mt-3 row">
-  <div class="col-md-2">
+<div class="mt-3 mb-4 row">
+  <div class="col-md-3">
     <img src="{{ matiere?.imageMatiere }}" width="200" height="200">
   </div>
-  <div class="col-md-10">
+  <div class="col-md-8">
 
-      <strong>Nom de la matière : </strong>{{ matiere?.nom }}
+      <strong>Nom de la matière : </strong>{{ matiere?.nom  }}
       <br>
-      <strong>Enseignant : </strong>{{ enseignant?.nom }} ({{ enseignant?.email }})
+      <strong>Enseignant : </strong>{{ enseignant?.nom + " " + enseignant?.prenom }} ({{ enseignant?.email }})
       <br>
-      <strong>Assignation : </strong>{{ assignment?.description }}
+      <strong>Description de l' assignation : </strong>{{ assignment?.description }}
       <br>
       <strong>Pour les étudiant en : </strong>{{ assignment?.niveau }}
   </div>
 </div>
-
-<hr>
 
 <!--
 <div class="row mx-1">

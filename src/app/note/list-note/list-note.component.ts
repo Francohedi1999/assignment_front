@@ -43,7 +43,6 @@ export class ListNoteComponent implements OnInit
     (response: Note_Model[]) =>
     {
       this.notes = response ;
-      console.log(this.notes)
     }
     );
 

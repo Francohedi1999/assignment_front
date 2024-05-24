@@ -13,6 +13,7 @@ import {  MatTable, MatTableModule} from '@angular/material/table';
 import {  PageEvent , MatPaginatorModule} from '@angular/material/paginator';
 import { RouterLink } from '@angular/router';
 import { MatSelectChange , MatSelectModule } from '@angular/material/select';
+import { LevelService } from '../../services/level.service';
 
 @Component({
   selector: 'app-list-user',
@@ -38,57 +39,77 @@ import { MatSelectChange , MatSelectModule } from '@angular/material/select';
 export class ListUserComponent implements OnInit
 {
   utilisateurs: User_Model[] ;
-  roles: any[]
+  roles: any[] ;
+  levels: any[] ;
+  filtre_role: string ;
+  filtre_niveau: string ;
 
+  niveau_disabled: boolean ;
+
+  totalDocs = 0;
   page = 1;
   limit = 10;
+  totalPages = 0;
+  hasPrevPage = false;
+  hasNextPage = false;
 
-  totalDocs !: number;
-  totalPages !: number;
-  nextPage !: number;
-  prevPage !: number;
-  hasNextPage !: boolean;
-  hasPrevPage !: boolean;
-
-  filtre_role: string;
-
-  pageEvent: PageEvent ;
+  pageEvent: PageEvent;
 
   constructor(  private user_service: UserService ,
-                private role_service: RoleService ) {}
+                private role_service: RoleService ,
+                private level_service: LevelService ) {}
 
   ngOnInit(): void
   {
+    this.niveau_disabled = true ;
     this.roles = this.role_service.roles ;
+    this.levels = this.level_service.levels ;
+
     this.filtre_role = ""
-    this.get_utilisateurs_by_filtre( this.filtre_role ) ;
+    this.filtre_niveau = ""
+    this.get_utilisateurs_by_filtre( this.filtre_role , this.filtre_niveau ) ;
   }
 
-  get_utilisateurs_by_filtre( filtre: string)
+  handlePageEvent(event: PageEvent)
   {
-    this.user_service.get_all( this.page , this.limit , filtre ).subscribe( ( data ) =>
+    this.page = event.pageIndex + 1 ;
+    this.limit = event.pageSize ;
+    this.get_utilisateurs_by_filtre(this.filtre_role , this.filtre_niveau) ;
+  }
+
+  get_utilisateurs_by_filtre( filtre_role: string , filtre_niveau: string )
+  {
+    this.user_service.get_all( this.page , this.limit , filtre_role , filtre_niveau ).subscribe( ( data ) =>
     {
       this.utilisateurs = data.docs;
       this.totalDocs = data.totalDocs;
+      this.limit = data.limit;
+      this.page = data.page;
       this.totalPages = data.totalPages;
-      this.nextPage = data.nextPage;
-      this.prevPage = data.prevPage;
-      this.hasNextPage = data.hasNextPage;
       this.hasPrevPage = data.hasPrevPage;
+      this.hasNextPage = data.hasNextPage;
     } ) ;
   }
 
   onRoleSelect()
   {
-    this.page = 1;
-    this.get_utilisateurs_by_filtre(this.filtre_role);
+    this.page = 0 ;
+    if( this.filtre_role !== "Etudiant" )
+    {
+      this.niveau_disabled = true ;
+      this.filtre_niveau = "" ;
+    }
+    else
+    {
+      this.niveau_disabled = false ;
+    }
+    this.get_utilisateurs_by_filtre(this.filtre_role , this.filtre_niveau) ;
   }
 
-  handlePageEvent(event: PageEvent)
+  onLevelSelect()
   {
-    this.page = event.pageIndex + 1;
-    this.limit = event.pageSize;
-
-    this.get_utilisateurs_by_filtre( this.filtre_role ) ;
+    this.page = 0 ;
+    this.get_utilisateurs_by_filtre(this.filtre_role , this.filtre_niveau) ;
   }
+
 }

@@ -13,13 +13,6 @@
 
     <form [formGroup]="new_assignment_form">
 
-      <div class="row mt-2">
-        <mat-form-field class="col-md-12">
-          <mat-label>Description</mat-label>
-          <input matInput type="description" formControlName="description">
-        </mat-form-field>
-      </div>
-
       <div class="row mt-4">
         <mat-form-field class="col-md-12">
           <mat-label>Matière</mat-label>
@@ -29,6 +22,13 @@
               <mat-option [value]="matiere.id">{{matiere.nom}}</mat-option>
             }
           </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="row mt-2">
+        <mat-form-field class="col-md-12">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="5"></textarea>
         </mat-form-field>
       </div>
 
