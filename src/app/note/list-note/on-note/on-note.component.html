@@ -1,0 +1,28 @@
+<mat-card (click)="show_note()" class="mt-2">
+  <mat-card-content>
+
+    <div class="row">
+      <div class="col-md-2">
+        <img src="{{ etudiant?.img_url }}" class="rounded-circle" width="75" height="75">
+      </div>
+      <div class="col-md-10">
+
+          <strong>Nom de l'étudiant(e): </strong>{{ etudiant?.nom }} ({{ etudiant?.email }})
+          <br>
+          <strong>Niveau : </strong>{{ etudiant?.niveau }}
+          <br>
+          @if ( note?.rendu === false )
+          {
+            <strong>Rendue : </strong><span class="badge bg-danger">NON</span>
+          }
+          @else
+          {
+            <strong>Rendue : </strong><span class="badge bg-success">OUI</span>
+          }
+          <br>
+          <strong>Note : </strong>{{ note?.note }} / 10
+      </div>
+    </div>
+
+  </mat-card-content>
+</mat-card>

@@ -59,8 +59,8 @@ export class MatieresComponent implements OnInit{
     this.isAdmin = this.authService.isAdmin();
   }
 
-  getAllMatieres(filtre: string): void{
-    this.matieresService.getAllMatieres(filtre).subscribe(
+  getAllMatieres( enseignant_id: string ): void{
+    this.matieresService.getAllMatieres( enseignant_id ).subscribe(
       (response: any) => {
         console.log(response.message); // Affiche le message dans la console
         if (response.data) {

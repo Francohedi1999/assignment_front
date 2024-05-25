@@ -86,14 +86,14 @@ export class UpdateMatiereComponent implements OnInit {
             } , );
           });
 
-      let role: string = "enseignant";
+      let role: string = "Enseignant";
       this.getAllProf(role); // A revoir elle doit etre dynamique!!!
     });
   }
 
   getAllProf( filtre: string )
   {
-    this.user_service.get_all( filtre ).subscribe( ( response ) =>
+    this.user_service.get_all_no_pagination( filtre ).subscribe( ( response ) =>
     {
       this.enseignant = response ;
     } ) ;

@@ -81,7 +81,7 @@ export class UpdateProfileComponent implements OnInit
 
   check_user()
   {
-    const data_user = new FormData() ;
+    const data_user = new FormData() ; 
     data_user.append("_id" , this.id_user ) ;
     data_user.append("nom" , this.update_profil_form.value.nom ) ;
     data_user.append("prenom" , this.update_profil_form.value.prenom ) ;

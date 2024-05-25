@@ -41,7 +41,7 @@ export class AuthService {
 
           localStorage.setItem( 'STATE', 'true' );
           localStorage.setItem( 'ROLE', user.role );
-          window.location.href = "list-user" ;
+          window.location.href = "profile/" + user._id ;
         } ) ;
       }
       else

@@ -8,53 +8,59 @@
 
   <mat-dialog-content>
 
- 
+
     <div class="row">
       <div class="col-md-2">
-        <img src="{{ img_url }}" class="rounded-circle" width="100" height="100">
+        <img src="{{ etudiant?.img_url }}" class="rounded-circle" width="100" height="100">
       </div>
       <div class="col-md-10">
 
         <dl class="row">
           <dd class="col-sm-12">
-            <strong>Nom et prénom : </strong>{{ data_user.get("nom") + " " + data_user.get("prenom") }}
+            <strong>Nom et prénom : </strong>{{ etudiant?.nom + " " + etudiant?.prenom }}
           </dd>
           <dd class="col-sm-12">
-            <strong>Email : </strong>{{ data_user.get("email") }}
+            <strong>Email : </strong>{{ etudiant?.email }}
           </dd>
           <dd class="col-sm-12">
-            <strong>Mot de passe : </strong>{{ data_user.get("password") }}
+            <strong>Niveau : </strong>{{ etudiant?.role + " en " + etudiant?.niveau }}
           </dd>
-          <dd class="col-sm-12">
-            <strong>Type : </strong>{{ data_user.get("role") }}
-          </dd>
-            <dd class="col-sm-12">
-              <strong>Niveau : </strong>{{ data_user.get("niveau") }}
-            </dd>
         </dl>
 
       </div>
     </div>
 
 
-    <div class="row mt-4">
-      <p>Voulez-vous enregistrer ?</p>
-    </div>
+    <form [formGroup]="add_note_form" >
 
-    <div class="row" [hidden]="hidden_buttons">
-
-      <div  class="mt-2" >
-        <span class="btn btn-success" (click)="add_user()">
-          Oui
-        </span>
+      <div class="row mt-3">
+        <div class="col-md-12">
+          <mat-label>Note</mat-label>
+          <input type="number" matInput formControlName="note_etudiant" class="form-control">
+        </div>
       </div>
 
-      <div class="mt-2" >
-        <span class="btn btn-danger" mat-dialog-close>
-          Non
-        </span>
+      <div class="row mt-4">
+        <p>Voulez-vous noter et marquer cette assignation comme rendue ?</p>
       </div>
-    </div>
+
+      <div class="row" [hidden]="hidden_buttons">
+
+        <div  class="mt-2" >
+          <span class="btn btn-success" (click)="add_note()">
+            Oui
+          </span>
+        </div>
+
+        <div class="mt-2" >
+          <span class="btn btn-danger" mat-dialog-close>
+            Non
+          </span>
+        </div>
+      </div>
+
+    </form>
+
 
     <div class="row">
 
