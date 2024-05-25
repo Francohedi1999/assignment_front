@@ -4,5 +4,6 @@ export class Assignment_Model
   matiere_id : string ;
   description : string ;
   niveau : string ;
+  ens_id : string ;
   dl : Date ;
 }

@@ -8,6 +8,7 @@ import { LevelService } from '../../services/level.service';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-list-assignment',
@@ -36,13 +37,17 @@ export class ListAssignmentComponent implements OnInit
   hasPrevPage = false;
   hasNextPage = false;
 
+  token_user_logged: string ;
+
   pageEvent: PageEvent;
 
   constructor(  private assignment_service: AssignmentService ,
+                private auth_service: AuthService ,
                 private level_service: LevelService ) {}
 
   ngOnInit()
   {
+    this.token_user_logged = this.auth_service.get_token_user_logged() ;
     this.filtre_niveau = ""
     this.levels = this.level_service.levels ;
     this.get_all_assignment_by_filtre_niveau( this.page , this.limit ) ;
@@ -50,17 +55,42 @@ export class ListAssignmentComponent implements OnInit
 
   get_all_assignment_by_filtre_niveau( page: number , limit: number )
   {
-    this.assignment_service.get_all( this.filtre_niveau , page , limit ).subscribe(
-    ( data ) =>
-    {
-      this.assignments = data.docs;
-      this.totalDocs = data.totalDocs;
-      this.limit = data.limit;
-      this.page = data.page;
-      this.totalPages = data.totalPages;
-      this.hasPrevPage = data.hasPrevPage;
-      this.hasNextPage = data.hasNextPage;
-    }) ;
+
+
+    this.auth_service.get_user_logged( this.token_user_logged ).subscribe(
+      user =>
+      {
+        if( user.role === "Administrateur" )
+        {
+          this.assignment_service.get_all( this.filtre_niveau , page , limit , "" ).subscribe(
+          ( data ) =>
+          {
+            this.assignments = data.docs;
+            this.totalDocs = data.totalDocs;
+            this.limit = data.limit;
+            this.page = data.page;
+            this.totalPages = data.totalPages;
+            this.hasPrevPage = data.hasPrevPage;
+            this.hasNextPage = data.hasNextPage;
+          }) ;
+        }
+        else
+        {
+          this.assignment_service.get_all( this.filtre_niveau , page , limit , user._id ).subscribe(
+            ( data ) =>
+            {
+              this.assignments = data.docs;
+              this.totalDocs = data.totalDocs;
+              this.limit = data.limit;
+              this.page = data.page;
+              this.totalPages = data.totalPages;
+              this.hasPrevPage = data.hasPrevPage;
+              this.hasNextPage = data.hasNextPage;
+            }) ;
+        }
+      } ) ;
+
+
   }
   handlePageEvent(event: PageEvent)
   {
