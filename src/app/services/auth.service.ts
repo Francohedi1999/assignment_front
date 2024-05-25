@@ -80,6 +80,17 @@ export class AuthService {
     const role = this.getRole();
     return this.roleService.isAdmin(role);
   }
+  // Verifier si l'utilisateur est un enseignant
+  isEnseignant(): boolean {
+    const role = this.getRole();
+    return this.roleService.isEnseignant(role);
+  }
+  // Verifier si l'utilisateur est un etudiant
+  isEtudiant(): boolean {
+    const role = this.getRole();
+    return this.roleService.isEtudiant(role);
+  }
+
 
   logout()
   {

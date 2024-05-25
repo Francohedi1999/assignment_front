@@ -28,7 +28,7 @@
 
       <mat-divider></mat-divider>
 
-      @if( role_user_logged === "Administrateur" )
+     @if( isAdmin )
       {
 
         <!-- Utilisateur -->
@@ -77,7 +77,7 @@
         </button>
 
       }
-      @else if ( role_user_logged === "Enseignant" )
+      @else if ( isEnseignant )
       {
 
         <!-- Assignation -->

@@ -9,6 +9,7 @@ import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import { AuthService } from '../../services/auth.service';
 import { User_Model } from '../../user/user.model';
 import { UserService } from '../../services/user.service';
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-navbar',
@@ -26,7 +27,8 @@ import { UserService } from '../../services/user.service';
     MatToolbar,
     RouterLink,
     RouterOutlet,
-    MatMenuTrigger
+    MatMenuTrigger,
+    NgIf
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
@@ -38,11 +40,20 @@ export class NavbarComponent implements OnInit
   user_logged: User_Model ;
   token_user_logged: string ;
 
+  //  Definition des verificateurs de role
+  isAdmin: boolean;
+  isEnseignant: boolean;
+  isEtudiant: boolean;
+
   constructor( private auth_service: AuthService  ) {}
 
   ngOnInit()
   {
-    this.role_user_logged = this.auth_service.getRole() ;
+    //  Verifier si l'utilisateur est administrateur, enseignant ou etudiant
+    this.isAdmin = this.auth_service.isAdmin();
+    this.isEnseignant = this.auth_service.isEnseignant();
+    this.isEtudiant = this.auth_service.isEtudiant();
+
     this.is_logged = this.auth_service.isLoggedIn() ;
     this.token_user_logged = this.auth_service.get_token_user_logged() ;
 
