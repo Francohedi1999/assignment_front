@@ -30,37 +30,42 @@
       </div>
     </div>
 
+    @if( note.rendu === true )
+    {
+      <form [formGroup]="add_note_form" >
 
-    <form [formGroup]="add_note_form" >
-
-      <div class="row mt-3">
-        <div class="col-md-12">
-          <mat-label>Note</mat-label>
-          <input type="number" matInput formControlName="note_etudiant" class="form-control">
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <mat-label>Note</mat-label>
+            <input type="number" matInput formControlName="note_etudiant" class="form-control">
+          </div>
         </div>
-      </div>
+        <div class="row mt-4">
+          <p>Voulez-vous modifier le note ?</p>
+        </div>
 
+        <div class="row" [hidden]="hidden_buttons">
+
+          <div  class="mt-2" >
+            <span class="btn btn-success" (click)="add_note()">
+              Oui
+            </span>
+          </div>
+
+          <div class="mt-2" >
+            <span class="btn btn-danger" mat-dialog-close>
+              Non
+            </span>
+          </div>
+        </div>
+      </form>
+    }
+    @else
+    {
       <div class="row mt-4">
-        <p>Voulez-vous noter et marquer cette assignation comme rendue ?</p>
+        <p>L'assignation n'est pas encore rendue par l'etudiant</p>
       </div>
-
-      <div class="row" [hidden]="hidden_buttons">
-
-        <div  class="mt-2" >
-          <span class="btn btn-success" (click)="add_note()">
-            Oui
-          </span>
-        </div>
-
-        <div class="mt-2" >
-          <span class="btn btn-danger" mat-dialog-close>
-            Non
-          </span>
-        </div>
-      </div>
-
-    </form>
-
+    }
 
     <div class="row">
 

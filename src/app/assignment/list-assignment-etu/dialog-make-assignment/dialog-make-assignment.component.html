@@ -33,25 +33,33 @@
       </div>
     </div>
 
-
-    <div class="row mt-4">
-      <p>Voulez-vous enregistrer ?</p>
-    </div>
-
-    <div class="row" [hidden]="hidden_buttons">
-
-      <div  class="mt-2" >
-        <span class="btn btn-success" (click)="add_assignment()">
-          Oui
-        </span>
+    @if( note.noted === false )
+    {
+      <div class="row mt-4">
+        <p>Voulez-vous rendre l'assignation ?</p>
       </div>
 
-      <div class="mt-2" >
-        <span class="btn btn-danger" mat-dialog-close>
-          Non
-        </span>
+      <div class="row" [hidden]="hidden_buttons">
+
+        <div  class="mt-2" >
+          <span class="btn btn-success" (click)="make_assignment()">
+            Oui
+          </span>
+        </div>
+
+        <div class="mt-2" >
+          <span class="btn btn-danger" mat-dialog-close>
+            Non
+          </span>
+        </div>
       </div>
-    </div>
+    }
+    @else
+    {
+      <div class="row mt-4">
+        <p>Voulez avez déjà rendue cette assignation ?</p>
+      </div>
+    }
 
     <div class="row">
 

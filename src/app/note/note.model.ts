@@ -4,5 +4,6 @@ export class Note_Model
   assignment_id : string ;
   etudiant_id : string ;
   note : number ;
-  rendu : boolean
+  rendu : boolean ;
+  noted : boolean ;
 }

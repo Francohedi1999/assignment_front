@@ -110,7 +110,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard] ,
     data: {
       title: 'Assignment MBDS - Nouvelle assignation' ,
-      role:  [ ADMINISTRATEUR , ENSEIGNANT ] }
+      role:  [ ENSEIGNANT ] }
   },
   {
     path: 'list-assignment',

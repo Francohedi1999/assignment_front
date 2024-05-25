@@ -20,6 +20,15 @@
             <strong>Rendue : </strong><span class="badge bg-success">OUI</span>
           }
           <br>
+          @if ( note?.noted === false )
+          {
+            <strong>Notée : </strong><span class="badge bg-danger">NON</span>
+          }
+          @else
+          {
+            <strong>Notée : </strong><span class="badge bg-success">OUI</span>
+          }
+          <br>
           <strong>Note : </strong>{{ note?.note }} / 10
       </div>
     </div>
