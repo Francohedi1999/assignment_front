@@ -7,6 +7,7 @@
         menu
       </mat-icon>
     </button>
+    <span>Assignment MBDS</span>
 
   </mat-toolbar>
 
@@ -71,9 +72,9 @@
 
         </mat-menu>
 
-        <button mat-button class="menu-button" routerLink="/matieres">
+        <button mat-button class="menu-button" routerLink="/matieres" routerLinkActive="active">
           <mat-icon class="white-icon">work</mat-icon>
-          <span class="text-white">Matieres</span>
+          <span class="text-white">Matières</span>
         </button>
 
       }
@@ -112,7 +113,7 @@
 
       <mat-divider></mat-divider>
 
-      <button mat-button class="menu-button" routerLink="/profile/{{ user_logged?._id }}">
+      <button mat-button class="menu-button" routerLink="/profile/{{ user_logged?._id }}" routerLinkActive="active">
         <mat-icon class="white-icon">edit</mat-icon>
         <span class="text-white">Modifier mon profil</span>
       </button>

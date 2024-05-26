@@ -5,7 +5,7 @@ import {MatIcon} from "@angular/material/icon";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {MatSidenav, MatSidenavContainer, MatSidenavContent} from "@angular/material/sidenav";
 import {MatToolbar} from "@angular/material/toolbar";
-import {Router, RouterLink, RouterOutlet} from "@angular/router";
+import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import { AuthService } from '../../services/auth.service';
 import { User_Model } from '../../user/user.model';
 import { UserService } from '../../services/user.service';
@@ -28,7 +28,8 @@ import {NgIf} from "@angular/common";
     RouterLink,
     RouterOutlet,
     MatMenuTrigger,
-    NgIf
+    NgIf,
+    RouterLinkActive
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
