@@ -99,10 +99,27 @@ export class UpdateMatiereComponent implements OnInit {
     } ) ;
   }
 
-  onImageSelected(event)
-  {
-    this.selectedImage = event.target.files[0] ;
+  onImageSelected(event: any): void {
+    const file: File = event.target.files[0];
+
+    if (file && this.isImage(file)) {
+      this.selectedImage = file;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.img_url_recent = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      this.toastr.error('Veuillez sélectionner une image valide (JPG, JPEG, PNG)', 'Erreur');
+    }
   }
+
+  // Vérifier si le fichier est une image (JPG, JPEG, PNG)
+  isImage(file: File): boolean {
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    return allowedTypes.includes(file.type);
+  }
+
 
 
   onSaveMatiere() {
