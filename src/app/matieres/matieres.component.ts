@@ -41,7 +41,7 @@ export class MatieresComponent implements OnInit{
   isAdmin: boolean ;
 
   matieres: MatieresModel[];
-  enseignant: User_Model[];
+  enseignants: Map<string, any> = new Map();
 
   showLoading: boolean = false;
 
@@ -51,7 +51,8 @@ export class MatieresComponent implements OnInit{
     private matieresService: MatieresService,
     private mat_dialog: MatDialog ,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {

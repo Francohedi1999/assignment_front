@@ -15,12 +15,17 @@ export class MatieresService {
                 private http: HttpClient ,
                 private auth_service: AuthService ) { }
 
-  getAllMatieres(enseignant_id: string): Observable<MatieresModel[]> {
+  getAllMatieres(enseignant_id?: string): Observable<MatieresModel[]> {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.auth_service.get_token_user_logged()}`);
+    let params = {};
+    if (enseignant_id) {
+      params = { enseignant_id };
+    }
     const url = this.url_service.matiere +
-                "?enseignant_id=" +
-                enseignant_id ;
-    return this.http.get<MatieresModel[]>( url , { headers });
+      "?enseignant_id=" +
+      enseignant_id ;
+
+    return this.http.get<MatieresModel[]>(url, { headers, params });
   }
 
   getMatiereById( id: string ):Observable<MatieresModel|undefined>

@@ -22,7 +22,7 @@
         <tr *ngFor="let matiere of matieres; let i = index">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ matiere.nom }}</td>
-          <td>{{ matiere.idProf }}</td>
+          <td>{{ matiere.enseignant.nom }} {{ matiere.enseignant.prenom }}</td>
           <td *ngIf="isAdmin">
             <div class="row">
               <div class="col">

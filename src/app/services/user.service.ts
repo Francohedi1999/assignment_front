@@ -45,11 +45,11 @@ export class UserService {
     return this.http.get<any>( url , header ) ;
   }
 
-  get_by_id( id: string ):Observable<User_Model>
-  {
-    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
-    return this.http.get<User_Model>( this.url_service.user + "/" + id , header ) ;
-  }
+    get_by_id( id: string ):Observable<User_Model>
+    {
+      const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+      return this.http.get<User_Model>( this.url_service.user + "/" + id , header ) ;
+    }
 
   update( user_data: FormData ):Observable<any>
   {
