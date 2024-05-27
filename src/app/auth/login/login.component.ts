@@ -42,8 +42,9 @@ export class LoginComponent implements OnInit
   {
     this.spinner.show() ;
     setTimeout( () => {
-      this.auth_service.login( this.login_form.value.email , this.login_form.value.password ) ;
-    }, 2000 ) ;
+      this.auth_service.login( this.login_form.value.email , this.login_form.value.password );
+      this.spinner.hide() ;
+    }, 1500 ) ;
   }
 
   EnableShowPassword() {

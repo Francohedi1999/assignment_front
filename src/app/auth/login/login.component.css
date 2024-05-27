@@ -2,22 +2,59 @@
   background-image: url('../../../assets/auth/BackgroundLogin.jpg');
   background-size: cover;
 }
-.input-group-append .input-group-text {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+/*
+  ChatGPT et
+  d'autres forum m'a aider à trouver des idées et à concevoir
+  le design de la page de login.
+*/
+
+.input-group {
+   position: relative;
+ }
+
+.input-group .form-control {
+  padding-right: 2.5rem;
+}
+
+.input-group-append {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
 }
 
-.input-group-text {
+.input-group-append .input-group-text {
   background: transparent;
-  border-left: 0;
+  border: none;
+  font-size: 1.2rem;
+  padding: 0;
 }
 
-.input-group .form-control {
-  border-right: none;
-}
-
+.input-group .form-control,
 .input-group .input-group-text {
-  border-left: none;
+  height: calc(1.5em + 0.75rem + 2px);
+}
+
+.input-group-append .input-group-text i {
+  font-size: 0.9rem;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  font-family: Arial, sans-serif;
+  font-size: small;
+  transform: translateX(-50%);
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.logo {
+  content: url('../../../Assignment-icon.ico');
+  width: 30px;
+  height: 30px;
+  margin-bottom: 10px;
 }
 
