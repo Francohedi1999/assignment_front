@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, Validators ,ReactiveFormsModule, FormsModule } 
 import { DialogNewUserComponent } from './dialog-new-user/dialog-new-user.component';
 import { RoleService } from '../../services/role.service';
 import { LevelService } from '../../services/level.service';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-new-user',
@@ -28,7 +29,8 @@ import { LevelService } from '../../services/level.service';
     MatDatepickerModule ,
     MatNativeDateModule ,
     ReactiveFormsModule ,
-    MatSelectModule
+    MatSelectModule ,
+    MatStepperModule
   ],
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css'

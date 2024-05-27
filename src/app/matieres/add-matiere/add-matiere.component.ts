@@ -15,6 +15,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {ToastrService} from "ngx-toastr";
 import {DialogRef} from "@angular/cdk/dialog";
 import {Router} from "@angular/router";
+import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-add-matiere',
@@ -25,6 +26,7 @@ import {Router} from "@angular/router";
     MatDialogModule,
     MatIcon,
     MatButton,
+    MatStepperModule ,
     MatFormField,
     MatInput,
     MatFormFieldModule,
