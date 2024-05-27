@@ -186,8 +186,8 @@ export class UpdateOrDeleteUserComponent implements OnInit
           setTimeout( () =>
           {
             this.router.navigate([ "/list-user" ]) ;
-          } , 3000 ); // Redirection après 1 seconde
-        } , 3000 ); // Message de succès affiché pendant 2 secondes
+          } , 3000 );
+        } , 3000 );
     } ) ;
   }
 

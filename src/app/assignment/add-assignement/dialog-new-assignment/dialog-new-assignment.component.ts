@@ -70,8 +70,8 @@ export class DialogNewAssignmentComponent implements OnInit{
             {
               this.dialog_ref.close() ;
               this.router.navigate([ "/add-assignment" ]) ;
-            } , 2000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 );
+          } , 2000 );
       }
       else
       {
@@ -83,8 +83,8 @@ export class DialogNewAssignmentComponent implements OnInit{
             {
               this.dialog_ref.close() ;
               this.router.navigate([ "/list-assignment" ]) ;
-            } , 2000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 );
+          } , 2000 ); 
       }
     } ) ;
   }

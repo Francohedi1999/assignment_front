@@ -61,8 +61,8 @@ export class DialogUpdateUserComponent implements OnInit
             {
               this.dialog_ref.close() ;
               this.router.navigate([ "/list-user" ]) ;
-            } , 2000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 ); 
+          } , 2000 );
       }
       else
       {
@@ -74,8 +74,8 @@ export class DialogUpdateUserComponent implements OnInit
             {
               this.dialog_ref.close() ;
               this.router.navigate([ "/list-user" ]) ;
-            } , 2000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 ); 
+          } , 2000 );
       }
     } ) ;
   }
