@@ -2,3 +2,22 @@
   background-image: url('../../../assets/auth/BackgroundLogin.jpg');
   background-size: cover;
 }
+.input-group-append .input-group-text {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  cursor: pointer;
+}
+
+.input-group-text {
+  background: transparent;
+  border-left: 0;
+}
+
+.input-group .form-control {
+  border-right: none;
+}
+
+.input-group .input-group-text {
+  border-left: none;
+}
+
