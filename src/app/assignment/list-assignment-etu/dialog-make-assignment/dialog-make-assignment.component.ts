@@ -58,7 +58,7 @@ export class DialogMakeAssignmentComponent implements OnInit
   {
     this.is_loading =  true ;
     this.hidden_buttons = true ;
-    
+
     this.note_service.make_assignment(this.note._id).subscribe( (response) =>
     {
       if( response.created === false )
@@ -73,7 +73,7 @@ export class DialogMakeAssignmentComponent implements OnInit
             } , 2000 );
           } , 2000 );
       }
-      else
+      else 
       {
         setTimeout(() =>
           {
