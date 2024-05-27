@@ -17,16 +17,16 @@
 
       <img src="{{ user_logged?.img_url }}" class="rounded-circle" width="100" height="100">
 
-      <h4 class="name">
-        {{ user_logged?.nom + " " + user_logged?.prenom }}
-        <br>
-        {{ user_logged?.email }}
-        <br>
+      <h3 class="name">
+        <b>{{ user_logged?.nom + " " + user_logged?.prenom }}</b>
+        <p>{{ user_logged?.email }}</p>
+      </h3>
+      <mat-divider></mat-divider>
+      <p class="name">
         {{ user_logged?.role }}
         <br>
         {{ user_logged?.niveau }}
-      </h4>
-
+      </p>
       <mat-divider></mat-divider>
 
      @if( isAdmin )
