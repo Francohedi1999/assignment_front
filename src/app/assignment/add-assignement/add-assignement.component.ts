@@ -6,6 +6,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import {MatStepperModule} from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
@@ -32,7 +33,8 @@ import { User_Model } from '../../user/user.model';
     MatNativeDateModule ,
     ReactiveFormsModule ,
     MatSelectModule ,
-    DatePipe
+    DatePipe ,
+    MatStepperModule
   ],
   templateUrl: './add-assignement.component.html',
   styleUrl: './add-assignement.component.css'

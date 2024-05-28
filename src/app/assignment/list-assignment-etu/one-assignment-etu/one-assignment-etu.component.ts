@@ -9,6 +9,8 @@ import { Assignment_Model } from '../../assignment.model';
 import { Note_Model } from '../../../note/note.model';
 import { NoteService } from '../../../services/note.service';
 import { AuthService } from '../../../services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogMakeAssignmentComponent } from '../dialog-make-assignment/dialog-make-assignment.component';
 
 @Component({
   selector: 'app-one-assignment-etu',
@@ -34,6 +36,7 @@ export class OneAssignmentEtuComponent implements OnInit
 
   constructor(  private matiere_service: MatieresService ,
                 private auth_service: AuthService ,
+                private mat_dialog: MatDialog ,
                 private note_service: NoteService ,
                 private user_service: UserService ) {}
 
@@ -62,6 +65,16 @@ export class OneAssignmentEtuComponent implements OnInit
       });
     });
 
+  }
+
+  make_assignment()
+  {
+    console.log( this.note ) ;
+    const data_ = {
+      assignment: this.assignment ,
+      note: this.note
+    }
+    this.mat_dialog.open( DialogMakeAssignmentComponent , { width: "1000px" , data: data_ } );
   }
 
 }

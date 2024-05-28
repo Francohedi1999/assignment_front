@@ -51,22 +51,31 @@ export class UserService {
       return this.http.get<User_Model>( this.url_service.user + "/" + id , header ) ;
     }
 
-  update( user_data: FormData ):Observable<any>
+  update( id_user:string , user_data: FormData ):Observable<any>
   {
     const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
-    return this.http.post<any>( this.url_service.user + "/update" , user_data , header ) ;
+    const url = this.url_service.user +
+                "/update/" +
+                id_user ;
+    return this.http.put<any>( url , user_data , header ) ;
   }
 
-  delete_or_restore( id: string ):Observable<any>
+  delete_or_restore( id_user: string ):Observable<any>
   {
     const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
-    return this.http.get<any>( this.url_service.user + "/delete_or_restore/" + id , header ) ;
+    const url = this.url_service.user +
+                "/delete_or_restore/" +
+                id_user ;
+    return this.http.put<any>( url , {} , header ) ;
   }
 
-  update_profil( user_data: FormData ):Observable<any>
+  update_profil( id_user: string , user_data: FormData ):Observable<any>
   {
     const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
-    return this.http.post<any>( this.url_service.user + "/update_profile" , user_data , header ) ;
+    const url = this.url_service.user +
+                "/update_profile/" +
+                id_user ;
+    return this.http.put<any>( url , user_data , header ) ;
   }
 
 }

@@ -53,26 +53,13 @@
         </mat-menu>
 
         <!-- Assignation -->
-        <button mat-button class="menu-button" [matMenuTriggerFor]="menu_assign" >
-          <mat-icon class="white-icon">assignment</mat-icon>
-          <span class="text-white">Assignation</span>
+
+        <button mat-button class="menu-button" routerLink="/list-assignment">
+          <mat-icon class="white-icon">format_list_bulleted</mat-icon>
+          <span class="text-white">Liste des assignations</span>
         </button>
 
-        <mat-menu #menu_assign="matMenu">
-
-          <button mat-menu-item  routerLink="/add-assignment">
-            <mat-icon>library_add</mat-icon>
-            <span>Nouvelle assignation</span>
-          </button>
-
-          <button mat-menu-item routerLink="/list-assignment">
-            <mat-icon>format_list_bulleted</mat-icon>
-            <span>Liste des assignations</span>
-          </button>
-
-        </mat-menu>
-
-        <button mat-button class="menu-button" routerLink="/matieres" routerLinkActive="active">
+        <button mat-button class="menu-button" routerLink="/matieres">
           <mat-icon class="white-icon">work</mat-icon>
           <span class="text-white">Matières</span>
         </button>

@@ -64,7 +64,10 @@ export class DialogAddOrUpdateNoteComponent implements OnInit
     );
 
     this.add_note_form = this.form_builder.group({
-      note_etudiant: [ this.note.note , [ Validators.required , Validators.pattern("^[0-9]*$") ] ]
+      note_etudiant: [ this.note.note , [ Validators.required ,
+                                          Validators.pattern("^[0-9]*$") ,
+                                          Validators.min(0) ,
+                                          Validators.max(20) ] ]
     }) ;
 
   }
@@ -85,8 +88,8 @@ export class DialogAddOrUpdateNoteComponent implements OnInit
             setTimeout( () =>
             {
               this.dialog_ref.close() ;
-            } , 2000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 );
+          } , 2000 );
       }
       else
       {
@@ -97,10 +100,10 @@ export class DialogAddOrUpdateNoteComponent implements OnInit
             setTimeout( () =>
             {
               this.note.note = this.add_note_form.value.note_etudiant ;
-              this.note.rendu = true ;
+              this.note.noted = true ;
               this.dialog_ref.close() ;
-            } , 2000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 );
+          } , 2000 );
       }
     } ) ;
   }

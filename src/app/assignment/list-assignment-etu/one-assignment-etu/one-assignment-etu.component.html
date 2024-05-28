@@ -1,4 +1,4 @@
-<mat-card class="mt-2">
+<mat-card class="mt-2" (click)="make_assignment()" >
   <mat-card-content>
 
     <div class="row">
@@ -29,7 +29,16 @@
           <strong>Rendue : </strong><span class="badge bg-success">OUI</span>
         }
         <br>
-        <strong>Note : </strong>{{ note?.note }} / 10
+        @if ( note?.noted === false )
+        {
+          <strong>Notée : </strong><span class="badge bg-danger">NON</span>
+        }
+        @else
+        {
+          <strong>Notée : </strong><span class="badge bg-success">OUI</span>
+        }
+        <br>
+        <strong>Note : </strong>{{ note?.note }} / 20
       </div>
 
     </div>

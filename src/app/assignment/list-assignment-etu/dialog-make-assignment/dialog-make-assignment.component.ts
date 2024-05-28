@@ -1,30 +1,35 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { UserService } from '../../../services/user.service';
-import { CommonModule } from '@angular/common';
+import { Assignment_Model } from '../../assignment.model';
+import { NoteService } from '../../../services/note.service';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatieresModel } from '../../../models/matieres.model';
+import { MatieresService } from '../../../services/matieres.service';
+import { Note_Model } from '../../../note/note.model';
 
 @Component({
-  selector: 'app-dialog-update-user',
+  selector: 'app-dialog-make-assignment',
   standalone: true,
   imports: [
     CommonModule ,
+    DatePipe ,
     MatDialogModule ,
     MatButtonModule ,
     MatIconModule ,
     MatProgressSpinnerModule
   ],
-  templateUrl: './dialog-update-user.component.html',
-  styleUrl: './dialog-update-user.component.css'
+  templateUrl: './dialog-make-assignment.component.html',
+  styleUrl: './dialog-make-assignment.component.css'
 })
-export class DialogUpdateUserComponent implements OnInit
+export class DialogMakeAssignmentComponent implements OnInit
 {
-  data_user: FormData ;
-  img_url: string ;
+  note: Note_Model ;
+  assignment: Assignment_Model ;
+  matiere: MatieresModel ;
 
   hidden_buttons: boolean ;
   is_loading: boolean ;
@@ -33,25 +38,30 @@ export class DialogUpdateUserComponent implements OnInit
 
   constructor(  private dialog_ref: DialogRef ,
                 @Inject( MAT_DIALOG_DATA ) public data: any ,
-                private user_service: UserService ,
-                private router: Router) {}
+                private matiere_service: MatieresService ,
+                private note_service: NoteService )
+  {}
 
-  ngOnInit(): void
+  ngOnInit()
   {
-    this.data_user = this.data.data_user ;
-    this.img_url = this.data.image_url ;
-
-    this.hidden_buttons = false ;
+    this.assignment = this.data.assignment ;
+    this.note = this.data.note ;
+    this.matiere_service.getMatiereById( this.assignment.matiere_id ).subscribe(
+      (response:any) =>
+      {
+        this.matiere = response.data ;
+      }
+    ) ;
   }
 
-  update_user()
+  make_assignment()
   {
     this.is_loading =  true ;
     this.hidden_buttons = true ;
 
-    this.user_service.update( this.data_user.get("_id").toString() , this.data_user).subscribe( (response) =>
+    this.note_service.make_assignment(this.note._id).subscribe( (response) =>
     {
-      if( response.updated === false )
+      if( response.created === false )
       {
         setTimeout(() =>
           {
@@ -60,11 +70,10 @@ export class DialogUpdateUserComponent implements OnInit
             setTimeout( () =>
             {
               this.dialog_ref.close() ;
-              this.router.navigate([ "/list-user" ]) ;
-            } , 2000 ); 
+            } , 2000 );
           } , 2000 );
       }
-      else
+      else 
       {
         setTimeout(() =>
           {
@@ -72,11 +81,12 @@ export class DialogUpdateUserComponent implements OnInit
             this.message_success = response.message;
             setTimeout( () =>
             {
+              this.note.rendu = true ;
               this.dialog_ref.close() ;
-              this.router.navigate([ "/list-user" ]) ;
-            } , 2000 ); 
+            } , 2000 );
           } , 2000 );
       }
     } ) ;
   }
+
 }

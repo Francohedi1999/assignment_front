@@ -15,6 +15,7 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {ToastrService} from "ngx-toastr";
 import {DialogRef} from "@angular/cdk/dialog";
 import {Router} from "@angular/router";
+import { MatStepperModule } from '@angular/material/stepper';
 import {RoleService} from "../../services/role.service";
 
 //  Definition des roles
@@ -31,6 +32,7 @@ const ETUDIANT= RoleService.ETUDIANT;
     MatDialogModule,
     MatIcon,
     MatButton,
+    MatStepperModule ,
     MatFormField,
     MatInput,
     MatFormFieldModule,

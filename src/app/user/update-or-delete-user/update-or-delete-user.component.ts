@@ -110,7 +110,16 @@ export class UpdateOrDeleteUserComponent implements OnInit
     data_user.append("prenom" , this.update_user_form.value.prenom ) ;
     data_user.append("email" , this.update_user_form.value.email ) ;
     data_user.append("role" , this.update_user_form.value.role ) ;
-    data_user.append("niveau" , this.update_user_form.value.niveau ) ;
+
+    if( this.update_user_form.value.role === "Etudiant" && this.update_user_form.value.niveau === null )
+    {
+      data_user.append("niveau" , this.user.niveau ) ;
+    }
+    else
+    {
+      data_user.append("niveau" , this.user.niveau ) ;
+    }
+
 
     let image_url = "" ;
     if( this.image_selected )
@@ -177,8 +186,8 @@ export class UpdateOrDeleteUserComponent implements OnInit
           setTimeout( () =>
           {
             this.router.navigate([ "/list-user" ]) ;
-          } , 3000 ); // Redirection après 1 seconde
-        } , 3000 ); // Message de succès affiché pendant 2 secondes
+          } , 3000 );
+        } , 3000 );
     } ) ;
   }
 

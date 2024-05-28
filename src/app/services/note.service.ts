@@ -31,7 +31,19 @@ export class NoteService {
   ajout_note_etu( id_note: string , note_update: number ):Observable<any>
   {
     const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
-    return this.http.post<any>( this.url_service.note + "/ajout", { _id: id_note , note: note_update } , header ) ;
+    const url = this.url_service.note +
+                "/ajout/" +
+                id_note
+    return this.http.put<any>( url , { note: note_update } , header ) ;
+  }
+
+  make_assignment( id_note: string ):Observable<any>
+  {
+    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+    const url = this.url_service.note +
+                "/make/" +
+                id_note
+    return this.http.put<any>( url , {} , header ) ;
   }
 
 }

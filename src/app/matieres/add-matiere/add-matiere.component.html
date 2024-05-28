@@ -10,48 +10,63 @@
   </h1>
 
   <div mat-dialog-content>
-<!-- Message d'alert-->
-      <div *ngIf="alertMessages.length > 0" class="alert" [ngClass]="{'alert-success': alertType === 'success', 'alert-danger': alertType === 'danger'}" role="alert" style="max-width: 600px; margin: 0 auto; text-align: center;">
-        <ul>
-          <li *ngFor="let message of alertMessages">{{ message }}</li>
-        </ul>
-      </div>
-      <br>
-<!--    *********-->
-    <div class="row">
-      <div class="col-md-12">
-        <mat-label>Image de la matiere</mat-label>
-        <input type="file" (change)="OnImageSelected($event)" formControlName="imageMatiere" class="form-control">
-      </div>
+    <!-- Message d'alert-->
+    <div *ngIf="alertMessages.length > 0" class="alert" [ngClass]="{'alert-success': alertType === 'success', 'alert-danger': alertType === 'danger'}" role="alert" style="max-width: 600px; margin: 0 auto; text-align: center;">
+      <ul>
+        <li *ngFor="let message of alertMessages">{{ message }}</li>
+      </ul>
     </div>
     <br>
+    <!--    *********-->
+    <mat-stepper orientation="vertical" #stepper>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Nom de la matiere</mat-label>
-      <mat-icon matSuffix>import_contacts</mat-icon>
-      <input matInput formControlName="nom" placeholder="Entrer un nom">
-      <mat-error>
-        {{ getErrorMessage('nom') }}
-      </mat-error>
-    </mat-form-field>
+      <mat-step label="Image de la matiere">
+        <div class="row mt-2">
+          <div class="col-md-12">
+            <mat-label>Image de la matiere</mat-label>
+            <input type="file" (change)="OnImageSelected($event)" formControlName="imageMatiere" class="form-control">
+          </div>
+        </div>
+      </mat-step>
 
-    <mat-form-field  appearance="fill">
-      <mat-label>Choisir une enseignant(e)</mat-label>
-      <mat-icon matSuffix>recent_actors</mat-icon>
-      <mat-select formControlName="idProf">
-        <mat-option *ngFor="let prof of enseignant" [value]="prof._id">
-          {{ prof.nom }} {{ prof.prenom }}
-        </mat-option>
-      </mat-select>
-      <mat-error>
-        {{ getErrorMessage('idProf') }}
-      </mat-error>
-    </mat-form-field>
+      <mat-step label="Nom de la matiere">
+        <div class="row mt-2">
+          <mat-form-field appearance="fill">
+            <mat-label>Nom de la matiere</mat-label>
+            <mat-icon matSuffix>import_contacts</mat-icon>
+            <input matInput formControlName="nom" placeholder="Entrer un nom">
+            <mat-error>
+              {{ getErrorMessage('nom') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-step>
 
+      <mat-step label="Enseignant(e)">
+        <div class="row mt-2">
+          <mat-form-field  appearance="fill">
+            <mat-label>Choisir un(e) enseignant(e)</mat-label>
+            <mat-icon matSuffix>recent_actors</mat-icon>
+            <mat-select formControlName="idProf">
+              <mat-option *ngFor="let prof of enseignant" [value]="prof._id">
+                {{ prof.nom }} {{ prof.prenom }}
+              </mat-option>
+            </mat-select>
+            <mat-error>
+              {{ getErrorMessage('idProf') }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-step>
+
+      <mat-step label="Validation">
+        <div class="mt-2" mat-dialog-actions>
+          <button mat-raised-button color="primary">Enregistrer</button>
+          <button mat-raised-button mat-dialog-close color="warn">Fermer</button>
+        </div>
+      </mat-step>
+
+    </mat-stepper>
   </div>
 
-  <div mat-dialog-actions>
-    <button mat-raised-button color="primary">Enregistrer</button>
-    <button mat-raised-button mat-dialog-close color="warn">Fermer</button>
-  </div>
 </form>
