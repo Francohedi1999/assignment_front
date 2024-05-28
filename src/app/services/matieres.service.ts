@@ -21,9 +21,7 @@ export class MatieresService {
     if (enseignant_id) {
       params = { enseignant_id };
     }
-    const url = this.url_service.matiere +
-      "?enseignant_id=" +
-      enseignant_id ;
+    const url = this.url_service.matiere;
 
     return this.http.get<MatieresModel[]>(url, { headers, params });
   }

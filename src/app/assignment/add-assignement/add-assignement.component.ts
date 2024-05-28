@@ -49,6 +49,9 @@ export class AddAssignementComponent implements OnInit
   token_user_logged: string ;
   user_logged: User_Model ;
 
+  //  Definition des verificateurs de role
+  isEnseignant: boolean;
+
   new_assignment_form : FormGroup ;
 
   constructor(  private level_service: LevelService ,
@@ -64,12 +67,12 @@ export class AddAssignementComponent implements OnInit
   {
     this.token_user_logged = this.auth_service.get_token_user_logged() ;
     this.levels = this.level_service.levels ;
-
+    this.isEnseignant = this.auth_service.isEnseignant();
     this.auth_service.get_user_logged( this.token_user_logged ).subscribe(
     user =>
     {
       this.user_logged = user ;
-      if( user.role !== "Administrateur" )
+      if( this.isEnseignant )
       {
         this.matieresService.getAllMatieres( user._id ).subscribe(
           (response: any) => {
@@ -83,7 +86,7 @@ export class AddAssignementComponent implements OnInit
       }
       else
       {
-        this.matieresService.getAllMatieres( "" ).subscribe(
+        this.matieresService.getAllMatieres().subscribe(
           (response: any) => {
             console.log(response.message);
             if (response.data)
