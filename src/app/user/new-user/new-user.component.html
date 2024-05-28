@@ -26,6 +26,9 @@
               <input matInput type="text" formControlName="prenom">
             </mat-form-field>
           </div>
+          <div class="mt-2">
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
         </mat-step>
 
         <mat-step label="Email">
@@ -34,6 +37,10 @@
               <mat-label>Email</mat-label>
               <input matInput type="email" formControlName="email">
             </mat-form-field>
+            <div class="mt-2">
+              <button mat-button matStepperPrevious>Précédant</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
           </div>
         </mat-step>
 
@@ -43,6 +50,10 @@
               <mat-label>Mot de passe</mat-label>
               <input matInput type="password" formControlName="password">
             </mat-form-field>
+            <div class="mt-2">
+              <button mat-button matStepperPrevious>Précédant</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
           </div>
         </mat-step>
 
@@ -52,6 +63,10 @@
               <mat-label>Photo</mat-label>
               <input type="file" (change)="on_image_selected($event)" formControlName="image" class="form-control">
             </div>
+          </div>
+          <div class="mt-2">
+            <button mat-button matStepperPrevious>Précédant</button>
+            <button mat-button matStepperNext>Suivant</button>
           </div>
         </mat-step>
 
@@ -80,6 +95,10 @@
               }
             </mat-form-field>
           </div>
+          <div class="mt-2">
+            <button mat-button matStepperPrevious>Précédant</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
         </mat-step>
 
         <mat-step label="Validation">
@@ -94,10 +113,18 @@
               }
               @else
               {
-                <button  class="btn btn-success" (click)="check_user()">Enregistrer</button><br>
+                <button  class="btn btn-success" (click)="check_user()">Enregistrer</button>
+                @if( error_niveau )
+                {
+                  <span class="text-danger px-3">{{ error_niveau }}</span>
+                }
+                <br>
                 <button  class="btn btn-light mt-2" (click)="reset_new_user_form()">Réinitialiser le formulaire</button>
               }
             </div>
+          </div>
+          <div class="mt-2">
+            <button mat-button matStepperPrevious>Précédant</button>
           </div>
         </mat-step>
 

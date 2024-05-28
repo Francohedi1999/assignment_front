@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import {  PageEvent , MatPaginatorModule} from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { LevelService } from '../../services/level.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-list-user',
@@ -16,6 +17,7 @@ import { LevelService } from '../../services/level.service';
     CommonModule ,
     OneUserComponent ,
     FormsModule,
+    MatButtonModule ,
     MatPaginatorModule,
     MatSelectModule
   ],
@@ -55,6 +57,11 @@ export class ListUserComponent implements OnInit
     this.filtre_role = ""
     this.filtre_niveau = ""
     this.get_utilisateurs_by_filtre( this.filtre_role , this.filtre_niveau ) ;
+  }
+
+  reset_list()
+  {
+    this.ngOnInit() ;
   }
 
   handlePageEvent(event: PageEvent)

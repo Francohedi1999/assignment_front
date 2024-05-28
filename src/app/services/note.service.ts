@@ -39,7 +39,12 @@ export class NoteService {
   get_note_by_assignment_etu( assignment_id:string , etudiant_id:string ):Observable<Note_Model>
   {
     const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
-    return this.http.get<Note_Model>( this.url_service.note + "/etu/" + assignment_id + "/" + etudiant_id , header ) ;
+    const url = this.url_service.note +
+                "/etu/" +
+                assignment_id +
+                "/" +
+                etudiant_id ;
+    return this.http.get<Note_Model>( url , header ) ;
   }
 
 

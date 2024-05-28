@@ -1,33 +1,13 @@
-<div class="row mt-3 mb-2">
+<div class="row mt-3">
   <div class="col-md-6">
     <h1>Liste des utilisateurs</h1>
   </div>
   <div class="col-md-6"></div>
 </div>
 
-@if( filtre_role !== "" )
-{
-  <div class="my-2">
-    <dl class="row">
-        <dt class="col-sm-3">{{ filtre_role + "s " + filtre_niveau }}</dt>
-        <dd class="col-sm-9">{{ totalDocs }}</dd>
+<div class="row mt-3">
 
-        <dt class="col-sm-3">Nombre de page</dt>
-        <dd class="col-sm-9">{{ totalPages}}</dd>
-
-        <dt class="col-sm-3">Page courante</dt>
-        <dd class="col-sm-9">{{ page }}</dd>
-
-        <dt class="col-sm-3">Nombre de ligne par page</dt>
-        <dd class="col-sm-9">{{ limit }}</dd>
-
-    </dl>
-  </div>
-}
-
-<div class="row mt-2">
-
-  <mat-form-field  class="col-md-3">
+  <mat-form-field  class="col-md-2">
     <mat-label>Type d'utilisateur</mat-label>
     <mat-select [(ngModel)]="filtre_role" (selectionChange)="onRoleSelect()">
       @for (role of roles; track role)
@@ -37,7 +17,7 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field  class="col-md-3">
+  <mat-form-field  class="col-md-2">
     <mat-label>Niveau</mat-label>
     <mat-select [(ngModel)]="filtre_niveau" (selectionChange)="onLevelSelect()" [disabled]="niveau_disabled">
       @for (level of levels; track level)
@@ -46,6 +26,10 @@
       }
     </mat-select>
   </mat-form-field>
+
+  <div class="col-md-2">
+    <button mat-button color="info" (click)="reset_list()">Réinitialiser la liste</button>
+  </div>
 
   <div class="col-md-6">
       <mat-paginator #paginator

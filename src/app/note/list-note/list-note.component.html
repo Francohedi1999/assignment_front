@@ -1,14 +1,14 @@
-<div class="row mt-2">
+<div class="row mt-3">
   <div class="col-md-12">
     <h1>Liste des notes</h1>
   </div>
 </div>
 
-<div class="row mt-2">
-  <div class="col-md-5">
-    <img src="{{ matiere?.imageMatiere }}" width="200" height="200">
+<div class="row mt-3">
+  <div class="col-md-4">
+    <img src="{{ matiere?.imageMatiere }}" width="150" height="150">
   </div>
-  <div class="col-md-7">
+  <div class="col-md-8">
       <strong>Nom de la matière : </strong>{{ matiere?.nom  }}
       <br>
       <strong>Enseignant : </strong>{{ enseignant?.nom + " " + enseignant?.prenom }} ({{ enseignant?.email }})
@@ -16,27 +16,14 @@
       <strong>Description de l' assignation : </strong>{{ assignment?.description }}
       <br>
       <strong>Pour les étudiant en : </strong>{{ assignment?.niveau }}
+      <br>
+      <strong>Date limite : </strong>{{ assignment?.dl | date :"dd-MM-yyyy" }}
   </div>
 </div>
 
-<div class="mt-4 mb-2">
-  <dl class="row">
+<div class="row mt-3">
 
-      <dt class="col-sm-3">Nombre de page</dt>
-      <dd class="col-sm-9">{{ totalPages}}</dd>
-
-      <dt class="col-sm-3">Page courante</dt>
-      <dd class="col-sm-9">{{ page }}</dd>
-
-      <dt class="col-sm-3">Nombre de ligne par page</dt>
-      <dd class="col-sm-9">{{ limit }}</dd>
-
-  </dl>
-</div>
-
-<div class="row mt-2">
-
-  <mat-form-field  class="col-md-3">
+  <mat-form-field  class="col-md-2">
     <mat-label>Rendu</mat-label>
     <mat-select [(ngModel)]="filtre_rendu" (selectionChange)="onRenduValueSelect()">
         <mat-option [value]="true">Oui</mat-option>
@@ -44,13 +31,17 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field  class="col-md-3">
+  <mat-form-field  class="col-md-2">
     <mat-label>Noté</mat-label>
     <mat-select [(ngModel)]="filtre_noted" (selectionChange)="onNotedValueSelect()">
         <mat-option [value]="true">Oui</mat-option>
         <mat-option [value]="false">Non</mat-option>
     </mat-select>
   </mat-form-field>
+
+  <div class="col-md-2">
+    <button mat-button color="info" (click)="reset_list()">Réinitialiser la liste</button>
+  </div>
 
   <div class="col-md-6">
       <mat-paginator #paginator
@@ -59,7 +50,7 @@
                     [length]="totalDocs"
                     [pageSize]="limit"
                     [showFirstLastButtons]="true"
-                    [pageSizeOptions]="[ 1,5 , 10 , 15 , 20 ]">
+                    [pageSizeOptions]="[ 5 , 10 , 15 , 20 ]">
       </mat-paginator>
   </div>
 </div>

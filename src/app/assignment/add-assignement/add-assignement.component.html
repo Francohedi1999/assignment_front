@@ -26,6 +26,9 @@
                 }
               </mat-select>
             </mat-form-field>
+            <div class="mt-2">
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
           </div>
         </mat-step>
 
@@ -35,6 +38,10 @@
               <mat-label>Description</mat-label>
               <textarea matInput formControlName="description" rows="5"></textarea>
             </mat-form-field>
+            <div class="mt-2">
+              <button mat-button matStepperPrevious>Précédant</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
           </div>
         </mat-step>
 
@@ -46,6 +53,10 @@
               <mat-datepicker-toggle matSuffix [for]="picker_dl"></mat-datepicker-toggle>
               <mat-datepicker #picker_dl></mat-datepicker>
             </mat-form-field>
+            <div class="mt-2">
+              <button mat-button matStepperPrevious>Précédant</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
           </div>
         </mat-step>
 
@@ -60,6 +71,10 @@
                 }
               </mat-select>
             </mat-form-field>
+            <div class="mt-2">
+              <button mat-button matStepperPrevious>Précédant</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
           </div>
         </mat-step>
 
@@ -78,6 +93,9 @@
                 <button  class="btn btn-success" (click)="check_assignment()">Enregistrer</button><br>
                 <button  class="btn btn-light mt-2" (click)="reset_new_assignment_form()">Réinitialiser le formulaire</button>
               }
+            </div>
+            <div class="mt-4">
+              <button mat-button matStepperPrevious>Précédant</button>
             </div>
           </div>
         </mat-step>

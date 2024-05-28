@@ -46,7 +46,6 @@ export class OneAssignmentEtuComponent implements OnInit
     (response: any) =>
     {
       this.matiere = response.data ;
-
       this.user_service.get_by_id( this.matiere.idProf ).subscribe(
       (response: User_Model) =>
       {

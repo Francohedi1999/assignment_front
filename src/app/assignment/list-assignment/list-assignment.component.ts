@@ -9,6 +9,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { AuthService } from '../../services/auth.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-list-assignment',
@@ -19,6 +20,7 @@ import { AuthService } from '../../services/auth.service';
     MatButtonToggleModule ,
     FormsModule,
     MatPaginatorModule,
+    MatButtonModule ,
     MatSelectModule
   ],
   templateUrl: './list-assignment.component.html',
@@ -53,10 +55,13 @@ export class ListAssignmentComponent implements OnInit
     this.get_all_assignment_by_filtre_niveau( this.page , this.limit ) ;
   }
 
+  reset_list()
+  {
+    this.ngOnInit() ;
+  }
+
   get_all_assignment_by_filtre_niveau( page: number , limit: number )
   {
-
-
     this.auth_service.get_user_logged( this.token_user_logged ).subscribe(
       user =>
       {

@@ -13,6 +13,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-list-note',
@@ -21,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
     OnNoteComponent ,
     CommonModule ,
     FormsModule ,
+    MatButtonModule ,
     MatPaginatorModule ,
     MatSelectModule
   ],
@@ -57,6 +59,8 @@ export class ListNoteComponent implements OnInit
 
   ngOnInit()
   {
+    this.filtre_noted = undefined
+    this.filtre_rendu = undefined
     this.assignment_id = this.active_route.snapshot.params["assignment_id"] ;
 
     this.get_all_note_by_assignment( this.filtre_rendu , this.filtre_noted ) ;
@@ -80,6 +84,11 @@ export class ListNoteComponent implements OnInit
       }
     )
 
+  }
+
+  reset_list()
+  {
+    this.ngOnInit() ;
   }
 
   get_all_note_by_assignment( filtre_rendu: boolean , filtre_noted: boolean )

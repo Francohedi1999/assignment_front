@@ -111,13 +111,20 @@ export class UpdateOrDeleteUserComponent implements OnInit
     data_user.append("email" , this.update_user_form.value.email ) ;
     data_user.append("role" , this.update_user_form.value.role ) ;
 
-    if( this.update_user_form.value.role === "Etudiant" && this.update_user_form.value.niveau === null )
+    if( this.update_user_form.value.role === "Etudiant" )
     {
-      data_user.append("niveau" , this.user.niveau ) ;
+      if( this.update_user_form.value.niveau === null )
+      {
+        data_user.append("niveau" , this.user.niveau ) ;
+      }
+      else
+      {
+        data_user.append("niveau" , this.update_user_form.value.niveau ) ;
+      }
     }
     else
     {
-      data_user.append("niveau" , this.user.niveau ) ;
+      data_user.append("niveau" , "" ) ;
     }
 
 
