@@ -15,10 +15,25 @@ export class NoteService {
                 private auth_service: AuthService) { }
 
 
-  get_note_by_assignment( assignment_id:string ):Observable<Note_Model[]>
+  get_note_by_assignment( assignment_id:string ,
+                          page: number ,
+                          limit: number ,
+                          rendu: boolean ,
+                          noted: boolean ):Observable<any>
   {
     const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
-    return this.http.get<Note_Model[]>( this.url_service.note + "/" + assignment_id , header ) ;
+    const url = this.url_service.note +
+                "/" +
+                assignment_id +
+                "?page=" +
+                page +
+                "&limit=" +
+                limit +
+                "&filtre_rendu=" +
+                rendu +
+                "&filtre_noted=" +
+                noted ;
+    return this.http.get<any>( url , header ) ;
   }
 
   get_note_by_assignment_etu( assignment_id:string , etudiant_id:string ):Observable<Note_Model>
