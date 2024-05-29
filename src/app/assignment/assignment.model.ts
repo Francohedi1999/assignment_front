@@ -6,4 +6,5 @@ export class Assignment_Model
   niveau : string ;
   ens_id : string ;
   dl : Date ;
+  canceled : boolean ;
 }

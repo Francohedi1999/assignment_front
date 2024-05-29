@@ -67,7 +67,7 @@ export class ListAssignmentComponent implements OnInit
       {
         if( user.role === "Administrateur" )
         {
-          this.assignment_service.get_all( this.filtre_niveau , page , limit , "" ).subscribe(
+          this.assignment_service.get_all( this.filtre_niveau , page , limit , "" , undefined ).subscribe(
           ( data ) =>
           {
             this.assignments = data.docs;
@@ -81,7 +81,7 @@ export class ListAssignmentComponent implements OnInit
         }
         else
         {
-          this.assignment_service.get_all( this.filtre_niveau , page , limit , user._id ).subscribe(
+          this.assignment_service.get_all( this.filtre_niveau , page , limit , user._id , false ).subscribe(
             ( data ) =>
             {
               this.assignments = data.docs;

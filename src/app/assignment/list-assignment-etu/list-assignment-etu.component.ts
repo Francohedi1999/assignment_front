@@ -44,7 +44,7 @@ export class ListAssignmentEtuComponent implements OnInit
     this.auth_service.get_user_logged( this.token_user_logged ).subscribe(
     (user) =>
     {
-      this.assignment_service.get_all( user.niveau , this.page , this.limit , "" ).subscribe(
+      this.assignment_service.get_all( user.niveau , this.page , this.limit , "" , false ).subscribe(
       (data) =>
       {
         this.assignments = data.docs;

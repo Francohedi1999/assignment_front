@@ -20,7 +20,11 @@ export class AssignmentService
     return this.http.post<any>( this.url_service.assignment , assignment , header ) ;
   }
 
-  get_all( filtre_niveau: string , page: number, limit: number ,id_enseignant: string ): Observable<any>
+  get_all(  filtre_niveau: string ,
+            page: number,
+            limit: number ,
+            id_enseignant: string ,
+            filtre_canceled: boolean ): Observable<any>
   {
     const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
     const url = this.url_service.assignment +
@@ -31,7 +35,9 @@ export class AssignmentService
                 "&filtre_niveau=" +
                 filtre_niveau +
                 "&id_enseignant=" +
-                id_enseignant ;
+                id_enseignant +
+                "&filtre_canceled=" +
+                filtre_canceled ;
     return this.http.get<any>( url , header ) ;
   }
 
@@ -39,5 +45,11 @@ export class AssignmentService
   {
     const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
     return this.http.get<Assignment_Model>( this.url_service.assignment + "/" + assignment_id , header ) ;
+  }
+
+  delete_assignment( assignment_id: string ): Observable<any>
+  {
+    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+    return this.http.put<any>( this.url_service.assignment + "/" + assignment_id, {} , header ) ;
   }
 }
