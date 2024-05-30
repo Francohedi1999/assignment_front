@@ -32,7 +32,13 @@ export class MatieresService {
     return this.http.get<MatieresModel>( this.url_service.matiere + "/" + id , header ) ;
   }
 
-  updateMatiere(id: string, formData: FormData): Observable<any> {
+  getMatiereSupprimees():Observable<MatieresModel[]>
+  {
+    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+    return this.http.get<MatieresModel[]>( this.url_service.matiere + "/listMatieresSupprimees" , header ) ;
+  }
+
+    updateMatiere(id: string, formData: FormData): Observable<any> {
     const header = { headers: new HttpHeaders().set("Authorization", "Bearer " + this.auth_service.get_token_user_logged())};
     return this.http.put<any>(this.url_service.matiere + "/" + id, formData, header);
   }
