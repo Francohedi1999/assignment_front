@@ -6,4 +6,5 @@ export class MatieresModel {
   imageMatiere!: string;
   idProf!: string;
   enseignant?: User_Model;
+  deletedAt?: Date;
 }
