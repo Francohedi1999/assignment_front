@@ -1,7 +1,7 @@
 <mat-card (click)="show_note()" class="mt-2">
   <mat-card-content>
 
-    <div class="row">
+    <div class="row fs-12">
       <div class="col-md-2">
         <img src="{{ etudiant?.img_url }}" class="rounded-circle" width="75" height="75">
       </div>
@@ -30,6 +30,8 @@
           }
           <br>
           <strong>Note : </strong>{{ note?.note }} / 20
+          <br>
+          <p>** {{ note?.remarque }} **</p>
       </div>
     </div>
 

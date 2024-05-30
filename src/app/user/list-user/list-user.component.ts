@@ -27,6 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 export class ListUserComponent implements OnInit
 {
+  loader = true ;
   utilisateurs: User_Model[] ;
   roles: any[] ;
   levels: any[] ;
@@ -83,6 +84,7 @@ export class ListUserComponent implements OnInit
       this.hasPrevPage = data.hasPrevPage;
       this.hasNextPage = data.hasNextPage;
     } ) ;
+    this.loader = false ;
   }
 
   onRoleSelect()

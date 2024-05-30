@@ -6,4 +6,5 @@ export class Note_Model
   note : number ;
   rendu : boolean ;
   noted : boolean ;
+  remarque : string ;
 }

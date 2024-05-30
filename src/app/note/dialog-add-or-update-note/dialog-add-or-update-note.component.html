@@ -41,12 +41,19 @@
           </div>
         </div>
 
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <mat-label>Note</mat-label>
+            <textarea formControlName="remarque" rows="3" class="form-control"></textarea>
+          </div>
+        </div>
+
         @if( add_note_form.valid )
         {
           <div class="row mt-4">
             <p>Voulez-vous modifier le note ?</p>
           </div>
-          
+
           <div class="row" [hidden]="hidden_buttons">
             <div  class="mt-2" >
               <span class="btn btn-success" (click)="add_note()">

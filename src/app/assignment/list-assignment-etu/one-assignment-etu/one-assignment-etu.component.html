@@ -1,7 +1,7 @@
 <mat-card class="mt-2" (click)="make_assignment()" >
   <mat-card-content>
 
-    <div class="row">
+    <div class="row fs-12">
 
       <div class="col-md-1">
         <img src="{{ matiere?.imageMatiere }}" class="rounded-circle" width="75" height="75">
@@ -18,7 +18,7 @@
       </div>
 
       <div class="col-md-1">
-        <img src="{{ matiere?.imageMatiere }}" class="rounded-circle" width="75" height="75">
+        <img src="{{ enseignant?.img_url }}" class="rounded-circle" width="75" height="75">
       </div>
 
       <div class="col-md-4">
@@ -48,7 +48,7 @@
         <br>
         <strong>Note: </strong>{{ note?.note }} / 20
         <br>
-        <p>****</p>
+        <p>** {{ note?.remarque }} **</p>
       </div>
 
     </div>

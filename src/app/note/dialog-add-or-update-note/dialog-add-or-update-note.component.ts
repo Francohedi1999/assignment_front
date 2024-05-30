@@ -67,7 +67,8 @@ export class DialogAddOrUpdateNoteComponent implements OnInit
       note_etudiant: [ this.note.note , [ Validators.required ,
                                           Validators.pattern("^[0-9]*$") ,
                                           Validators.min(0) ,
-                                          Validators.max(20) ] ]
+                                          Validators.max(20) ] ] ,
+      remarque: [ this.note.remarque ]
     }) ;
 
   }
@@ -77,14 +78,16 @@ export class DialogAddOrUpdateNoteComponent implements OnInit
     this.is_loading =  true ;
     this.hidden_buttons = true ;
 
-    this.note_service.ajout_note_etu( this.note._id , this.add_note_form.value.note_etudiant ).subscribe( (response) =>
+    this.note_service.ajout_note_etu( this.note._id ,
+                                      this.add_note_form.value.note_etudiant ,
+                                      this.add_note_form.value.remarque ).subscribe( (response) =>
     {
       if( response.updated === false )
       {
         setTimeout(() =>
           {
             this.is_loading = false;
-            this.message_error = response.message;
+            this.message_error = response.message ;
             setTimeout( () =>
             {
               this.dialog_ref.close() ;
@@ -101,6 +104,7 @@ export class DialogAddOrUpdateNoteComponent implements OnInit
             {
               this.note.note = this.add_note_form.value.note_etudiant ;
               this.note.noted = true ;
+              this.note.remarque = this.add_note_form.value.remarque ;
               this.dialog_ref.close() ;
             } , 2000 );
           } , 2000 );

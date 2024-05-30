@@ -31,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ListNoteComponent implements OnInit
 {
+  loader = true ;
   assignment_id: string ;
   notes: Note_Model[] ;
 
@@ -104,6 +105,7 @@ export class ListNoteComponent implements OnInit
       this.hasPrevPage = data.hasPrevPage;
       this.hasNextPage = data.hasNextPage;
     } ) ;
+    this.loader = false ;
   }
 
   onNotedValueSelect()

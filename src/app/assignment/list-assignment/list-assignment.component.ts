@@ -28,6 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ListAssignmentComponent implements OnInit
 {
+  loader = true ;
   assignments: Assignment_Model[] ;
   levels: any[];
   filtre_niveau: string ;
@@ -99,9 +100,9 @@ export class ListAssignmentComponent implements OnInit
             }) ;
         }
       } ) ;
-
-
+      this.loader = false ;
   }
+
   handlePageEvent(event: PageEvent)
   {
     this.page = event.pageIndex + 1 ;
