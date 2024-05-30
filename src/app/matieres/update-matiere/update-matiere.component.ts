@@ -32,6 +32,9 @@ import {ToastrService} from "ngx-toastr";
   styleUrl: './update-matiere.component.css'
 })
 export class UpdateMatiereComponent implements OnInit {
+
+  loader = true ;
+
   idMatiere: string;
 
   matiere: MatieresModel | undefined;
@@ -83,7 +86,8 @@ export class UpdateMatiereComponent implements OnInit {
               nom: [ this.matiere.nom , [ Validators.required ] ] ,
               imageMatiere: [ null ] ,
               idProf: [ this.matiere.idProf , [ Validators.required ] ]
-            } , );
+            } );
+            this.loader = false ;
           });
 
       let role: string = "Enseignant";

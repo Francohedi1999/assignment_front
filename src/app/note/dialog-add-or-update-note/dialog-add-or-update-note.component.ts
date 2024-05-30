@@ -46,7 +46,7 @@ export class DialogAddOrUpdateNoteComponent implements OnInit
 
   constructor(  private form_builder: FormBuilder ,
                 private dialog_ref: DialogRef ,
-                @Inject( MAT_DIALOG_DATA ) public data: any ,
+                @Inject( MAT_DIALOG_DATA ) public data: Note_Model ,
                 private note_service: NoteService ,
                 private user_service: UserService )
   {}
