@@ -83,8 +83,8 @@ export class ListUserComponent implements OnInit
       this.totalPages = data.totalPages;
       this.hasPrevPage = data.hasPrevPage;
       this.hasNextPage = data.hasNextPage;
+      this.loader = false ;
     } ) ;
-    this.loader = false ;
   }
 
   onRoleSelect()

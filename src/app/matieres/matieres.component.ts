@@ -75,7 +75,6 @@ export class MatieresComponent implements OnInit{
     // Liste des matieres supprimees
     this.getAllMatieresDeleted();
     this.isAdmin = this.authService.isAdmin();
-    this.loader = false ;
   }
 
   getAllMatieresDeleted(): void {
@@ -85,6 +84,7 @@ export class MatieresComponent implements OnInit{
       }else {
         this.deletedMatieres = []; // Vide si la liste est vide
       }
+      this.loader = false ;
     });
   }
 
@@ -95,6 +95,7 @@ export class MatieresComponent implements OnInit{
         if (response.data) {
           this.matieres = response.data; // Enregistre les donnees dans la variable matieres
         }
+        this.loader = false ;
       },
       (error) => {
         console.error('Erreur lors de la récupération des matières : ', error);

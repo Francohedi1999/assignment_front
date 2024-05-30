@@ -55,10 +55,9 @@ export class ListAssignmentEtuComponent implements OnInit
         this.totalPages = data.totalPages;
         this.hasPrevPage = data.hasPrevPage;
         this.hasNextPage = data.hasNextPage;
+        this.loader = false ;
       });
     });
-
-    this.loader = false ;
   }
 
   handlePageEvent(event: PageEvent)
