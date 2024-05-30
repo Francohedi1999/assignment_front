@@ -3,25 +3,28 @@
   <mat-card-content>
 
     <div class="row">
-      <div class="col-md-2">
-        <img src="{{ matiere?.imageMatiere }}" class="rounded-circle" width="100" height="100">
+      <div class="col-md-1">
+        <img src="{{ matiere?.imageMatiere }}" class="rounded-circle" width="75" height="75">
       </div>
-      <div class="col-md-10">
 
-          <strong>Nom de la matière : </strong>{{ matiere?.nom }}
+      <div class="col-md-5">
+          <strong>Matière: </strong>{{ matiere?.nom }}
           <br>
-          <strong>Enseignant : </strong>{{ enseignant?.nom }} ({{ enseignant?.email }})
+          <strong>Description: </strong>{{ assignment?.description }}
           <br>
-          <strong>Assignation : </strong>{{ assignment?.description }}
+          <strong>Niveau: </strong>{{ assignment?.niveau }}
           <br>
-          <strong>Pour les étudiants en : </strong>{{ assignment?.niveau }}
+          <strong>Date limite: </strong>{{ assignment?.dl | date :"dd-MM-yyyy" }}
+      </div>
+
+      <div class="col-md-1">
+        <img src="{{ matiere?.imageMatiere }}" class="rounded-circle" width="75" height="75">
+      </div>
+
+      <div class="col-md-5">
+          <strong>Enseignant(e): </strong>{{ enseignant?.nom }}
           <br>
-          <strong>Date limite : </strong>{{ assignment?.dl | date :"dd-MM-yyyy" }}
-          @if( assignment?.canceled === true )
-          {
-            <br>
-            <span class="badge bg-danger">Supprimée</span>
-          }
+          <strong>Email: </strong>{{ enseignant?.email }}
       </div>
     </div>
 

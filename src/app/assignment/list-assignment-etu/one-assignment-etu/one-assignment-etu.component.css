@@ -2,3 +2,8 @@ mat-card
 {
   cursor: pointer;
 }
+
+.fs-12
+{
+  font-size: 12px;
+}

@@ -3,42 +3,52 @@
 
     <div class="row">
 
+      <div class="col-md-1">
+        <img src="{{ matiere?.imageMatiere }}" class="rounded-circle" width="75" height="75">
+      </div>
+
+      <div class="col-md-4">
+          <strong>Matière: </strong>{{ matiere?.nom }}
+          <br>
+          <strong>Description: </strong>{{ assignment?.description }}
+          <br>
+          <strong>Niveau: </strong>{{ assignment?.niveau }}
+          <br>
+          <strong>Date limite: </strong>{{ assignment?.dl | date :"dd-MM-yyyy" }}
+      </div>
+
+      <div class="col-md-1">
+        <img src="{{ matiere?.imageMatiere }}" class="rounded-circle" width="75" height="75">
+      </div>
+
+      <div class="col-md-4">
+          <strong>Enseignant(e): </strong>{{ enseignant?.nom }}
+          <br>
+          <strong>Email: </strong>{{ enseignant?.email }}
+      </div>
+
       <div class="col-md-2">
-        <img src="{{ matiere?.imageMatiere }}" class="rounded-circle" width="100" height="100">
-      </div>
-
-      <div class="col-md-5">
-          <strong>Nom de la matière : </strong>{{ matiere?.nom }}
-          <br>
-          <strong>Enseignant : </strong>{{ enseignant?.nom }} ({{ enseignant?.email }})
-          <br>
-          <strong>Assignation : </strong>{{ assignment?.description }}
-          <br>
-          <strong>Pour les étudiant en : </strong>{{ assignment?.niveau }}
-          <br>
-          <strong>Date limite : </strong>{{ assignment?.dl | date :"dd-MM-yyyy" }}
-      </div>
-
-      <div class="col-md-5">
         @if ( note?.rendu === false )
         {
-          <strong>Rendue : </strong><span class="badge bg-danger">NON</span>
+          <strong>Rendue: </strong><span class="badge bg-danger">NON</span>
         }
         @else
         {
-          <strong>Rendue : </strong><span class="badge bg-success">OUI</span>
+          <strong>Rendue: </strong><span class="badge bg-success">OUI</span>
         }
         <br>
         @if ( note?.noted === false )
         {
-          <strong>Notée : </strong><span class="badge bg-danger">NON</span>
+          <strong>Notée: </strong><span class="badge bg-danger">NON</span>
         }
         @else
         {
-          <strong>Notée : </strong><span class="badge bg-success">OUI</span>
+          <strong>Notée: </strong><span class="badge bg-success">OUI</span>
         }
         <br>
-        <strong>Note : </strong>{{ note?.note }} / 20
+        <strong>Note: </strong>{{ note?.note }} / 20
+        <br>
+        <p>****</p>
       </div>
 
     </div>
