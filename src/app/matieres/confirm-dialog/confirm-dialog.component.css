@@ -1,0 +1,9 @@
+.btn-cancel {
+  color: white;
+  background-color: rgb(255, 0, 0);
+}
+
+.btn-confirm {
+  color: white;
+  background-color: rgb(142, 38, 251);
+}
