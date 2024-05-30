@@ -6,7 +6,7 @@
 </div>
 
 <div class="row mt-3">
-  <mat-form-field  class="col-md-3">
+  <mat-form-field  class="col-md-2">
     <mat-label>Niveau</mat-label>
     <mat-select [(ngModel)]="filtre_niveau" (selectionChange)="onLevelSelect()">
       @for (level of levels; track level)
@@ -16,7 +16,15 @@
     </mat-select>
   </mat-form-field>
 
-  <div class="col-md-3">
+  <mat-form-field  class="col-md-2">
+    <mat-label>Supprimée</mat-label>
+    <mat-select [(ngModel)]="filtre_canceled" (selectionChange)="onCancelSelect()"  [disabled]="canceled_disabled">
+        <mat-option [value]="true">Oui</mat-option>
+        <mat-option [value]="false">Non</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="col-md-2">
     <button mat-button color="info" (click)="reset_list()">Réinitialiser la liste</button>
   </div>
 

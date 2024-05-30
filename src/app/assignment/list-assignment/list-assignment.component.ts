@@ -31,6 +31,8 @@ export class ListAssignmentComponent implements OnInit
   assignments: Assignment_Model[] ;
   levels: any[];
   filtre_niveau: string ;
+  filtre_canceled: boolean ;
+  canceled_disabled: boolean ;
 
   totalDocs = 0;
   page = 1;
@@ -51,6 +53,7 @@ export class ListAssignmentComponent implements OnInit
   {
     this.token_user_logged = this.auth_service.get_token_user_logged() ;
     this.filtre_niveau = ""
+    this.filtre_canceled = undefined
     this.levels = this.level_service.levels ;
     this.get_all_assignment_by_filtre_niveau( this.page , this.limit ) ;
   }
@@ -67,7 +70,8 @@ export class ListAssignmentComponent implements OnInit
       {
         if( user.role === "Administrateur" )
         {
-          this.assignment_service.get_all( this.filtre_niveau , page , limit , "" , undefined ).subscribe(
+          this.canceled_disabled = false ;
+          this.assignment_service.get_all( this.filtre_niveau , page , limit , "" , this.filtre_canceled ).subscribe(
           ( data ) =>
           {
             this.assignments = data.docs;
@@ -81,6 +85,7 @@ export class ListAssignmentComponent implements OnInit
         }
         else
         {
+          this.canceled_disabled = true ;
           this.assignment_service.get_all( this.filtre_niveau , page , limit , user._id , false ).subscribe(
             ( data ) =>
             {
@@ -106,6 +111,12 @@ export class ListAssignmentComponent implements OnInit
 
 
   onLevelSelect()
+  {
+    this.page = 0 ;
+    this.get_all_assignment_by_filtre_niveau( this.page , this.limit ) ;
+  }
+
+  onCancelSelect()
   {
     this.page = 0 ;
     this.get_all_assignment_by_filtre_niveau( this.page , this.limit ) ;
