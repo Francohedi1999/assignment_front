@@ -71,7 +71,6 @@ export class ListNoteComponent implements OnInit
       (response: Assignment_Model) =>
       {
         this.assignment = response ;
-        this.loader = false ;
 
         this.matiere_service.getMatiereById( this.assignment.matiere_id ).subscribe(
           (response: any) =>
