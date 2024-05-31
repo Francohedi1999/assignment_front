@@ -1,0 +1,50 @@
+<mat-card (click)="show_note()" class="mt-2">
+  <mat-card-content>
+
+    @if( loader === true )
+    {
+      <div class="d-flex justify-content-center mt-3">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    }
+    @else
+    {
+      <div class="row fs-12">
+        <div class="col-md-2">
+          <img src="{{ etudiant?.img_url }}" class="rounded-circle" width="75" height="75">
+        </div>
+        <div class="col-md-10">
+
+            <strong>Nom de l'étudiant(e): </strong>{{ etudiant?.nom }} ({{ etudiant?.email }})
+            <br>
+            <strong>Niveau : </strong>{{ etudiant?.niveau }}
+            <br>
+            @if ( note?.rendu === false )
+            {
+              <strong>Rendue : </strong><span class="badge bg-danger">NON</span>
+            }
+            @else
+            {
+              <strong>Rendue : </strong><span class="badge bg-success">OUI</span>
+            }
+            <br>
+            @if ( note?.noted === false )
+            {
+              <strong>Notée : </strong><span class="badge bg-danger">NON</span>
+            }
+            @else
+            {
+              <strong>Notée : </strong><span class="badge bg-success">OUI</span>
+            }
+            <br>
+            <strong>Note : </strong>{{ note?.note }} / 20
+            <br>
+            <p>** {{ note?.remarque }} **</p>
+        </div>
+      </div>
+    }
+
+  </mat-card-content>
+</mat-card>

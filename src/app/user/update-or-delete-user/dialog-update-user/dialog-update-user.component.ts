@@ -23,6 +23,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class DialogUpdateUserComponent implements OnInit
 {
+  loader: boolean ;
   data_user: FormData ;
   img_url: string ;
 
@@ -38,10 +39,12 @@ export class DialogUpdateUserComponent implements OnInit
 
   ngOnInit(): void
   {
+    this.loader = true ;
     this.data_user = this.data.data_user ;
     this.img_url = this.data.image_url ;
 
     this.hidden_buttons = false ;
+    this.loader = false ;
   }
 
   update_user()
@@ -49,7 +52,7 @@ export class DialogUpdateUserComponent implements OnInit
     this.is_loading =  true ;
     this.hidden_buttons = true ;
 
-    this.user_service.update(this.data_user).subscribe( (response) =>
+    this.user_service.update( this.data_user.get("_id").toString() , this.data_user).subscribe( (response) =>
     {
       if( response.updated === false )
       {
@@ -61,8 +64,8 @@ export class DialogUpdateUserComponent implements OnInit
             {
               this.dialog_ref.close() ;
               this.router.navigate([ "/list-user" ]) ;
-            } , 1000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 );
+          } , 2000 );
       }
       else
       {
@@ -74,8 +77,8 @@ export class DialogUpdateUserComponent implements OnInit
             {
               this.dialog_ref.close() ;
               this.router.navigate([ "/list-user" ]) ;
-            } , 1000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 );
+          } , 2000 );
       }
     } ) ;
   }

@@ -1,0 +1,111 @@
+<div class="m-4">
+
+  <div class="row mt-2">
+
+    <div class="col-md-6">
+      <h1>Nouvelle assignation</h1>
+    </div>
+    <div class="col-md-6"></div>
+
+  </div>
+
+  <div class="row">
+
+    <form [formGroup]="new_assignment_form">
+
+      <mat-stepper #stepper>
+
+        <mat-step label="La matière">
+          <div class="row mt-3">
+            <mat-form-field class="col-md-12">
+              <mat-label>Matière</mat-label>
+              <mat-select matInput formControlName="matiere_id">
+                @for (matiere of matieres; track matiere)
+                {
+                  <mat-option [value]="matiere.id">{{matiere.nom}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <div class="mt-2">
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </div>
+        </mat-step>
+
+        <mat-step label="La description">
+          <div class="row mt-3">
+            <mat-form-field class="col-md-12">
+              <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description" rows="5"></textarea>
+            </mat-form-field>
+            <div class="mt-2">
+              <button mat-button matStepperPrevious>Précédant</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </div>
+        </mat-step>
+
+        <mat-step label="La date limite">
+          <div class="row mt-3">
+            <mat-form-field class="col-md-12">
+              <mat-label>Date limite</mat-label>
+              <input input="date" [matDatepicker]="picker_dl" formControlName="dl" matInput/>
+              <mat-datepicker-toggle matSuffix [for]="picker_dl"></mat-datepicker-toggle>
+              <mat-datepicker #picker_dl></mat-datepicker>
+            </mat-form-field>
+            <div class="mt-2">
+              <button mat-button matStepperPrevious>Précédant</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </div>
+        </mat-step>
+
+        <mat-step label="Le niveau">
+          <div class="row mt-3">
+            <mat-form-field class="col-md-12">
+              <mat-label>Niveau</mat-label>
+              <mat-select matInput formControlName="niveau">
+                @for (level of levels; track level)
+                {
+                  <mat-option [value]="level.value">{{level.option}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <div class="mt-2">
+              <button mat-button matStepperPrevious>Précédant</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </div>
+        </mat-step>
+
+        <mat-step label="Validation">
+          <div class="row mt-3">
+            <div class="col-md-6">
+              @if( !new_assignment_form.valid )
+              {
+                <button  class="btn btn-success" disabled (click)="check_assignment()">Enregistrer</button>
+                <span class="text-danger px-3">Veuillez bien remplir étape par étape la formulaire</span>
+                <br>
+                <button  class="btn btn-light mt-2" (click)="reset_new_assignment_form()">Réinitialiser le formulaire</button>
+              }
+              @else
+              {
+                <button  class="btn btn-success" (click)="check_assignment()">Enregistrer</button><br>
+                <button  class="btn btn-light mt-2" (click)="reset_new_assignment_form()">Réinitialiser le formulaire</button>
+              }
+            </div>
+            <div class="mt-4">
+              <button mat-button matStepperPrevious>Précédant</button>
+            </div>
+          </div>
+        </mat-step>
+
+      </mat-stepper>
+
+    </form>
+
+  </div>
+
+
+
+</div>

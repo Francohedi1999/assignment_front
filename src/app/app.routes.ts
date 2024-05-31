@@ -12,6 +12,10 @@ import {UpdateMatiereComponent} from "./matieres/update-matiere/update-matiere.c
 import {AddMatiereComponent} from "./matieres/add-matiere/add-matiere.component";
 import {Error403Component} from "./error/error403/error403.component";
 import {RoleService} from "./services/role.service";
+import { AddAssignementComponent } from './assignment/add-assignement/add-assignement.component';
+import { ListAssignmentComponent } from './assignment/list-assignment/list-assignment.component';
+import { ListNoteComponent } from './note/list-note/list-note.component';
+import { ListAssignmentEtuComponent } from './assignment/list-assignment-etu/list-assignment-etu.component';
 
 //  Definition des roles
 const ADMINISTRATEUR = RoleService.ADMINISTRATEUR;
@@ -100,6 +104,38 @@ export const routes: Routes = [
     path: 'access-denied',
     component: Error403Component,
     data: { title: 'Assignment MBDS - Accès refusé' }
+  },
+  {
+    path: 'add-assignment',
+    component: AddAssignementComponent ,
+    canActivate: [AuthGuard] ,
+    data: {
+      title: 'Assignment MBDS - Nouvelle assignation' ,
+      role:  [ ENSEIGNANT ] }
+  },
+  {
+    path: 'list-assignment',
+    component: ListAssignmentComponent ,
+    canActivate: [AuthGuard] ,
+    data: {
+      title: 'Assignment MBDS - Liste des assignations' ,
+      role:  [ ADMINISTRATEUR , ENSEIGNANT ] }
+  },
+  {
+    path: 'list-note/:assignment_id',
+    component: ListNoteComponent ,
+    canActivate: [AuthGuard] ,
+    data: {
+      title: 'Assignment MBDS - Note' ,
+      role:  [ ENSEIGNANT ] }
+  },
+  {
+    path: 'list-assignment-student',
+    component: ListAssignmentEtuComponent ,
+    canActivate: [AuthGuard] ,
+    data: {
+      title: 'Assignment MBDS - Note' ,
+      role:  [ ETUDIANT ] }
   }
 
 ];

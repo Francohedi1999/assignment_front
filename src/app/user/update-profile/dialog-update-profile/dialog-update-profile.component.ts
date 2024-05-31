@@ -21,6 +21,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class DialogUpdateProfileComponent implements OnInit
 {
+  loader: boolean ;
   data_user: FormData ;
   img_url: string ;
 
@@ -36,10 +37,12 @@ export class DialogUpdateProfileComponent implements OnInit
 
   ngOnInit()
   {
+    this.loader = true ;
     this.data_user = this.data.data_user ;
     this.img_url = this.data.image_url ;
 
     this.hidden_buttons = false ;
+    this.loader = false ;
   }
 
   update_user()
@@ -47,7 +50,7 @@ export class DialogUpdateProfileComponent implements OnInit
     this.is_loading =  true ;
     this.hidden_buttons = true ;
 
-    this.user_service.update_profil(this.data_user).subscribe( (response) =>
+    this.user_service.update_profil( this.data_user.get("_id").toString() , this.data_user).subscribe( (response) =>
     {
       if( response.updated === false )
       {
@@ -58,9 +61,8 @@ export class DialogUpdateProfileComponent implements OnInit
             setTimeout( () =>
             {
               this.dialog_ref.close() ;
-              window.location.href = "list-user" ;
-            } , 1000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 );
+          } , 2000 );
       }
       else
       {
@@ -71,9 +73,9 @@ export class DialogUpdateProfileComponent implements OnInit
             setTimeout( () =>
             {
               this.dialog_ref.close() ;
-              window.location.href = "list-user" ;
-            } , 1000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+              window.location.href = "profile/" + this.data_user.get("_id") ;
+            } , 2000 );
+          } , 2000 );
       }
     } ) ;
   }

@@ -1,0 +1,93 @@
+<div class="row mt-3">
+  <div class="col-md-12">
+    <h1>Liste des notes</h1>
+  </div>
+</div>
+
+@if( loader === true )
+{
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+}
+@else
+{
+  <div class="row mb-4">
+    <div class="col-md-1">
+      <img src="{{ matiere?.imageMatiere }}" class="rounded-circle" width="75" height="75">
+    </div>
+
+    <div class="col-md-5">
+        <strong>Matière: </strong>{{ matiere?.nom }}
+        <br>
+        <strong>Description: </strong>{{ assignment?.description }}
+        <br>
+        <strong>Niveau: </strong>{{ assignment?.niveau }}
+        <br>
+        <strong>Date limite: </strong>{{ assignment?.dl | date :"dd-MM-yyyy" }}
+    </div>
+
+    <div class="col-md-1">
+      <img src="{{ enseignant?.img_url }}" class="rounded-circle" width="75" height="75">
+    </div>
+
+    <div class="col-md-5">
+        <strong>Enseignant(e): </strong>{{ enseignant?.nom }}
+        <br>
+        <strong>Email: </strong>{{ enseignant?.email }}
+    </div>
+  </div>
+}
+
+<div class="row mt-3">
+
+  <mat-form-field  class="col-md-2">
+    <mat-label>Rendu</mat-label>
+    <mat-select [(ngModel)]="filtre_rendu" (selectionChange)="onRenduValueSelect()">
+        <mat-option [value]="true">Oui</mat-option>
+        <mat-option [value]="false">Non</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  class="col-md-2">
+    <mat-label>Noté</mat-label>
+    <mat-select [(ngModel)]="filtre_noted" (selectionChange)="onNotedValueSelect()">
+        <mat-option [value]="true">Oui</mat-option>
+        <mat-option [value]="false">Non</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="col-md-2">
+    <button mat-button color="info" (click)="reset_list()">Réinitialiser la liste</button>
+  </div>
+
+  <div class="col-md-6">
+      <mat-paginator #paginator
+                    class="demo-paginator"
+                    (page)="handlePageEvent($event)"
+                    [length]="totalDocs"
+                    [pageSize]="limit"
+                    [showFirstLastButtons]="true"
+                    [pageSizeOptions]="[ 5 , 10 , 15 , 20 ]">
+      </mat-paginator>
+  </div>
+</div>
+@if( loader === true )
+{
+  <div class="d-flex justify-content-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+}
+@else
+{
+  <div class="row">
+    @for (note of notes; track note)
+    {
+      <app-on-note [note]="note"></app-on-note>
+    }
+  </div>
+}

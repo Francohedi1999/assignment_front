@@ -15,9 +15,15 @@ export class MatieresService {
                 private http: HttpClient ,
                 private auth_service: AuthService ) { }
 
-  getAllMatieres(filtre_role: string): Observable<MatieresModel[]> {
+  getAllMatieres(enseignant_id?: string): Observable<MatieresModel[]> {
     const headers = new HttpHeaders().set("Authorization", `Bearer ${this.auth_service.get_token_user_logged()}`);
-    return this.http.get<MatieresModel[]>(`${this.url_service.matiere}?filtre_role=${filtre_role}`, { headers });
+    let params = {};
+    if (enseignant_id) {
+      params = { enseignant_id };
+    }
+    const url = this.url_service.matiere;
+
+    return this.http.get<MatieresModel[]>(url, { headers, params });
   }
 
   getMatiereById( id: string ):Observable<MatieresModel|undefined>
@@ -26,7 +32,13 @@ export class MatieresService {
     return this.http.get<MatieresModel>( this.url_service.matiere + "/" + id , header ) ;
   }
 
-  updateMatiere(id: string, formData: FormData): Observable<any> {
+  getMatiereSupprimees():Observable<MatieresModel[]>
+  {
+    const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
+    return this.http.get<MatieresModel[]>( this.url_service.matiere + "/listMatieresSupprimees" , header ) ;
+  }
+
+    updateMatiere(id: string, formData: FormData): Observable<any> {
     const header = { headers: new HttpHeaders().set("Authorization", "Bearer " + this.auth_service.get_token_user_logged())};
     return this.http.put<any>(this.url_service.matiere + "/" + id, formData, header);
   }

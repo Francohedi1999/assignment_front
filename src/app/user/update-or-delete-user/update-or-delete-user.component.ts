@@ -40,6 +40,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class UpdateOrDeleteUserComponent implements OnInit
 {
+  loader : boolean ;
+
   id_user: string ;
   user_img_url_recent: string ;
   user: User_Model ;
@@ -70,6 +72,7 @@ export class UpdateOrDeleteUserComponent implements OnInit
 
   ngOnInit(): void
   {
+    this.loader = true ;
     this.hidden_buttons = false ;
 
     this.roles = this.role_service.roles ;
@@ -91,20 +94,13 @@ export class UpdateOrDeleteUserComponent implements OnInit
       this.user = response ;
       this.user_img_url_recent = this.user.img_url ;
 
-      this.update_user_form = this.form_builder.group({
-        nom: [ this.user.nom , [Validators.required]],
-        prenom: [ this.user.prenom , [Validators.required]],
-        email: [ this.user.email , [Validators.required, Validators.email]],
-        role: [ this.user.role , [Validators.required, Validators.pattern("^(Administrateur|Enseignant|Etudiant)$")]],
-        niveau: [ this.user.niveau , Validators.pattern("^(L1|L2|L3|M1|M2)$")] ,
-        image: [ null ]
-      });
+      this.reset_update_user_form() ;
 
       if( this.user.role !== "Etudiant" )
       {
         this.hidden_niveau = true ;
       }
-
+      this.loader = false ;
     } ) ;
 
   }
@@ -117,7 +113,23 @@ export class UpdateOrDeleteUserComponent implements OnInit
     data_user.append("prenom" , this.update_user_form.value.prenom ) ;
     data_user.append("email" , this.update_user_form.value.email ) ;
     data_user.append("role" , this.update_user_form.value.role ) ;
-    data_user.append("niveau" , this.update_user_form.value.niveau ) ;
+
+    if( this.update_user_form.value.role === "Etudiant" )
+    {
+      if( this.update_user_form.value.niveau === null )
+      {
+        data_user.append("niveau" , this.user.niveau ) ;
+      }
+      else
+      {
+        data_user.append("niveau" , this.update_user_form.value.niveau ) ;
+      }
+    }
+    else
+    {
+      data_user.append("niveau" , "" ) ;
+    }
+
 
     let image_url = "" ;
     if( this.image_selected )
@@ -161,11 +173,12 @@ export class UpdateOrDeleteUserComponent implements OnInit
     this.hidden_niveau = true ;
 
     this.update_user_form = this.form_builder.group({
-      nom: [ this.user.nom , [Validators.required]],
-      prenom: [ this.user.prenom , [Validators.required]],
-      email: [ this.user.email , [Validators.required, Validators.email]],
-      role: [ this.user.role , [Validators.required, Validators.pattern("^(Administrateur|Enseignant|Etudiant)$")]],
-      niveau: [ this.user.niveau , Validators.pattern("^(L1|L2|L3|M1|M2)$")] ,
+      nom: [ this.user.nom , [Validators.required] ],
+      prenom: [ this.user.prenom , [ Validators.required ] ],
+      email: [ this.user.email , [ Validators.required, Validators.email ] ],
+      role: [ this.user.role , [ Validators.pattern("^(Administrateur|Enseignant|Etudiant)$") ] ],
+      niveau: [ null , [
+        Validators.pattern("^(L1 Informatique|L2 Informatique|L3 Informatique|M1 Informatique|M2 MBDS|M2 BIHAR|L1 Design|L2 Design|L1 Mathématiques)$") ] ] ,
       image: [ null ]
     }) ;
   }
@@ -184,8 +197,8 @@ export class UpdateOrDeleteUserComponent implements OnInit
           setTimeout( () =>
           {
             this.router.navigate([ "/list-user" ]) ;
-          } , 1000 ); // Redirection après 1 seconde
-        } , 2000 ); // Message de succès affiché pendant 2 secondes
+          } , 3000 );
+        } , 3000 );
     } ) ;
   }
 

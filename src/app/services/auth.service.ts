@@ -41,7 +41,14 @@ export class AuthService {
 
           localStorage.setItem( 'STATE', 'true' );
           localStorage.setItem( 'ROLE', user.role );
-          window.location.href = "list-user" ;
+          if( user.role !== "Etudiant" )
+          {
+            window.location.href = "/list-assignment" ;
+          }
+          else
+          {
+            window.location.href = "/list-assignment-student" ;
+          }
         } ) ;
       }
       else
@@ -80,6 +87,17 @@ export class AuthService {
     const role = this.getRole();
     return this.roleService.isAdmin(role);
   }
+  // Verifier si l'utilisateur est un enseignant
+  isEnseignant(): boolean {
+    const role = this.getRole();
+    return this.roleService.isEnseignant(role);
+  }
+  // Verifier si l'utilisateur est un etudiant
+  isEtudiant(): boolean {
+    const role = this.getRole();
+    return this.roleService.isEtudiant(role);
+  }
+
 
   logout()
   {

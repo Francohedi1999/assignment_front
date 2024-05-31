@@ -13,82 +13,125 @@
 
     <form [formGroup]="new_user_form" enctype="multipart/form-data">
 
-      <div class="row mt-2">
-        <mat-form-field class="col-md-6">
-          <mat-label>Nom</mat-label>
-          <input matInput type="text" formControlName="nom">
-        </mat-form-field>
-        <mat-form-field class="col-md-6">
-          <mat-label>Prénom</mat-label>
-          <input matInput type="text" formControlName="prenom">
-        </mat-form-field>
-      </div>
+      <mat-stepper #stepper>
 
-      <div class="row mt-2">
-        <mat-form-field class="col-md-12">
-          <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email">
-        </mat-form-field>
-      </div>
-
-      <div class="row mt-2">
-        <mat-form-field class="col-md-12">
-          <mat-label>Mot de passe</mat-label>
-          <input matInput type="password" formControlName="password">
-        </mat-form-field>
-      </div>
-
-      <div class="row mt-2">
-          <div class="col-md-12">
-            <mat-label>Photo</mat-label>
-            <input type="file" (change)="on_image_selected($event)" formControlName="image" class="form-control">
+        <mat-step label="Nom et prénom">
+          <div class="row mt-2">
+            <mat-form-field class="col-md-6">
+              <mat-label>Nom</mat-label>
+              <input matInput type="text" formControlName="nom">
+            </mat-form-field>
+            <mat-form-field class="col-md-6">
+              <mat-label>Prénom</mat-label>
+              <input matInput type="text" formControlName="prenom">
+            </mat-form-field>
           </div>
-      </div>
+          <div class="mt-2">
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </mat-step>
 
-      <div class="row mt-4">
-        <mat-form-field class="col-md-6">
-          <mat-label>Type</mat-label>
-          <mat-select matInput formControlName="role" (selectionChange)="on_role_selected($event)">
-            @for (role of roles; track role)
-            {
-              <mat-option [value]="role.value">{{role.option}}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="col-md-6" [hidden]="hidden_niveau" >
-          <mat-label>Niveau</mat-label>
-          <mat-select matInput formControlName="niveau">
-            @for (level of levels; track level)
-            {
-              <mat-option [value]="level.value">{{level.option}}</mat-option>
-            }
-          </mat-select>
-          @if( error_niveau )
-          {
-            <span class="text-danger">{{ error_niveau }}</span>
-          }
-        </mat-form-field>
-      </div>
+        <mat-step label="Email">
+          <div class="row mt-2">
+            <mat-form-field class="col-md-12">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email">
+            </mat-form-field>
+            <div class="mt-2">
+              <button mat-button matStepperPrevious>Précédant</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </div>
+        </mat-step>
 
-      <div class="row mt-2">
-        <div class="col-md-6">
-          @if( !new_user_form.valid )
-          {
-            <button  class="btn btn-success" disabled (click)="check_user()">Enregistrer</button><br>
-            <button  class="btn btn-light mt-2" (click)="reset_new_user_form()">Réinitialiser le formulaire</button>
-          }
-          @else
-          {
-            <button  class="btn btn-success" (click)="check_user()">Enregistrer</button><br>
-            <button  class="btn btn-light mt-2" (click)="reset_new_user_form()">Réinitialiser le formulaire</button>
-          }
-        </div>
-      </div>
+        <mat-step label="Mot de passe">
+          <div class="row mt-2">
+            <mat-form-field class="col-md-12">
+              <mat-label>Mot de passe</mat-label>
+              <input matInput type="password" formControlName="password">
+            </mat-form-field>
+            <div class="mt-2">
+              <button mat-button matStepperPrevious>Précédant</button>
+              <button mat-button matStepperNext>Suivant</button>
+            </div>
+          </div>
+        </mat-step>
+
+        <mat-step label="Photo de profil">
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <mat-label>Photo</mat-label>
+              <input type="file" (change)="on_image_selected($event)" formControlName="image" class="form-control">
+            </div>
+          </div>
+          <div class="mt-2">
+            <button mat-button matStepperPrevious>Précédant</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </mat-step>
+
+        <mat-step label="Type">
+          <div class="row mt-2">
+            <mat-form-field class="col-md-12">
+              <mat-label>Type</mat-label>
+              <mat-select matInput formControlName="role" (selectionChange)="on_role_selected($event)">
+                @for (role of roles; track role)
+                {
+                  <mat-option [value]="role.value">{{role.option}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-12" [hidden]="hidden_niveau" >
+              <mat-label>Niveau</mat-label>
+              <mat-select matInput formControlName="niveau">
+                @for (level of levels; track level)
+                {
+                  <mat-option [value]="level.value">{{level.option}}</mat-option>
+                }
+              </mat-select>
+              @if( error_niveau )
+              {
+                <span class="text-danger">{{ error_niveau }}</span>
+              }
+            </mat-form-field>
+          </div>
+          <div class="mt-2">
+            <button mat-button matStepperPrevious>Précédant</button>
+            <button mat-button matStepperNext>Suivant</button>
+          </div>
+        </mat-step>
+
+        <mat-step label="Validation">
+          <div class="row mt-2">
+            <div class="col-md-6">
+              @if( !new_user_form.valid )
+              {
+                <button  class="btn btn-success" disabled (click)="check_user()">Enregistrer</button>
+                <span class="text-danger px-3">Veuillez bien remplir étape par étape la formulaire</span>
+                <br>
+                <button  class="btn btn-light mt-2" (click)="reset_new_user_form()">Réinitialiser le formulaire</button>
+              }
+              @else
+              {
+                <button  class="btn btn-success" (click)="check_user()">Enregistrer</button>
+                @if( error_niveau )
+                {
+                  <span class="text-danger px-3">{{ error_niveau }}</span>
+                }
+                <br>
+                <button  class="btn btn-light mt-2" (click)="reset_new_user_form()">Réinitialiser le formulaire</button>
+              }
+            </div>
+          </div>
+          <div class="mt-2">
+            <button mat-button matStepperPrevious>Précédant</button>
+          </div>
+        </mat-step>
+
+      </mat-stepper>
 
     </form>
 
   </div>
-
-
 
 </div>

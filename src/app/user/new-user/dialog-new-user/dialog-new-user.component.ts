@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { User_Model } from '../../user.model';
 import { DialogRef } from '@angular/cdk/dialog';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
@@ -40,7 +39,7 @@ export class DialogNewUserComponent implements OnInit{
   ngOnInit(): void
   {
     this.data_user = this.data.data_user ;
-    this.img_url = this.data.image_url ; 
+    this.img_url = this.data.image_url ;
 
     this.hidden_buttons = false ;
   }
@@ -62,8 +61,8 @@ export class DialogNewUserComponent implements OnInit{
             {
               this.dialog_ref.close() ;
               this.router.navigate([ "/add-user" ]) ;
-            } , 1000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 );
+          } , 2000 );
       }
       else
       {
@@ -75,8 +74,8 @@ export class DialogNewUserComponent implements OnInit{
             {
               this.dialog_ref.close() ;
               this.router.navigate([ "/list-user" ]) ;
-            } , 1000 ); // Redirection après 1 seconde
-          } , 2000 ); // Message de succès affiché pendant 2 secondes
+            } , 2000 );
+          } , 2000 );
       }
     } ) ;
   }

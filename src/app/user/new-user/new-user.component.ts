@@ -13,6 +13,7 @@ import { FormBuilder, FormGroup, Validators ,ReactiveFormsModule, FormsModule } 
 import { DialogNewUserComponent } from './dialog-new-user/dialog-new-user.component';
 import { RoleService } from '../../services/role.service';
 import { LevelService } from '../../services/level.service';
+import { MatStepper, MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-new-user',
@@ -28,7 +29,8 @@ import { LevelService } from '../../services/level.service';
     MatDatepickerModule ,
     MatNativeDateModule ,
     ReactiveFormsModule ,
-    MatSelectModule
+    MatSelectModule ,
+    MatStepperModule
   ],
   templateUrl: './new-user.component.html',
   styleUrl: './new-user.component.css'
@@ -54,19 +56,10 @@ export class NewUserComponent implements OnInit
 
   ngOnInit(): void
   {
-    this.hidden_niveau = true ;
     this.roles = this.role_service.roles ;
     this.levels = this.level_service.levels ;
 
-    this.new_user_form = this.form_builder.group({
-      nom: [ null , [ Validators.required ] ] ,
-      prenom: [ null , [ Validators.required ] ] ,
-      email: [ null , [ Validators.required , Validators.email ] ] ,
-      password: [ "0000" , [ Validators.required ] ] ,
-      image: [ null , [ Validators.required ] ] ,
-      role: [ null , [ Validators.required , Validators.pattern("^(Administrateur|Enseignant|Etudiant)$") ] ] ,
-      niveau: [ null , Validators.pattern("^(L1|L2|L3|M1|M2)$") ]
-    }) ;
+    this.reset_new_user_form();
   }
 
   check_user()
@@ -79,7 +72,18 @@ export class NewUserComponent implements OnInit
     data_user.append("password" , this.new_user_form.value.password ) ;
     data_user.append("image" , this.image_selected ) ;
     data_user.append("role" , this.new_user_form.value.role ) ;
-    data_user.append("niveau" , this.new_user_form.value.niveau ) ;
+
+    if( this.new_user_form.value.role === "Etudiant" )
+    {
+      if( this.new_user_form.value.niveau ===  null )
+      {
+        data_user.append("niveau" , "Veuillez choisir un niveau" ) ;
+      }
+      else
+      {
+        data_user.append("niveau" , this.new_user_form.value.niveau ) ;
+      }
+    }
 
     const data =
     {
@@ -119,8 +123,10 @@ export class NewUserComponent implements OnInit
       email: [ null , [ Validators.required , Validators.email ] ] ,
       password: [ "0000" , [ Validators.required ] ] ,
       image: [ null , [ Validators.required ] ] ,
-      role: [ null , [ Validators.required , Validators.pattern("^(Administrateur|Enseignant|Etudiant)$") ] ] ,
-      niveau: [ null , Validators.pattern("^(L1|L2|L3|M1|M2)$") ]
+      role: [ null , [ Validators.required , Validators.pattern("^(Administrateur|Enseignant|Etudiant)$")  ] ] ,
+      niveau: [ null , [
+        Validators.required ,
+        Validators.pattern("^(L1 Informatique|L2 Informatique|L3 Informatique|M1 Informatique|M2 MBDS|M2 BIHAR|L1 Design|L2 Design|L1 Mathématiques)$") ] ]
     }) ;
   }
 

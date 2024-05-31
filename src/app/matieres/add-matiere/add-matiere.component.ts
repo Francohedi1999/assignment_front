@@ -15,6 +15,13 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {ToastrService} from "ngx-toastr";
 import {DialogRef} from "@angular/cdk/dialog";
 import {Router} from "@angular/router";
+import { MatStepperModule } from '@angular/material/stepper';
+import {RoleService} from "../../services/role.service";
+
+//  Definition des roles
+const ADMINISTRATEUR = RoleService.ADMINISTRATEUR;
+const ENSEIGNANT = RoleService.ENSEIGNANT;
+const ETUDIANT= RoleService.ETUDIANT;
 
 @Component({
   selector: 'app-add-matiere',
@@ -25,6 +32,7 @@ import {Router} from "@angular/router";
     MatDialogModule,
     MatIcon,
     MatButton,
+    MatStepperModule ,
     MatFormField,
     MatInput,
     MatFormFieldModule,
@@ -61,8 +69,7 @@ export class AddMatiereComponent implements OnInit{
     ){}
   ngOnInit() {
     this.inputdata=this.data;
-    let role: string = "enseignant";
-    this.getAllProf(role);
+    this.getAllProf(ENSEIGNANT);
   }
 
   addMatiereForm=this.formBuilder.group({
@@ -83,7 +90,7 @@ export class AddMatiereComponent implements OnInit{
 
   getAllProf( filtre: string )
   {
-    this.user_service.get_all( filtre ).subscribe( ( response ) =>
+    this.user_service.get_all_no_pagination( filtre ).subscribe( ( response ) =>
     {
       this.enseignant = response ;
     } ) ;

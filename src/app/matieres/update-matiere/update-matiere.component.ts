@@ -32,6 +32,9 @@ import {ToastrService} from "ngx-toastr";
   styleUrl: './update-matiere.component.css'
 })
 export class UpdateMatiereComponent implements OnInit {
+
+  loader: boolean ;
+
   idMatiere: string;
 
   matiere: MatieresModel | undefined;
@@ -61,6 +64,7 @@ export class UpdateMatiereComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loader = true ;
     this.routeSubscription = this.route.params
       .subscribe(params => {
         this.idMatiere = this.route.snapshot.params['id']; // Id de la matiere sur l'URL
@@ -83,26 +87,43 @@ export class UpdateMatiereComponent implements OnInit {
               nom: [ this.matiere.nom , [ Validators.required ] ] ,
               imageMatiere: [ null ] ,
               idProf: [ this.matiere.idProf , [ Validators.required ] ]
-            } , );
+            } );
           });
-
-      let role: string = "enseignant";
+      let role: string = "Enseignant";
       this.getAllProf(role); // A revoir elle doit etre dynamique!!!
+      this.loader = false ;
     });
   }
 
   getAllProf( filtre: string )
   {
-    this.user_service.get_all( filtre ).subscribe( ( response ) =>
+    this.user_service.get_all_no_pagination( filtre ).subscribe( ( response ) =>
     {
       this.enseignant = response ;
     } ) ;
   }
 
-  onImageSelected(event)
-  {
-    this.selectedImage = event.target.files[0] ;
+  onImageSelected(event: any): void {
+    const file: File = event.target.files[0];
+
+    if (file && this.isImage(file)) {
+      this.selectedImage = file;
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.img_url_recent = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      this.toastr.error('Veuillez sélectionner une image valide (JPG, JPEG, PNG)', 'Erreur');
+    }
   }
+
+  // Vérifier si le fichier est une image (JPG, JPEG, PNG)
+  isImage(file: File): boolean {
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    return allowedTypes.includes(file.type);
+  }
+
 
 
   onSaveMatiere() {

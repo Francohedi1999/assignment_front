@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Confirmer la restauration</h1>
+  <div mat-dialog-content>
+    <p>Êtes-vous sûr de vouloir restaurer cette matière ?</p>
+    <p><strong>Nom: {{data.nom}}</strong></p>
+    <p><strong>Supprimee le: {{data.dateDeleted}}</strong></p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()" class="btn-cancel">Annuler</button>
+    <button mat-button (click)="onConfirm()" class="btn-confirm">Confirmer</button>
+  </div>

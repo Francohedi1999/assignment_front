@@ -10,14 +10,14 @@
   </h1>
 
   <div mat-dialog-content>
-<!-- Message d'alert-->
-      <div *ngIf="alertMessages.length > 0" class="alert" [ngClass]="{'alert-success': alertType === 'success', 'alert-danger': alertType === 'danger'}" role="alert" style="max-width: 600px; margin: 0 auto; text-align: center;">
-        <ul>
-          <li *ngFor="let message of alertMessages">{{ message }}</li>
-        </ul>
-      </div>
-      <br>
-<!--    *********-->
+    <!-- Message d'alert-->
+    <div *ngIf="alertMessages.length > 0" class="alert" [ngClass]="{'alert-success': alertType === 'success', 'alert-danger': alertType === 'danger'}" role="alert" style="max-width: 600px; margin: 0 auto; text-align: center;">
+      <ul>
+        <li *ngFor="let message of alertMessages">{{ message }}</li>
+      </ul>
+    </div>
+    <br>
+    <!--    *********-->
     <div class="row">
       <div class="col-md-12">
         <mat-label>Image de la matiere</mat-label>

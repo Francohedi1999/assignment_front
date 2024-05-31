@@ -1,44 +1,90 @@
 <div class="loading-overlay" *ngIf="showLoading">
   <mat-spinner class="mat-spinner"></mat-spinner>
 </div>
-<div class="container mt-4">
+<div class="container mt-4" cdkDropListGroup>
   <h1 class="mb-4">Liste des Matières</h1>
-  <div class="d-flex justify-content-end mb-3">
-    <button *ngIf="isAdmin" type="button" class="btn btn-success btn-sm" (click)="addNewMatiere()">
-      <i class="bi bi-plus-circle"></i> Ajouter
-    </button>
-  </div>
-  <div class="card p-3">
-      <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nom</th>
-          <th scope="col">Professeur</th>
-          <th *ngIf="isAdmin" scope="col">Action</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let matiere of matieres; let i = index">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>{{ matiere.nom }}</td>
-          <td>{{ matiere.idProf }}</td>
-          <td *ngIf="isAdmin">
-            <div class="row">
-              <div class="col">
-                <button type="button" class="btn btn-primary btn-sm"
-                        [routerLink]="['/matieres', matiere.id]">
-                  <i class="bi bi-pencil-fill"></i>
-                </button>
-                <button type="button"  class="btn btn-danger btn-sm mx-2"
-                        (click)="deleteMatiere(matiere.id,matiere.nom)">
-                  <i class="bi bi-trash"></i>
-                </button>
-              </div>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-  </div>
+  @if( loader === true )
+  {
+    <div class="d-flex justify-content-center mt-5">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+  }
+  @else
+  {
+    <div class="d-flex justify-content-end mb-3">
+      <button *ngIf="isAdmin" type="button" class="btn btn-success btn-sm" (click)="addNewMatiere()">
+        <i class="bi bi-plus-circle"></i> Ajouter
+      </button>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card p-3">
+          <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">Matiere</th>
+              <th scope="col">Professeur</th>
+              <th *ngIf="isAdmin" scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody cdkDropList id="matieresList" [cdkDropListData]="matieres" (cdkDropListDropped)="drop($event)">
+              @if (matieres.length == 0){
+                <p>Pas de matieres</p>
+              }
+            <tr *ngFor="let matiere of matieres" cdkDrag>
+              <td>
+                <div class="d-flex align-items-center">
+                <img
+                  [src]="matiere.imageMatiere"
+                  alt="Image du prof"
+                  class="rounded-circle mr-3 d-block square-image">
+                <span>  {{ matiere.nom }}  </span>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <img
+                    [src]="matiere.enseignant.img_url"
+                    alt="Image du prof"
+                    class="rounded-circle mr-3 d-block square-image">
+                  <span> {{ matiere.enseignant.nom }} {{ matiere.enseignant.prenom }}</span>
+                </div>
+            </td>
+              <td *ngIf="isAdmin">
+                <div class="row">
+                  <div class="col">
+                    <button type="button" class="btn btn-primary btn-sm" [routerLink]="['/matieres', matiere.id]">
+                      <i class="bi bi-pencil-fill"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm mx-2" (click)="deleteMatiere(matiere.id, matiere.nom)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h3><b>Matières Supprimées </b></h3>
+          <p>Glissez une matiere vers la gauche pour restaurer</p>
+          <div cdkDropList id="deletedMatieresList" [cdkDropListData]="deletedMatieres" (cdkDropListDropped)="drop($event)">
+            @if (deletedMatieres.length == 0){
+              <p>Pas de matière supprimée</p>
+            } @else {
+              <div *ngFor="let matiere of deletedMatieres" class="example-box" cdkDrag>{{ matiere.nom }}</div>
+            }
+          </div>
+
+        </div>
+      </div>
+    </div>
+    }
+
 </div>

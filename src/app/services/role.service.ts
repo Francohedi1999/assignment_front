@@ -24,4 +24,21 @@ export class RoleService {
     return false;
   }
 
+  //  Verifier si le role est un enseignant
+  isEnseignant(role: string): boolean {
+    if (role.toLowerCase() === RoleService.ENSEIGNANT.toLowerCase()){
+      return true;
+    }
+    return false;
+  }
+
+  //  Verifier si le role est un etudiant
+  isEtudiant(role: string): boolean {
+    if (role.toLowerCase() === RoleService.ETUDIANT.toLowerCase()){
+      return true;
+    }
+    return false;
+  }
+
+
 }

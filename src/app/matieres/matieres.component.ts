@@ -16,6 +16,15 @@ import {AddMatiereComponent} from "./add-matiere/add-matiere.component";
 import {ToastrModule, ToastrService} from "ngx-toastr";
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {AuthService} from "../services/auth.service";
+import {
+  CdkDrag,
+  CdkDragDrop,
+  CdkDropList,
+  CdkDropListGroup,
+  moveItemInArray,
+  transferArrayItem
+} from "@angular/cdk/drag-drop";
+import {ConfirmDialogComponent} from "./confirm-dialog/confirm-dialog.component";
 
 const ADMINISTRATEUR = 'Administrateur';
 
@@ -31,17 +40,23 @@ const ADMINISTRATEUR = 'Administrateur';
     MatTable,
     MatIcon,
     RouterLink,
-    MatProgressSpinner
+    MatProgressSpinner,
+    CdkDropListGroup, CdkDropList, CdkDrag
   ],
   templateUrl: './matieres.component.html',
   styleUrl: './matieres.component.css'
 })
 
 export class MatieresComponent implements OnInit{
+  loader: boolean ;
+
   isAdmin: boolean ;
 
-  matieres: MatieresModel[];
-  enseignant: User_Model[];
+  matieres: MatieresModel[] = [];
+  deletedMatieres: MatieresModel[]= [];
+
+
+  enseignants: Map<string, any> = new Map();
 
   showLoading: boolean = false;
 
@@ -51,20 +66,35 @@ export class MatieresComponent implements OnInit{
     private matieresService: MatieresService,
     private mat_dialog: MatDialog ,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
+    this.loader = true
     this.getAllMatieres("");
+    // Liste des matieres supprimees
+    this.getAllMatieresDeleted();
     this.isAdmin = this.authService.isAdmin();
   }
 
-  getAllMatieres(filtre: string): void{
-    this.matieresService.getAllMatieres(filtre).subscribe(
+  getAllMatieresDeleted(): void {
+    this.matieresService.getMatiereSupprimees().subscribe((response:any) => {
+      if (response.data) {
+        this.deletedMatieres = response.data;
+      }else {
+        this.deletedMatieres = []; // Vide si la liste est vide
+      }
+    });
+  }
+
+  getAllMatieres( enseignant_id: string ): void{
+    this.matieresService.getAllMatieres( enseignant_id ).subscribe(
       (response: any) => {
         console.log(response.message); // Affiche le message dans la console
         if (response.data) {
           this.matieres = response.data; // Enregistre les donnees dans la variable matieres
+          this.loader = false ;
         }
       },
       (error) => {
@@ -93,6 +123,7 @@ export class MatieresComponent implements OnInit{
           this.showLoading = false;
           this.toastr.success('La matiere '+ nom +' a ete supprimer!', 'Success');
           this.getAllMatieres("");
+          this.getAllMatieresDeleted();
         },
         (error: any) => {
         // Si le serveur retourne une erreur status 403
@@ -103,5 +134,47 @@ export class MatieresComponent implements OnInit{
           console.error(error);
         });
     }, 350);
+  }
+
+  // Restaurer une matiere supprimee par un drag and drop
+  drop(event: CdkDragDrop<MatieresModel[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      const movedMatiere = event.previousContainer.data[event.previousIndex];
+      if (event.container.id === 'matieresList') {
+        // Afficher une confirmation avant de restaurer la matiere
+        const dialogRef = this.mat_dialog.open(ConfirmDialogComponent, {
+          width: '35%',
+          data: { nom: movedMatiere.nom , dateDeleted: movedMatiere.deletedAt }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          if (result === true) {
+            const formData = new FormData();
+            formData.append('nom', movedMatiere.nom);
+            formData.append('imageMatiere', movedMatiere.imageMatiere);
+            formData.append('idProf', movedMatiere.idProf);
+            formData.append('deletedAt', "");
+            formData.append('deleted', String(false));
+
+            this.matieresService.updateMatiere(movedMatiere.id, formData).subscribe(
+              (response: any) => {
+                if (response.errors && response.status === 400) {
+                  this.toastr.error(response.errors, 'Erreur');
+                }else {
+                  this.getAllMatieres("");
+                  this.getAllMatieresDeleted();
+                  this.toastr.success('La matière ' + movedMatiere.nom + ' a été restaurée!', 'Success');
+                }
+              },
+              (error) => {
+                console.error(error);
+              }
+            );
+          }
+        });
+      }
+    }
   }
 }
