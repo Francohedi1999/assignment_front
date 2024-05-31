@@ -76,7 +76,6 @@ export class MatieresComponent implements OnInit{
     // Liste des matieres supprimees
     this.getAllMatieresDeleted();
     this.isAdmin = this.authService.isAdmin();
-    this.loader = false ;
   }
 
   getAllMatieresDeleted(): void {
