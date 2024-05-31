@@ -3,22 +3,30 @@ Ce projet est une application web développée en Angular pour la gestion des de
 Il permet aux enseignants de créer, attribuer et gérer des devoirs pour leurs étudiants, et aux étudiants de consulter leurs devoirs assignés.
 
 ## Fonctionnalités
-  # Administrateur
-    # Matière
+  
+  ### Administrateur
+# Matière
 - Liste avec filtre et pagination
 - Création pour un(e) enseignant(e)
 - Modification
-    # Utilisateur
+# Utilisateur
 - Liste avec filtre et pagination
 - Création utilisateur (type: Administrateur, Enseignant, Etudiant)
 - Suppression utilisateur pour désactiver son compte
-    # Assignation
+# Assignation
 - Liste avec filtre et pagination
 - Suppression 
-  # Enseignant
-    # Assignation
+
+  ### Enseignant
+# Assignation
+- Création assignation
 - Liste avec filtre et pagination
-  # Etudiant
+# Note
+- Liste des notes par assignation avec filtre et pagination
+- Ajout et/ou remarque pour un étudiant si l'assignation et déjà rendue par l'étudiant
+
+  ### Etudiant
+- Liste des
 
 ## Auteurs
   21	Rakotobe	Herinirina Angelo
