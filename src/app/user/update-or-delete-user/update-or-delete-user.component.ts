@@ -178,7 +178,6 @@ export class UpdateOrDeleteUserComponent implements OnInit
       email: [ this.user.email , [ Validators.required, Validators.email ] ],
       role: [ this.user.role , [ Validators.pattern("^(Administrateur|Enseignant|Etudiant)$") ] ],
       niveau: [ null , [
-        Validators.required ,
         Validators.pattern("^(L1 Informatique|L2 Informatique|L3 Informatique|M1 Informatique|M2 MBDS|M2 BIHAR|L1 Design|L2 Design|L1 Mathématiques)$") ] ] ,
       image: [ null ]
     }) ;
