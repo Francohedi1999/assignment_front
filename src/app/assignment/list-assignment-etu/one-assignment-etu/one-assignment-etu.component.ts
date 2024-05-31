@@ -63,13 +63,18 @@ export class OneAssignmentEtuComponent implements OnInit
       note_etu =>
       {
         this.note = note_etu ;
+        console.log( "this.assignment._id" )
+        console.log( this.assignment._id )
+        console.log( "user._id" )
+        console.log( user._id )
+        console.log( "this.note" )
+        console.log( this.note )
       });
     });
   }
 
   make_assignment()
   {
-    console.log( this.note ) ;
     const data_ = {
       assignment: this.assignment ,
       note: this.note

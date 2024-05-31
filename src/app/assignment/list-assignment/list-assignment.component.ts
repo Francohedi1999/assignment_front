@@ -92,6 +92,8 @@ export class ListAssignmentComponent implements OnInit
           this.assignment_service.get_all( this.filtre_niveau , page , limit , user._id , false ).subscribe(
             ( data ) =>
             {
+              console.log("ID_ENSEIGNANT = " + user._id )
+              console.log("USER = " + user )
               this.assignments = data.docs;
               this.totalDocs = data.totalDocs;
               this.limit = data.limit;

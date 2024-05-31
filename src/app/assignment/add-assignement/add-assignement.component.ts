@@ -109,7 +109,9 @@ export class AddAssignementComponent implements OnInit
       description: [ null , [ Validators.required ] ] ,
       matiere_id: [ null , [ Validators.required ] ] ,
       dl: [ null , [ Validators.required ] ] ,
-      niveau: [ null , [ Validators.required , Validators.pattern("^(L1|L2|L3|M1|M2)$") ] ]
+      niveau: [ null , [
+        Validators.required ,
+        Validators.pattern("^(L1 Informatique|L2 Informatique|L3 Informatique|M1 Informatique|M2 MBDS|M2 BIHAR|L1 Design|L2 Design|L1 Mathématiques)$") ] ]
     }) ;
   }
 

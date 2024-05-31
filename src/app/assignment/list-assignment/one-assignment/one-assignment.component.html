@@ -25,6 +25,11 @@
           <strong>Niveau: </strong>{{ assignment?.niveau }}
           <br>
           <strong>Date limite: </strong>{{ assignment?.dl | date :"dd-MM-yyyy" }}
+          @if( assignment?.canceled === true )
+          {
+            <br>
+            <span class="badge bg-danger">Supprimée</span>
+          }
       </div>
 
       <div class="col-md-1">
