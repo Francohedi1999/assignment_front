@@ -7,19 +7,20 @@
 
 
 <div class="row mt-3">
-    <mat-form-field class="col-md-12">
-      <mat-label>Description</mat-label>
-      <input matInput [(ngModel)]="filtre_desc">
-    </mat-form-field>
-  <mat-paginator  class="col-md-5"
-                  #paginator
-                  class="demo-paginator"
-                  (page)="handlePageEvent($event)"
-                  [length]="totalDocs"
-                  [pageSize]="limit"
-                  [showFirstLastButtons]="true"
-                  [pageSizeOptions]="[ 5 , 10 , 15 , 20 ]">
-  </mat-paginator>
+  <mat-form-field class="col-md-5">
+    <mat-label>Description</mat-label>
+    <input matInput [(ngModel)]="filtre_desc">
+  </mat-form-field>
+  <div class="col-md-5">
+    <mat-paginator #paginator
+                    class="demo-paginator"
+                    (page)="handlePageEvent($event)"
+                    [length]="totalDocs"
+                    [pageSize]="limit"
+                    [showFirstLastButtons]="true"
+                    [pageSizeOptions]="[ 5 , 10 , 15 , 20 ]">
+    </mat-paginator>
+  </div>
 </div>
 @if( loader === true )
 {
