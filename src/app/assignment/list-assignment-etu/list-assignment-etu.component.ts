@@ -85,4 +85,9 @@ export class ListAssignmentEtuComponent implements OnInit
     this.page = 0 ;
     this.get_assignments( this.filtre_desc ) ;
   }
+
+  reset_list()
+  {
+    this.ngOnInit()
+  }
 }
