@@ -28,7 +28,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ListAssignmentComponent implements OnInit
 {
-  loader = true ;
+  loader: boolean ;
   assignments: Assignment_Model[] ;
   levels: any[];
   filtre_niveau: string ;
@@ -52,6 +52,7 @@ export class ListAssignmentComponent implements OnInit
 
   ngOnInit()
   {
+    this.loader = true ;
     this.token_user_logged = this.auth_service.get_token_user_logged() ;
     this.filtre_niveau = ""
     this.filtre_canceled = undefined

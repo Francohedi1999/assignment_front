@@ -24,7 +24,7 @@ import { DialogMakeAssignmentComponent } from '../dialog-make-assignment/dialog-
 })
 export class OneAssignmentEtuComponent implements OnInit
 {
-
+  loader: boolean ;
   @Input()
   assignment: Assignment_Model ;
 
@@ -42,6 +42,7 @@ export class OneAssignmentEtuComponent implements OnInit
 
   ngOnInit()
   {
+    this.loader = true ;
     this.matiere_service.getMatiereById( this.assignment.matiere_id ).subscribe(
     (response: any) =>
     {
@@ -61,6 +62,7 @@ export class OneAssignmentEtuComponent implements OnInit
       note_etu =>
       {
         this.note = note_etu ;
+        this.loader = false ;
       });
     });
 

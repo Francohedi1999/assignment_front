@@ -26,6 +26,8 @@ import { MatieresModel } from '../../models/matieres.model';
 })
 export class DialogDeleteAssignmentComponent implements OnInit
 {
+  loader : boolean ;
+
   assignment: Assignment_Model ;
   matiere: MatieresModel ;
 
@@ -42,11 +44,13 @@ export class DialogDeleteAssignmentComponent implements OnInit
 
   ngOnInit()
   {
+    this.loader = true ;
     this.assignment = this.data ;
     this.matiere_service.getMatiereById( this.assignment.matiere_id ).subscribe(
       (response:any) =>
       {
         this.matiere = response.data ;
+        this.loader = false ;
       }
     ) ;
   }

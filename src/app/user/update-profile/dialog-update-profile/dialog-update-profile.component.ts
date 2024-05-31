@@ -21,6 +21,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class DialogUpdateProfileComponent implements OnInit
 {
+  loader: boolean ;
   data_user: FormData ;
   img_url: string ;
 
@@ -36,10 +37,12 @@ export class DialogUpdateProfileComponent implements OnInit
 
   ngOnInit()
   {
+    this.loader = true ;
     this.data_user = this.data.data_user ;
     this.img_url = this.data.image_url ;
 
     this.hidden_buttons = false ;
+    this.loader = false ;
   }
 
   update_user()

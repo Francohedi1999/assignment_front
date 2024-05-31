@@ -27,6 +27,8 @@ import { Note_Model } from '../../../note/note.model';
 })
 export class DialogMakeAssignmentComponent implements OnInit
 {
+  loader: boolean ;
+
   note: Note_Model ;
   assignment: Assignment_Model ;
   matiere: MatieresModel ;
@@ -44,12 +46,14 @@ export class DialogMakeAssignmentComponent implements OnInit
 
   ngOnInit()
   {
+    this.loader = true ;
     this.assignment = this.data.assignment ;
     this.note = this.data.note ;
     this.matiere_service.getMatiereById( this.assignment.matiere_id ).subscribe(
       (response:any) =>
       {
         this.matiere = response.data ;
+        this.loader = false ;
       }
     ) ;
   }
@@ -73,7 +77,7 @@ export class DialogMakeAssignmentComponent implements OnInit
             } , 2000 );
           } , 2000 );
       }
-      else 
+      else
       {
         setTimeout(() =>
           {

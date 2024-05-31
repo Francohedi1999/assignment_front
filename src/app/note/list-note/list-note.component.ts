@@ -31,7 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ListNoteComponent implements OnInit
 {
-  loader = true ;
+  loader: boolean ;
   assignment_id: string ;
   notes: Note_Model[] ;
 
@@ -60,6 +60,7 @@ export class ListNoteComponent implements OnInit
 
   ngOnInit()
   {
+    this.loader = true ;
     this.filtre_noted = undefined
     this.filtre_rendu = undefined
     this.assignment_id = this.active_route.snapshot.params["assignment_id"] ;

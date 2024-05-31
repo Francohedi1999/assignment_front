@@ -23,6 +23,7 @@ import { DialogDeleteAssignmentComponent } from '../../dialog-delete-assignment/
 })
 export class OneAssignmentComponent implements OnInit
 {
+  loader: boolean ;
 
   @Input()
   assignment: Assignment_Model ;
@@ -41,6 +42,7 @@ export class OneAssignmentComponent implements OnInit
 
   ngOnInit()
   {
+    this.loader = true
     this.token_user_logged = this.auth_service.get_token_user_logged() ;
 
     this.auth_service.get_user_logged( this.token_user_logged ).subscribe(
@@ -52,15 +54,13 @@ export class OneAssignmentComponent implements OnInit
     this.matiere_service.getMatiereById( this.assignment.matiere_id ).subscribe(
     (response: any) =>
     {
-
       this.matiere = response.data ;
-
       this.user_service.get_by_id( this.matiere.idProf ).subscribe(
       (response: User_Model) =>
       {
         this.enseignant = response ;
+        this.loader = false ;
       });
-
     });
 
   }

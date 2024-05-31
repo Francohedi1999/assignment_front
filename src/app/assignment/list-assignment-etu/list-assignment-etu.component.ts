@@ -17,7 +17,7 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 })
 export class ListAssignmentEtuComponent implements OnInit
 {
-  loader = true ;
+  loader: boolean ;
   assignments: Assignment_Model[] ;
   token_user_logged: string ;
 
@@ -36,6 +36,7 @@ export class ListAssignmentEtuComponent implements OnInit
 
   ngOnInit()
   {
+    this.loader = true ;
     this.token_user_logged = this.auth_service.get_token_user_logged() ;
     this.get_assignments() ;
   }

@@ -34,6 +34,8 @@ import { NoteService } from '../../services/note.service';
 })
 export class DialogAddOrUpdateNoteComponent implements OnInit
 {
+  loader: boolean ;
+
   note: Note_Model ;
   etudiant: User_Model ;
 
@@ -53,6 +55,7 @@ export class DialogAddOrUpdateNoteComponent implements OnInit
 
   ngOnInit()
   {
+    this.loader = true ;
     this.note = this.data ;
     this.hidden_buttons = false ;
 
@@ -60,6 +63,7 @@ export class DialogAddOrUpdateNoteComponent implements OnInit
       (response: User_Model) =>
       {
         this.etudiant = response ;
+        this.loader = false ;
       }
     );
 

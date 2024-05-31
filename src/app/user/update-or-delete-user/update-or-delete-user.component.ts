@@ -40,7 +40,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class UpdateOrDeleteUserComponent implements OnInit
 {
-  loader = true ;
+  loader : boolean ;
 
   id_user: string ;
   user_img_url_recent: string ;
@@ -72,6 +72,7 @@ export class UpdateOrDeleteUserComponent implements OnInit
 
   ngOnInit(): void
   {
+    this.loader = true ;
     this.hidden_buttons = false ;
 
     this.roles = this.role_service.roles ;

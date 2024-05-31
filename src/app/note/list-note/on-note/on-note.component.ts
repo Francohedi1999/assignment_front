@@ -17,6 +17,7 @@ import { DialogAddOrUpdateNoteComponent } from '../../dialog-add-or-update-note/
 })
 export class OnNoteComponent implements OnInit
 {
+  loader: boolean;
 
   constructor(  private user_service: UserService ,
                 private mat_dialog: MatDialog  ) {}
@@ -29,10 +30,12 @@ export class OnNoteComponent implements OnInit
 
   ngOnInit()
   {
+    this.loader = true
     this.user_service.get_by_id( this.note.etudiant_id ).subscribe(
     (response: User_Model) =>
     {
       this.etudiant = response ;
+      this.loader = false ;
     });
   }
 

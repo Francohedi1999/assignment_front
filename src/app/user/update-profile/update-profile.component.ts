@@ -29,7 +29,7 @@ import { MatMenuModule } from '@angular/material/menu';
 })
 export class UpdateProfileComponent implements OnInit
 {
-  loader = true ;
+  loader: boolean ;
 
   id_user: string ;
   user_img_url_recent: string ;
@@ -47,6 +47,7 @@ export class UpdateProfileComponent implements OnInit
 
   ngOnInit()
   {
+    this.loader = true ;
     this.error_password = null ;
     this.id_user = this.active_route.snapshot.params["id_user"] ;
 

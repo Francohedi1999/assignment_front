@@ -33,7 +33,7 @@ import {ToastrService} from "ngx-toastr";
 })
 export class UpdateMatiereComponent implements OnInit {
 
-  loader = true ;
+  loader: boolean ;
 
   idMatiere: string;
 
@@ -64,6 +64,7 @@ export class UpdateMatiereComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.loader = true ;
     this.routeSubscription = this.route.params
       .subscribe(params => {
         this.idMatiere = this.route.snapshot.params['id']; // Id de la matiere sur l'URL
@@ -87,11 +88,10 @@ export class UpdateMatiereComponent implements OnInit {
               imageMatiere: [ null ] ,
               idProf: [ this.matiere.idProf , [ Validators.required ] ]
             } );
-            this.loader = false ;
           });
-
       let role: string = "Enseignant";
       this.getAllProf(role); // A revoir elle doit etre dynamique!!!
+      this.loader = false ;
     });
   }
 

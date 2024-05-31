@@ -48,7 +48,7 @@ const ADMINISTRATEUR = 'Administrateur';
 })
 
 export class MatieresComponent implements OnInit{
-  loader = true ;
+  loader: boolean ;
 
   isAdmin: boolean ;
 
@@ -71,10 +71,12 @@ export class MatieresComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
+    this.loader = true
     this.getAllMatieres("");
     // Liste des matieres supprimees
     this.getAllMatieresDeleted();
     this.isAdmin = this.authService.isAdmin();
+    this.loader = false ;
   }
 
   getAllMatieresDeleted(): void {
@@ -95,7 +97,6 @@ export class MatieresComponent implements OnInit{
         if (response.data) {
           this.matieres = response.data; // Enregistre les donnees dans la variable matieres
         }
-        this.loader = false ;
       },
       (error) => {
         console.error('Erreur lors de la récupération des matières : ', error);

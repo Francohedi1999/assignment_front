@@ -27,7 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 export class ListUserComponent implements OnInit
 {
-  loader = true ;
+  loader : boolean ;
   utilisateurs: User_Model[] ;
   roles: any[] ;
   levels: any[] ;
@@ -51,6 +51,7 @@ export class ListUserComponent implements OnInit
 
   ngOnInit(): void
   {
+    this.loader = true ;
     this.niveau_disabled = true ;
     this.roles = this.role_service.roles ;
     this.levels = this.level_service.levels ;
