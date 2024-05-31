@@ -46,15 +46,15 @@ export class ListAssignmentEtuComponent implements OnInit
     this.loader = true ;
     this.filtre_desc = "" ;
     this.token_user_logged = this.auth_service.get_token_user_logged() ;
-    this.get_assignments() ;
+    this.get_assignments( this.filtre_desc ) ;
   }
 
-  get_assignments()
+  get_assignments( filtre: string )
   {
     this.auth_service.get_user_logged( this.token_user_logged ).subscribe(
     (user) =>
     {
-      this.assignment_service.get_all( user.niveau , this.page , this.limit , "" , this.filtre_desc , false ).subscribe(
+      this.assignment_service.get_all( user.niveau , this.page , this.limit , "" , filtre , false ).subscribe(
       (data) =>
       {
         this.assignments = data.docs;
@@ -73,6 +73,6 @@ export class ListAssignmentEtuComponent implements OnInit
   {
     this.page = event.pageIndex + 1 ;
     this.limit = event.pageSize ;
-    this.get_assignments() ;
+    this.get_assignments( this.filtre_desc ) ;
   }
 }
