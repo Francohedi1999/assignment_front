@@ -73,7 +73,7 @@ export class ListAssignmentComponent implements OnInit
         if( user.role === "Administrateur" )
         {
           this.canceled_disabled = false ;
-          this.assignment_service.get_all( this.filtre_niveau , page , limit , "" , this.filtre_canceled ).subscribe(
+          this.assignment_service.get_all( this.filtre_niveau , page , limit , "" , "" ,  this.filtre_canceled ).subscribe(
           ( data ) =>
           {
             this.assignments = data.docs;
@@ -89,7 +89,7 @@ export class ListAssignmentComponent implements OnInit
         else
         {
           this.canceled_disabled = true ;
-          this.assignment_service.get_all( this.filtre_niveau , page , limit , user._id , false ).subscribe(
+          this.assignment_service.get_all( this.filtre_niveau , page , limit , user._id , "" , false ).subscribe(
             ( data ) =>
             {
               console.log("ID_ENSEIGNANT = " + user._id )

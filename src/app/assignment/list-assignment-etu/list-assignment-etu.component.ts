@@ -4,13 +4,19 @@ import { AuthService } from '../../services/auth.service';
 import { AssignmentService } from '../../services/assignment.service';
 import { OneAssignmentEtuComponent } from './one-assignment-etu/one-assignment-etu.component';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-list-assignment-etu',
   standalone: true,
   imports: [
     OneAssignmentEtuComponent ,
-    MatPaginatorModule
+    MatPaginatorModule ,
+    FormsModule ,    
+    MatInputModule ,
+    ReactiveFormsModule ,
+
   ],
   templateUrl: './list-assignment-etu.component.html',
   styleUrl: './list-assignment-etu.component.css'
@@ -20,6 +26,7 @@ export class ListAssignmentEtuComponent implements OnInit
   loader: boolean ;
   assignments: Assignment_Model[] ;
   token_user_logged: string ;
+  filtre_desc: string ;
 
   totalDocs = 0;
   page = 1;
@@ -37,6 +44,7 @@ export class ListAssignmentEtuComponent implements OnInit
   ngOnInit()
   {
     this.loader = true ;
+    this.filtre_desc = "" ;
     this.token_user_logged = this.auth_service.get_token_user_logged() ;
     this.get_assignments() ;
   }
@@ -46,7 +54,7 @@ export class ListAssignmentEtuComponent implements OnInit
     this.auth_service.get_user_logged( this.token_user_logged ).subscribe(
     (user) =>
     {
-      this.assignment_service.get_all( user.niveau , this.page , this.limit , "" , false ).subscribe(
+      this.assignment_service.get_all( user.niveau , this.page , this.limit , "" , this.filtre_desc , false ).subscribe(
       (data) =>
       {
         this.assignments = data.docs;

@@ -24,6 +24,7 @@ export class AssignmentService
             page: number,
             limit: number ,
             id_enseignant: string ,
+            filtre_desc: string ,
             filtre_canceled: boolean ): Observable<any>
   {
     const header = { headers : new HttpHeaders().set("Authorization" , "Bearer " + this.auth_service.get_token_user_logged() ) } ;
@@ -37,7 +38,9 @@ export class AssignmentService
                 "&id_enseignant=" +
                 id_enseignant +
                 "&filtre_canceled=" +
-                filtre_canceled ;
+                filtre_canceled +
+                "&filtre_desc=" +
+                filtre_desc ;
     return this.http.get<any>( url , header ) ;
   }
 
