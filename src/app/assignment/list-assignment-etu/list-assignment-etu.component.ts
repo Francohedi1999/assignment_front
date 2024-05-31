@@ -50,7 +50,7 @@ export class ListAssignmentEtuComponent implements OnInit
     this.loader = true ;
     this.filtre_desc = "" ;
     this.token_user_logged = this.auth_service.get_token_user_logged() ;
-    this.get_assignments( "" ) ;
+    this.get_assignments( this.filtre_desc ) ;
   }
 
   get_assignments( filtre: string )
