@@ -6,6 +6,8 @@ import { OneAssignmentEtuComponent } from './one-assignment-etu/one-assignment-e
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-list-assignment-etu',
@@ -14,6 +16,8 @@ import { MatInputModule } from '@angular/material/input';
     OneAssignmentEtuComponent ,
     MatPaginatorModule ,
     FormsModule ,    
+    MatButtonModule ,
+    MatIconModule ,
     MatInputModule ,
     ReactiveFormsModule ,
 
@@ -46,7 +50,7 @@ export class ListAssignmentEtuComponent implements OnInit
     this.loader = true ;
     this.filtre_desc = "" ;
     this.token_user_logged = this.auth_service.get_token_user_logged() ;
-    this.get_assignments( this.filtre_desc ) ;
+    this.get_assignments( "" ) ;
   }
 
   get_assignments( filtre: string )
@@ -73,6 +77,12 @@ export class ListAssignmentEtuComponent implements OnInit
   {
     this.page = event.pageIndex + 1 ;
     this.limit = event.pageSize ;
+    this.get_assignments( this.filtre_desc ) ;
+  }
+
+  filter()
+  {
+    this.page = 0 ;
     this.get_assignments( this.filtre_desc ) ;
   }
 }

@@ -7,10 +7,15 @@
 
 
 <div class="row mt-3">
-  <mat-form-field class="col-md-5">
+  <mat-form-field class="col-md-54">
     <mat-label>Description</mat-label>
     <input matInput [(ngModel)]="filtre_desc">
   </mat-form-field>
+  <div class="col-md-1">
+  <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="filter()">
+    <mat-icon>delete</mat-icon>
+  </button>
+  </div>
   <div class="col-md-5">
     <mat-paginator #paginator
                     class="demo-paginator"
