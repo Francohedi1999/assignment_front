@@ -58,6 +58,16 @@ Nous avons implémenté la fonctionnalité de drag and drop pour les matières p
 - **Facilité de restauration** : Les matières peuvent être facilement restaurées si elles ont été supprimées par erreur.
 - **Flexibilité de gestion** : Permet aux administrateurs de gérer les matières de manière plus efficace et sécurisée.
 
+## Identifiants pour les tests
+1. Administrateur:
+  - email:  administrateur@gmail.com
+  - mdp:    0000
+2. Enseignant:
+  - email:  dayna@gmail.com
+  - mdp:    0000
+3. Etudiant:
+  - email:  rasoa@gmail.com
+  - mdp:    0000
 
 ## Installation
 Pour installer et exécuter ce projet sur votre machine locale, suivez ces étapes :
