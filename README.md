@@ -5,7 +5,7 @@
 Ce projet est une application web développée en MEAN Stack (Mongo Express Angular Node) pour la gestion des devoirs dans un environnement éducatif. Elle permet aux administrateurs de gérer les utilisateurs et les matières, aux enseignants de créer et noter des devoirs, et aux étudiants de soumettre et consulter leurs devoirs. L'authentification est gérée à l'aide de JSON Web Tokens (JWT), assurant une sécurité robuste et un contrôle d'accès efficace.
 
 ## Déploiement
-Lien vers la version déployée de l'application : https://assignment-front-rxom.onrender.com/list-assignment
+Lien vers la version déployée de l'application : [https://assignment-front-rxom.onrender.com](https://assignment-front-rxom.onrender.com/login)
 
 ## Auteurs
 - 21 - RAKOTOBE Herinirina Angelo
