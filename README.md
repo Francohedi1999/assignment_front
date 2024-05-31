@@ -42,7 +42,7 @@ Les enseignants peuvent gérer leurs devoirs et suivre les performances de leurs
 Les étudiants peuvent consulter et rendre leurs devoirs.
 
 #### Assignations
-- **Liste des devoirs** : Liste avec pagination pour voir tous les devoirs assignés.
+- **Liste des devoirs** : Liste avec pagination et recherche par déscription du devoir pour voir tous les devoirs assignés.
 - **Soumission de devoirs** : Les étudiants peuvent soumettre leurs devoirs via l'application. Une fois le devoir rendu, il ne peut plus être modifié, garantissant ainsi l'intégrité des soumissions.
 - **Consultation des notes** : Les étudiants peuvent voir les notes et les remarques des devoirs rendus. Cette transparence permet aux étudiants de suivre leur performance et de s'améliorer.
 
