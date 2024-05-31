@@ -71,6 +71,7 @@ export class ListNoteComponent implements OnInit
       (response: Assignment_Model) =>
       {
         this.assignment = response ;
+        this.loader = false ;
 
         this.matiere_service.getMatiereById( this.assignment.matiere_id ).subscribe(
           (response: any) =>
@@ -81,12 +82,12 @@ export class ListNoteComponent implements OnInit
             (response: User_Model) =>
             {
               this.enseignant = response ;
+              this.loader = false ;
             });
           });
       }
-    )
+    );
     this.loader = false ;
-
   }
 
   reset_list()
