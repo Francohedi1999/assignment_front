@@ -51,7 +51,6 @@ export class OneAssignmentEtuComponent implements OnInit
       (response: User_Model) =>
       {
         this.enseignant = response ;
-        this.loader = false ;
       });
     });
 
@@ -66,7 +65,6 @@ export class OneAssignmentEtuComponent implements OnInit
         this.loader = false ;
       });
     });
-    this.loader = false ;
   }
 
   make_assignment()

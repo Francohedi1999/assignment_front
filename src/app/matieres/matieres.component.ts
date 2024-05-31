@@ -86,7 +86,6 @@ export class MatieresComponent implements OnInit{
       }else {
         this.deletedMatieres = []; // Vide si la liste est vide
       }
-      this.loader = false ;
     });
   }
 
@@ -96,6 +95,7 @@ export class MatieresComponent implements OnInit{
         console.log(response.message); // Affiche le message dans la console
         if (response.data) {
           this.matieres = response.data; // Enregistre les donnees dans la variable matieres
+          this.loader = false ;
         }
       },
       (error) => {
