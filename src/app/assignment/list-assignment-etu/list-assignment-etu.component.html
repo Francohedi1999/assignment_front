@@ -7,7 +7,7 @@
 
 
 <div class="row mt-3">
-  <mat-form-field class="col-md-4">
+  <mat-form-field class="col-md-5">
     <mat-label>Description</mat-label>
     <input matInput [(ngModel)]="filtre_desc">
   </mat-form-field>
@@ -16,7 +16,7 @@
     <mat-icon>search</mat-icon>
   </button>
   </div>
-  <div class="col-md-5">
+  <div class="col-md-6">
     <mat-paginator #paginator
                     class="demo-paginator"
                     (page)="handlePageEvent($event)"
